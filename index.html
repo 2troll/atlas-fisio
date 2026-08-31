@@ -140,6 +140,17 @@ html[dir="rtl"] .gr-tex{font-family:"Rubik",sans-serif;font-size:11px;}
 html[dir="rtl"] .tabla th{letter-spacing:0;text-transform:none;font-size:.86rem;}
 .tabla td{color:var(--t2);}
 
+/* ── Fotografía ──────────────────────────────────────────────────── */
+.foto{width:100%;height:auto;display:block;border-radius:14px;aspect-ratio:4/3;object-fit:cover;}
+.banda-foto{width:100%;aspect-ratio:21/8;object-fit:cover;display:block;
+  border-radius:14px;margin-bottom:2rem;}
+.creditos{font-size:.78rem;color:var(--t3);line-height:1.75;}
+.creditos li{margin-bottom:.35rem;} .creditos a{color:var(--t2);}
+/* Los items de una rejilla tienen min-width:auto, que para una imagen es su
+   ancho intrínseco: sin esto, una foto de 1400 px desborda la columna. */
+.hero > *{min-width:0;}
+img{max-width:100%;}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -216,7 +227,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
         <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
       </div>
     </div>
-    <svg class="cuerpo" id="cuerpo" viewBox="0 0 300 420" role="img" data-t-attr="aria-label:cuerpoAlt" aria-label="Esquema corporal con las zonas que tratamos"></svg>
+    <img class="foto" src="img/ejercicio.jpg" width="1400" height="933"
+         data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
   </div>
   <div class="marco bl raya">
     <p class="eti" data-t="iCifrasEti">Cómo trabajamos</p>
@@ -247,7 +259,10 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h1>
     <p class="entrada" data-t="leEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
   </div>
-  <div class="marco"><div class="rej r3" id="leLista"></div></div>
+  <div class="marco">
+    <svg class="cuerpo" id="cuerpo" viewBox="0 0 300 420" role="img" style="max-width:15rem;margin:0 auto 2rem"
+         data-t-attr="aria-label:cuerpoAlt" aria-label="Esquema corporal con las zonas que tratamos"></svg>
+    <div class="rej r3" id="leLista"></div></div>
 </section>
 
 <section data-ruta="recuperacion">
@@ -257,6 +272,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <p class="entrada" data-t="reEntrada">Estas curvas son la recuperación típica de tres lesiones frecuentes. La línea es la función recuperada; las bandas, las fases del tratamiento.</p>
   </div>
   <div class="marco">
+    <img class="banda-foto" src="img/sala-fuerza.jpg" width="1400" height="533"
+         data-t-attr="alt:altRecuperacion" alt="Persona entrenando con barra durante la readaptación">
     <div class="mandos" id="reMandos" role="group" data-t-attr="aria-label:reAria" aria-label="Lesión"></div>
     <div class="leyenda" id="reLeyenda"></div>
     <div class="grafica"><svg id="reGrafica" role="img" data-t-attr="aria-label:reGrafAlt" aria-label="Curva de recuperación típica"></svg></div>
@@ -297,8 +314,15 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <p class="entrada" data-t="inEntrada">Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.</p>
   </div>
   <div class="marco">
+    <img class="banda-foto" src="img/sala-tratamiento.jpg" width="1400" height="533"
+         data-t-attr="alt:altCentro" alt="Sala con camillas de tratamiento en un centro de fisioterapia">
     <div class="rej r3" id="inEspacios"></div>
     <div style="margin-top:1.5rem" class="rej r4" id="inDatos"></div>
+    <div style="margin-top:2.5rem">
+      <p class="eti" data-t="credEti">Créditos de las imágenes</p>
+      <p class="metodo" data-t="credNota">Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor.</p>
+      <ul class="creditos" id="credLista"></ul>
+    </div>
   </div>
 </section>
 
@@ -387,6 +411,16 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 var T = {
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ altPortada:"Persona entrenando con barra durante la readaptación",
+ altRecuperacion:"Barras y discos en la sala de fuerza de un centro de rehabilitación",
+ altCentro:"Sala con camillas de tratamiento en un centro de fisioterapia",
+ credEti:"Créditos de las imágenes",
+ credNota:"Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor.",
+ creditos:[
+  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
+  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
+ ],
  marca:"ATLAS", ariaMenu:"Secciones", ariaIdioma:"Idioma",
  nInicio:"Inicio", nTratamientos:"Tratamientos", nLesiones:"Lesiones", nRecuperacion:"Recuperación",
  nMovilidad:"Movilidad", nEquipo:"Equipo", nInstalaciones:"Centro", nPrecios:"Precios",
@@ -540,6 +574,16 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ altPortada:"A person training with a barbell during rehabilitation",
+ altRecuperacion:"Barbells and plates in the strength room of a rehabilitation clinic",
+ altCentro:"A room with treatment tables in a physiotherapy clinic",
+ credEti:"Image credits",
+ credNota:"Photographs from Wikimedia Commons under free licences, credited to their authors.",
+ creditos:[
+  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
+  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
+ ],
  marca:"ATLAS", ariaMenu:"Sections", ariaIdioma:"Language",
  nInicio:"Home", nTratamientos:"Treatments", nLesiones:"Injuries", nRecuperacion:"Recovery",
  nMovilidad:"Mobility", nEquipo:"Team", nInstalaciones:"Clinic", nPrecios:"Prices",
@@ -693,6 +737,16 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ altPortada:"شخص يتدرّب بالبار أثناء إعادة التأهيل",
+ altRecuperacion:"بارات وأثقال في صالة القوة بمركز تأهيل",
+ altCentro:"قاعة فيها أَسِرّة علاج في مركز علاج طبيعي",
+ credEti:"حقوق الصور",
+ credNota:"صور من ويكيميديا كومنز برخص حرة، منسوبة إلى أصحابها.",
+ creditos:[
+  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
+  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
+  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
+ ],
  marca:"أطلس", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
  nInicio:"الرئيسية", nTratamientos:"العلاجات", nLesiones:"الإصابات", nRecuperacion:"التعافي",
  nMovilidad:"مدى الحركة", nEquipo:"الفريق", nInstalaciones:"المركز", nPrecios:"الأسعار",
@@ -1002,6 +1056,10 @@ function pintarListas(){
   pon("prPlanes", t.planes, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p><div class="precio">'+esc(x.p)+'</div></div>'; });
   var pi = document.getElementById("prIncluye");
   if (pi) pi.innerHTML = t.prIncluye.map(function(x){ return "<li>"+esc(x)+"</li>"; }).join("");
+  var cr = document.getElementById("credLista");
+  if (cr) cr.innerHTML = t.creditos.map(function(c){
+    return '<li>' + esc(c.t) + ' — ' + esc(c.a) + ', <a href="' + c.u
+      + '" target="_blank" rel="noopener">' + esc(c.l) + '</a></li>'; }).join("");
   pon("pgLista", t.preguntas, function(p){ return '<details class="faq"><summary>'+esc(p.q)+'</summary><p>'+esc(p.a)+'</p></details>'; });
 }
 

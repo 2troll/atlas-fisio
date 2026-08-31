@@ -140,6 +140,96 @@ html[dir="rtl"] .gr-tex{font-family:"Rubik",sans-serif;font-size:11px;}
 html[dir="rtl"] .tabla th{letter-spacing:0;text-transform:none;font-size:.86rem;}
 .tabla td{color:var(--t2);}
 
+
+/* ── Árbol de decisión ───────────────────────────────────────────── */
+.rastro{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem;font-size:.8rem;}
+.rastro span{background:var(--f2);border-radius:99px;padding:.35rem .85rem;color:var(--t2);}
+.rastro span.act{background:var(--verde);color:var(--sup);}
+.arbol h3{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:1.3rem;max-width:24ch;}
+.arbol-ops{display:grid;gap:.7rem;max-width:40rem;}
+.arbol-op{text-align:start;padding:1.05rem 1.2rem;border:1px solid var(--l);background:var(--sup);
+  color:var(--t);cursor:pointer;font:inherit;font-family:var(--c);border-radius:12px;transition:.15s;}
+.arbol-op:hover{border-color:var(--verde);color:var(--verde);}
+.salida{border-radius:14px;padding:1.6rem;border:1px solid var(--l);max-width:44rem;}
+.salida.urgente{background:color-mix(in srgb,var(--senal) 12%,transparent);border-color:var(--senal);}
+.salida.pronto{background:color-mix(in srgb,var(--verde) 10%,transparent);border-color:var(--verde);}
+.salida h3{font-size:1.4rem;margin-bottom:.6rem;}
+.salida .nivel{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;}
+html[dir="rtl"] .salida .nivel{letter-spacing:0;text-transform:none;font-size:.86rem;}
+.salida.urgente .nivel{color:var(--senal);} .salida.pronto .nivel{color:var(--verde);}
+.salida.normal .nivel{color:var(--t3);}
+
+/* ── Mapa corporal clicable ──────────────────────────────────────── */
+.mapa{display:grid;gap:2rem;} @media(min-width:820px){.mapa{grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start;}}
+.mapa svg{width:100%;max-width:17rem;height:auto;display:block;margin-inline:auto;}
+.zona{cursor:pointer;transition:.15s;}
+.zona circle{fill:color-mix(in srgb,var(--verde) 18%,transparent);stroke:var(--verde);stroke-width:1.6;}
+.zona:hover circle,.zona:focus-visible circle{fill:color-mix(in srgb,var(--verde) 40%,transparent);}
+.zona[aria-pressed="true"] circle{fill:var(--verde);stroke:var(--verde);}
+.zona:focus-visible{outline:none;}
+.zona:focus-visible circle{stroke-width:3;}
+.mapa-panel{border-inline-start:3px solid var(--verde);padding-inline-start:1.4rem;}
+.mapa-panel h3{font-size:1.5rem;margin-bottom:.5rem;}
+.mapa-vacio{color:var(--t3);}
+
+/* ── Escala de dolor ─────────────────────────────────────────────── */
+.eva{max-width:44rem;}
+.eva-num{font-family:var(--disp);font-size:clamp(3.4rem,9vw,5.5rem);line-height:1;font-weight:500;}
+.eva-barra{height:.7rem;border-radius:99px;margin:1rem 0 .4rem;
+  background:linear-gradient(to right,#1f7a6b 0%,#8fa63a 35%,#d9a13a 60%,#c4512e 100%);}
+html[dir="rtl"] .eva-barra{background:linear-gradient(to left,#1f7a6b 0%,#8fa63a 35%,#d9a13a 60%,#c4512e 100%);}
+.eva input[type=range]{width:100%;accent-color:var(--verde);margin-top:.6rem;}
+.eva-caja{border:1px solid var(--l);border-radius:14px;padding:1.5rem;margin-top:1.6rem;background:var(--sup);}
+.eva-caja h3{font-size:1.25rem;margin-bottom:.5rem;}
+.eva-reg{display:flex;gap:.8rem;align-items:baseline;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--l2);}
+.eva-reg b{color:var(--verde);}
+
+/* ── Calendario ──────────────────────────────────────────────────── */
+.cal-meses{display:grid;gap:1.6rem;} @media(min-width:760px){.cal-meses{grid-template-columns:repeat(3,1fr);}}
+.cal-mes h4{font-size:.95rem;margin:0 0 .6rem;font-family:var(--c);font-weight:500;color:var(--t2);}
+.cal-rej{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-rej span{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.72rem;
+  color:var(--t3);border-radius:6px;font-variant-numeric:tabular-nums;}
+.cal-rej span.dow{color:var(--t3);opacity:.6;font-size:.62rem;aspect-ratio:auto;padding-bottom:.2rem;}
+.cal-rej span.hito{background:var(--verde);color:var(--sup);font-weight:600;}
+.cal-rej span.alta{background:var(--senal);color:var(--sup);font-weight:600;}
+.cal-leyenda{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;margin:1.4rem 0;font-size:.84rem;color:var(--t2);}
+.cal-leyenda span{display:flex;align-items:center;gap:.45rem;}
+.cal-leyenda i{width:.85rem;height:.85rem;border-radius:3px;background:var(--cc);}
+.cal-hitos{list-style:none;margin:1.4rem 0 0;padding:0;}
+.cal-hitos li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding-block:.7rem;border-bottom:1px solid var(--l2);font-size:.92rem;}
+.cal-hitos .f{color:var(--verde);font-weight:500;}
+
+/* ── Buscador por facetas ────────────────────────────────────────── */
+.facetas{display:grid;gap:1.1rem;margin-bottom:1.6rem;}
+@media(min-width:760px){.facetas{grid-template-columns:repeat(3,1fr);}}
+.faceta p{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin:0 0 .5rem;}
+html[dir="rtl"] .faceta p{letter-spacing:0;text-transform:none;font-size:.86rem;}
+.faceta div{display:flex;flex-wrap:wrap;gap:.35rem;}
+.faceta button{font-size:.8rem;padding:.4rem .85rem;border:1px solid var(--l);background:var(--sup);
+  color:var(--t2);cursor:pointer;font-family:var(--c);border-radius:99px;}
+.faceta button[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:var(--sup);}
+.faceta button:hover{border-color:var(--verde);}
+.ej-lista{display:grid;gap:1.1rem;} @media(min-width:700px){.ej-lista{grid-template-columns:1fr 1fr;}}
+.ej{border:1px solid var(--l);border-radius:14px;padding:1.3rem;background:var(--sup);}
+.ej h3{font-size:1.1rem;margin-bottom:.4rem;}
+.ej p{font-size:.9rem;color:var(--t2);}
+.ej .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.8rem;}
+.ej .tags i{font-style:normal;font-size:.7rem;padding:.2rem .6rem;border-radius:99px;
+  background:var(--f2);color:var(--t3);}
+
+/* ── Test de fuerza ──────────────────────────────────────────────── */
+.test{display:grid;gap:1.5rem;}
+.test-fila{border:1px solid var(--l);border-radius:14px;padding:1.3rem;background:var(--sup);}
+.test-fila h3{font-size:1.1rem;margin-bottom:.3rem;}
+.test-fila p{font-size:.88rem;color:var(--t2);margin-bottom:1rem;}
+.test-inp{display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;align-items:end;}
+.test-inp .res{font-family:var(--disp);font-size:1.5rem;font-weight:500;min-width:5rem;text-align:end;}
+.test-inp .res.mal{color:var(--senal);} .test-inp .res.bien{color:var(--verde);}
+.test-total{border-radius:14px;padding:1.6rem;border:1px solid var(--l);}
+.test-total.mal{background:color-mix(in srgb,var(--senal) 10%,transparent);border-color:var(--senal);}
+.test-total.bien{background:color-mix(in srgb,var(--verde) 10%,transparent);border-color:var(--verde);}
+
 /* ── Fotografía ──────────────────────────────────────────────────── */
 .foto{width:100%;height:auto;display:block;border-radius:14px;aspect-ratio:4/3;object-fit:cover;}
 .banda-foto{width:100%;aspect-ratio:21/8;object-fit:cover;display:block;
@@ -200,6 +290,12 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       <a href="#/lesiones"      data-t="nLesiones">Lesiones</a>
       <a href="#/recuperacion"  data-t="nRecuperacion">Recuperación</a>
       <a href="#/movilidad"     data-t="nMovilidad">Movilidad</a>
+      <a href="#/orientacion" data-t="nOrientacion">¿Qué me pasa?</a>
+      <a href="#/mapa"        data-t="nMapa">Mapa del cuerpo</a>
+      <a href="#/dolor"       data-t="nDolor">Escala de dolor</a>
+      <a href="#/calendario"  data-t="nCalendario">Vuelta al deporte</a>
+      <a href="#/ejercicios"  data-t="nEjercicios">Ejercicios</a>
+      <a href="#/test"        data-t="nTest">Test de fuerza</a>
       <a href="#/equipo"        data-t="nEquipo">Equipo</a>
       <a href="#/instalaciones" data-t="nInstalaciones">Centro</a>
       <a href="#/precios"       data-t="nPrecios">Precios</a>
@@ -392,6 +488,97 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
 </section>
 
+
+<section data-ruta="orientacion">
+  <div class="marco bl">
+    <p class="eti" data-t="nOrientacion">¿Qué me pasa?</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="orH1">Cuatro preguntas para saber si corre prisa.</h1>
+    <p class="entrada" data-t="orEntrada">Esto no es un diagnóstico y no puede serlo. Sirve para una cosa concreta: saber si tienes que ir hoy al médico, pedir cita esta semana, o puedes esperar.</p>
+  </div>
+  <div class="marco">
+    <div class="rastro" id="orRastro"></div>
+    <div class="arbol" id="orArbol"></div>
+    <p class="metodo" data-t="orNota">Ninguna herramienta por internet sustituye a una valoración presencial. Ante dolor en el pecho, pérdida de fuerza súbita, fiebre alta o un traumatismo fuerte, vaya a urgencias sin pasar por aquí.</p>
+  </div>
+</section>
+
+<section data-ruta="mapa">
+  <div class="marco bl">
+    <p class="eti" data-t="nMapa">Mapa del cuerpo</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="mpH1">Señale dónde le duele.</h1>
+    <p class="entrada" data-t="mpEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
+  </div>
+  <div class="marco mapa">
+    <svg id="mpSvg" viewBox="0 0 300 430" role="group" data-t-attr="aria-label:mpAria" aria-label="Mapa del cuerpo"></svg>
+    <div class="mapa-panel" id="mpPanel"></div>
+  </div>
+</section>
+
+<section data-ruta="dolor">
+  <div class="marco bl">
+    <p class="eti" data-t="nDolor">Escala de dolor</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="doH1">Del 0 al 10, y qué hacer con cada número.</h1>
+    <p class="entrada" data-t="doEntrada">La pregunta que importa no es cuánto duele, sino si puedes cargar con ese dolor sin empeorar. Esto lo contesta.</p>
+  </div>
+  <div class="marco eva">
+    <div class="eva-num" id="doNum"></div>
+    <div class="eva-barra"></div>
+    <input type="range" id="doRange" min="0" max="10" step="1" value="4" data-t-attr="aria-label:doAria" aria-label="Nivel de dolor">
+    <div class="eva-caja">
+      <h3 id="doTit"></h3>
+      <p id="doTxt" style="color:var(--t2)"></p>
+      <div class="eva-reg"><span data-t="doReglaEti">Con el entrenamiento</span><b id="doAccion"></b></div>
+    </div>
+    <p class="metodo" data-t="doNota">La regla que usamos viene de la rehabilitación de tendones: se puede cargar con dolor de hasta 4 sobre 10 siempre que a las veinticuatro horas haya vuelto al punto de partida. Si al día siguiente está peor, la carga fue excesiva aunque en el momento no doliera.</p>
+  </div>
+</section>
+
+<section data-ruta="calendario">
+  <div class="marco bl">
+    <p class="eti" data-t="nCalendario">Vuelta al deporte</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="caH1">Ponga la fecha de la lesión y vea el calendario.</h1>
+    <p class="entrada" data-t="caEntrada">No es una promesa: es lo que suele tardar. Sirve para hablar con el entrenador con fechas encima de la mesa en vez de con «ya veremos».</p>
+  </div>
+  <div class="marco">
+    <div class="facetas" style="grid-template-columns:1fr 1fr">
+      <div><label for="caLes" data-t="caLLes">Lesión</label><select id="caLes"></select></div>
+      <div><label for="caFecha" data-t="caLFecha">Fecha de la lesión</label><input type="date" id="caFecha"></div>
+    </div>
+    <div class="cal-leyenda" id="caLeyenda"></div>
+    <div class="cal-meses" id="caMeses"></div>
+    <ol class="cal-hitos" id="caHitos"></ol>
+    <p class="hallazgo" id="caHallazgo"></p>
+    <p class="metodo" data-t="caNota">Plazos orientativos de la literatura de readaptación. El alta real depende de que se cumplan los criterios de fuerza y control, no de que llegue la fecha. Si llega el día y no se cumplen, se sigue trabajando.</p>
+  </div>
+</section>
+
+<section data-ruta="ejercicios">
+  <div class="marco bl">
+    <p class="eti" data-t="nEjercicios">Ejercicios</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="ejH1">Filtre por zona, material y fase.</h1>
+    <p class="entrada" data-t="ejEntrada">Los que más mandamos a casa. No sustituyen a un plan hecho para usted, pero ninguno hace daño bien ejecutado.</p>
+  </div>
+  <div class="marco">
+    <div class="facetas" id="ejFacetas"></div>
+    <p class="metodo" id="ejCuenta" style="margin:0 0 1.4rem"></p>
+    <div class="ej-lista" id="ejLista"></div>
+    <p class="mapa-vacio" id="ejVacio" hidden data-t="ejVacio">Ningún ejercicio con esos filtros. Quite alguno.</p>
+  </div>
+</section>
+
+<section data-ruta="test">
+  <div class="marco bl">
+    <p class="eti" data-t="nTest">Test de fuerza</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="teH1">Compare el lado lesionado con el sano.</h1>
+    <p class="entrada" data-t="teEntrada">Es el criterio que usamos para dar el alta: menos de un 10 % de diferencia entre lados. Hágalo en casa y traiga los números a la primera cita.</p>
+  </div>
+  <div class="marco">
+    <div class="test" id="teLista"></div>
+    <div class="test-total" id="teTotal" style="margin-top:1.6rem"></div>
+    <p class="metodo" data-t="teNota">Autotest orientativo. Haga primero el lado sano, descanse dos minutos y luego el lesionado. Pare si aparece dolor por encima de 4 sobre 10. Si no puede hacer ninguna repetición, no anote cero: anótelo y cuéntelo en consulta.</p>
+  </div>
+</section>
+
 </main>
 
 <footer class="a">
@@ -411,6 +598,108 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 var T = {
 es:{
  _dir:"ltr", _lang:"es", _loc:"es-ES",
+ orNivUrgente:"Vaya al médico hoy", orNivPronto:"Cite esta semana", orNivNormal:"Puede esperar",
+ nOrientacion:"¿Qué me pasa?", nMapa:"Mapa del cuerpo", nDolor:"Escala de dolor",
+ nCalendario:"Vuelta al deporte", nEjercicios:"Ejercicios", nTest:"Test de fuerza",
+ tOrientacion:"¿Qué me pasa? — ATLAS", tMapa:"Mapa del cuerpo — ATLAS", tDolor:"Escala de dolor — ATLAS",
+ tCalendario:"Vuelta al deporte — ATLAS", tEjercicios:"Ejercicios — ATLAS", tTest:"Test de fuerza — ATLAS",
+
+ orH1:"Cuatro preguntas para saber si corre prisa.",
+ orEntrada:"Esto no es un diagnóstico y no puede serlo. Sirve para una cosa concreta: saber si tienes que ir hoy al médico, pedir cita esta semana, o puedes esperar.",
+ orNota:"Ninguna herramienta por internet sustituye a una valoración presencial. Ante dolor en el pecho, pérdida de fuerza súbita, fiebre alta o un traumatismo fuerte, vaya a urgencias sin pasar por aquí.",
+ orOtra:"Empezar de nuevo", orPedir:"Pedir cita",
+ arbolQ:[
+  {q:"¿Tienes alguna de estas? Fiebre, pérdida de fuerza repentina, hormigueo que baja por el brazo o la pierna, o dolor de noche que no cede con nada.", ops:["Sí, alguna de ellas","No, ninguna"]},
+  {q:"¿Cómo empezó?", ops:["De golpe: un mal gesto, una torsión o un impacto","Poco a poco, sin saber muy bien cuándo"]},
+  {q:"Justo después, ¿pudiste apoyar o seguir moviéndolo?", ops:["No, nada de nada","Sí, con dolor pero pude"]},
+  {q:"¿Cuánto tiempo llevas así?", ops:["Menos de seis semanas","Más de tres meses"]},
+  {q:"¿Se hinchó mucho en las primeras horas?", ops:["Sí, bastante","No, poco o nada"]},
+  {q:"¿Duele al empezar a moverte y mejora cuando entras en calor?", ops:["Sí, es justo así","No, va a peor cuanto más hago"]}
+ ],
+ arbolS:[
+  {t:"Esto lo tiene que ver un médico hoy", d:"Lo que ha marcado no es cosa de fisioterapia de entrada. Fiebre, pérdida de fuerza súbita, hormigueo que baja por la extremidad o dolor nocturno que no cede son señales que hay que descartar antes de tratar nada.", a:"Vaya a su médico o a urgencias hoy mismo. Después, si le derivan, aquí estamos."},
+  {t:"Valoración médica antes de empezar", d:"No poder apoyar ni mover nada justo después de un golpe o una torsión obliga a descartar una fractura o una rotura completa. Eso se ve con una prueba de imagen, no con las manos.", a:"Pida cita médica hoy o mañana. Traiga el informe y empezamos."},
+  {t:"Mejor esta semana que la que viene", d:"Una hinchazón marcada en las primeras horas suele indicar que hay algo más que una sobrecarga. No es urgente, pero cuanto antes se valore, antes se empieza a cargar bien.", a:"Pida cita en los próximos días. Mientras tanto: hielo no, movimiento suave sí."},
+  {t:"Puede esperar unos días", d:"Por lo que cuenta no hay señales de alarma. Lo razonable es una valoración tranquila, medir de qué fuerza parte y montar un plan.", a:"Pida cita cuando le venga bien. No hace falta parar del todo mientras tanto."},
+  {t:"Dolor persistente: otro enfoque", d:"Más de tres meses cambia el problema. A partir de ahí el tejido rara vez es lo único que manda, y el tratamiento se parece poco al de una lesión reciente.", a:"Pida cita con quien lleva dolor persistente. La primera sesión es más larga de lo normal."},
+  {t:"Patrón típico de tendón", d:"Que duela al empezar y mejore al calentar es la firma de una tendinopatía. Buena noticia: responde muy bien a la carga progresiva, y muy mal al reposo.", a:"Pida cita esta semana. No deje de entrenar del todo: ajustaremos qué y cuánto."}
+ ],
+
+ mpH1:"Señale dónde le duele.",
+ mpEntrada:"Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.",
+ mpAria:"Mapa del cuerpo, zonas que tratamos",
+ mpVacio:"Pulse una de las zonas marcadas del dibujo.",
+ mpLesiones:"Lo que más vemos aquí", mpTrata:"Con qué se trata",
+ zonas:[
+  {n:"Hombro", d:"Casi todo el dolor de hombro que vemos mejora con fuerza progresiva antes que con cualquier otra cosa. La cuestión no es si está inflamado, sino cuánto aguanta."},
+  {n:"Espalda y cuello", d:"La imagen casi nunca explica el dolor lumbar, y eso es una buena noticia. Responde al movimiento y empeora con el reposo prolongado."},
+  {n:"Cadera e isquios", d:"La zona con más recaídas del deporte de equipo. Volver cuando ya no duele es exactamente lo que hace que vuelva a romperse."},
+  {n:"Rodilla", d:"Duele delante casi siempre por falta de fuerza de cuádriceps y por haber subido el volumen demasiado deprisa, no por un problema del cartílago."},
+  {n:"Tobillo y pie", d:"El esguince es la lesión peor tratada del deporte amateur: el 40 % repite porque nadie reeducó el equilibrio después de la primera vez."}
+ ],
+
+ doH1:"Del 0 al 10, y qué hacer con cada número.",
+ doEntrada:"La pregunta que importa no es cuánto duele, sino si puedes cargar con ese dolor sin empeorar. Esto lo contesta.",
+ doAria:"Nivel de dolor de 0 a 10", doReglaEti:"Con el entrenamiento",
+ doNota:"La regla que usamos viene de la rehabilitación de tendones: se puede cargar con dolor de hasta 4 sobre 10 siempre que a las veinticuatro horas haya vuelto al punto de partida. Si al día siguiente está peor, la carga fue excesiva aunque en el momento no doliera.",
+ doNiveles:[
+  {t:"Molestia, no dolor", d:"Se nota que está ahí, pero no cambia cómo te mueves ni te distrae mientras entrenas.", a:"Entrena normal. Comprueba cómo está mañana."},
+  {t:"Dolor tolerable", d:"Molesta, pero puedes seguir con la técnica correcta y no vas cambiando el gesto para esquivarlo.", a:"Puedes cargar. Este es el rango de trabajo en tendón, si a las 24 h ha vuelto a como estaba."},
+  {t:"Dolor que condiciona", d:"Ya estás modificando el gesto sin darte cuenta para que duela menos. Ahí empieza a compensar otra cosa.", a:"Baja la carga o cambia el ejercicio. No lo aguantes por orgullo."},
+  {t:"Dolor alto", d:"Cuesta concentrarse en otra cosa y el gesto ya no se parece al bueno.", a:"Para ese ejercicio hoy. Si se repite dos sesiones seguidas, pide cita."},
+  {t:"Dolor severo", d:"No puedes seguir y probablemente tampoco puedes apoyar o cargar con normalidad.", a:"Para. Si apareció de golpe tras un impacto, valoración médica hoy."}
+ ],
+
+ caH1:"Ponga la fecha de la lesión y vea el calendario.",
+ caEntrada:"No es una promesa: es lo que suele tardar. Sirve para hablar con el entrenador con fechas encima de la mesa en vez de con «ya veremos».",
+ caLLes:"Lesión", caLFecha:"Fecha de la lesión",
+ caNota:"Plazos orientativos de la literatura de readaptación. El alta real depende de que se cumplan los criterios de fuerza y control, no de que llegue la fecha. Si llega el día y no se cumplen, se sigue trabajando.",
+ caLeyHito:"Cambio de fase", caLeyAlta:"Alta deportiva prevista",
+ caHal:"Si la lesión fue el {f}, el alta deportiva caería alrededor del <b>{a}</b>. Son <b>{s}</b> desde hoy. Enséñeselo a su entrenador antes de que le apunte a nada.",
+ caPasado:"Esa fecha ya pasó según el calendario. Si sigue con molestias, el plazo no es el problema: pida cita.",
+ caDow:["L","M","X","J","V","S","D"],
+ caSemanas:"semanas",
+
+ ejH1:"Filtre por zona, material y fase.",
+ ejEntrada:"Los que más mandamos a casa. No sustituyen a un plan hecho para usted, pero ninguno hace daño bien ejecutado.",
+ ejVacio:"Ningún ejercicio con esos filtros. Quite alguno.",
+ ejCuentaTxt:"{n} de {t} ejercicios",
+ ejFacetaZona:"Zona", ejFacetaMat:"Material", ejFacetaFase:"Fase", ejTodos:"Todos",
+ ejMateriales:["Sin material","Banda elástica","Con peso"],
+ ejFases:["Fase 1 · dolor","Fase 2 · fuerza","Fase 3 · deporte"],
+ ejercicios:[
+  {n:"Isométrico de cuádriceps", d:"Apretar la rodilla estirada contra el suelo y aguantar 45 segundos. Cinco series. Baja el dolor de rodilla en el momento."},
+  {n:"Sentadilla a una pierna en caja", d:"Sentarse y levantarse de una silla con una sola pierna, sin dejarse caer. Tres series de ocho por lado."},
+  {n:"Extensión de rodilla con banda", d:"Sentado, estirar la rodilla contra la banda y volver despacio, contando tres segundos en la bajada."},
+  {n:"Salto y aterrizaje a una pierna", d:"Saltar hacia delante y aterrizar sobre una pierna sin que la rodilla se meta hacia dentro. Calidad antes que cantidad."},
+  {n:"Equilibrio monopodal", d:"Un minuto a la pata coja, primero con los ojos abiertos y luego cerrados. Es el ejercicio que casi nadie hace tras un esguince."},
+  {n:"Elevación de talón a una pierna", d:"De puntillas con una sola pierna, subiendo rápido y bajando en tres segundos. Tres series hasta cerca del fallo."},
+  {n:"Dorsiflexión con banda", d:"Sentado, tirar del pie hacia usted contra la banda. Recupera los grados que hacen falta para bajar una escalera bien."},
+  {n:"Saltos laterales", d:"Saltar de lado a lado sobre una línea, aterrizando estable. Prepara el tobillo para los cambios de dirección."},
+  {n:"Puente de glúteo", d:"Tumbado boca arriba, levantar la cadera apretando el glúteo. Tres series de doce, sin arquear la espalda."},
+  {n:"Curl nórdico excéntrico", d:"De rodillas, dejarse caer hacia delante frenando con los isquios. El ejercicio con más evidencia para evitar recaídas."},
+  {n:"Peso muerto rumano", d:"Con las rodillas casi rectas, bajar el peso pegado a la pierna hasta notar tensión detrás del muslo."},
+  {n:"Rotación externa con banda", d:"Codo pegado al cuerpo, girar el antebrazo hacia fuera contra la banda. Tres series de quince, sin prisa."},
+  {n:"Press por encima de la cabeza", d:"Empujar el peso hasta arriba sin arquear la espalda. Es el gesto que hay que recuperar en casi todo hombro."},
+  {n:"Gato-camello", d:"A cuatro patas, arquear y redondear la espalda despacio. Diez repeticiones para empezar a moverse sin miedo."},
+  {n:"Bird dog", d:"A cuatro patas, estirar brazo y pierna contrarios sin que se mueva la cadera. Diez por lado, controlando."},
+  {n:"Peso muerto", d:"El mejor ejercicio para una espalda que ya no duele, y el peor para una que duele mucho. Cuestión de cuándo, no de si."}
+ ],
+
+ teH1:"Compare el lado lesionado con el sano.",
+ teEntrada:"Es el criterio que usamos para dar el alta: menos de un 10 % de diferencia entre lados. Hágalo en casa y traiga los números a la primera cita.",
+ teNota:"Autotest orientativo. Haga primero el lado sano, descanse dos minutos y luego el lesionado. Pare si aparece dolor por encima de 4 sobre 10. Si no puede hacer ninguna repetición, no anote cero: anótelo y cuéntelo en consulta.",
+ teLSano:"Lado sano", teLLes:"Lado lesionado", teFalta:"—",
+ teBienT:"Simetría dentro del objetivo", teMalT:"Todavía hay diferencia",
+ teBienD:"Con <b>{p} %</b> de media, el lado lesionado está dentro del margen del 10 % que pedimos antes del alta. Eso no basta por sí solo, pero es el requisito que más gente se salta.",
+ teMalD:"Con <b>{p} %</b> de media todavía hay más de un 10 % de diferencia. Volver a competir así es lo que explica buena parte de las recaídas. Falta fuerza en el lado lesionado, no tiempo.",
+ teVacioD:"Rellene los dos lados de al menos un test y le calculamos la simetría.",
+ tests:[
+  {n:"Sentadilla a una pierna en 30 segundos", d:"De pie frente a una silla, siéntese y levántese con una sola pierna tantas veces como pueda en medio minuto."},
+  {n:"Elevación de talón a una pierna", d:"De puntillas con una sola pierna, subiendo y bajando al ritmo de un segundo, hasta que no pueda subir del todo."},
+  {n:"Puente de isquios a una pierna", d:"Tumbado, talón en una silla, suba la cadera con una sola pierna tantas veces como pueda con buena forma."}
+ ],
+
  altPortada:"Persona entrenando con barra durante la readaptación",
  altRecuperacion:"Barras y discos en la sala de fuerza de un centro de rehabilitación",
  altCentro:"Sala con camillas de tratamiento en un centro de fisioterapia",
@@ -574,6 +863,108 @@ es:{
 
 en:{
  _dir:"ltr", _lang:"en", _loc:"en-GB",
+ orNivUrgente:"See a doctor today", orNivPronto:"Book this week", orNivNormal:"It can wait",
+ nOrientacion:"What is wrong?", nMapa:"Body map", nDolor:"Pain scale",
+ nCalendario:"Return to sport", nEjercicios:"Exercises", nTest:"Strength test",
+ tOrientacion:"What is wrong? — ATLAS", tMapa:"Body map — ATLAS", tDolor:"Pain scale — ATLAS",
+ tCalendario:"Return to sport — ATLAS", tEjercicios:"Exercises — ATLAS", tTest:"Strength test — ATLAS",
+
+ orH1:"Four questions to know whether it is urgent.",
+ orEntrada:"This is not a diagnosis and cannot be one. It does one thing: tells you whether to see a doctor today, book this week, or whether it can wait.",
+ orNota:"No tool on the internet replaces an in-person assessment. With chest pain, sudden loss of strength, high fever or a heavy impact, go to A&E without passing through here.",
+ orOtra:"Start again", orPedir:"Book an appointment",
+ arbolQ:[
+  {q:"Do you have any of these? Fever, sudden loss of strength, pins and needles running down the arm or leg, or night pain that nothing settles.", ops:["Yes, one of them","No, none"]},
+  {q:"How did it start?", ops:["All at once: a bad movement, a twist or an impact","Gradually, without really knowing when"]},
+  {q:"Straight afterwards, could you put weight on it or keep moving it?", ops:["No, not at all","Yes, painfully, but I could"]},
+  {q:"How long has it been like this?", ops:["Less than six weeks","More than three months"]},
+  {q:"Did it swell up a lot in the first few hours?", ops:["Yes, considerably","No, little or none"]},
+  {q:"Does it hurt when you start moving and ease once you warm up?", ops:["Yes, exactly that","No, it gets worse the more I do"]}
+ ],
+ arbolS:[
+  {t:"A doctor needs to see this today", d:"What you have ticked is not a physiotherapy matter to begin with. Fever, sudden loss of strength, pins and needles running down the limb or unrelenting night pain are signs to rule out before treating anything.", a:"See your doctor or A&E today. Afterwards, if you are referred, we are here."},
+  {t:"Medical assessment before starting", d:"Not being able to bear weight or move it at all straight after an impact or a twist means a fracture or a complete tear has to be ruled out. That takes imaging, not hands.", a:"Book a medical appointment today or tomorrow. Bring the report and we start."},
+  {t:"Better this week than next", d:"Marked swelling in the first hours usually means there is more than an overload. It is not urgent, but the sooner it is assessed, the sooner proper loading starts.", a:"Book in the next few days. Meanwhile: no ice, gentle movement yes."},
+  {t:"It can wait a few days", d:"From what you describe there are no warning signs. The sensible thing is an unhurried assessment, measuring where your strength starts from, and a plan.", a:"Book whenever suits you. No need to stop entirely in the meantime."},
+  {t:"Persistent pain: a different approach", d:"Beyond three months the problem changes. From then on the tissue is rarely the only thing in charge, and the treatment looks little like that of a recent injury.", a:"Book with whoever handles persistent pain. The first session runs longer than usual."},
+  {t:"Classic tendon pattern", d:"Hurting at the start and easing as you warm up is the signature of a tendinopathy. Good news: it responds very well to progressive load, and very badly to rest.", a:"Book this week. Do not stop training altogether: we will adjust what and how much."}
+ ],
+
+ mpH1:"Point to where it hurts.",
+ mpEntrada:"Tap an area and you will see what comes through the door most in that part, how long it usually takes, and what it is treated with.",
+ mpAria:"Body map, the areas we treat",
+ mpVacio:"Tap one of the marked areas on the diagram.",
+ mpLesiones:"What we see most here", mpTrata:"How it is treated",
+ zonas:[
+  {n:"Shoulder", d:"Almost all the shoulder pain we see improves with progressive strength before anything else. The question is not whether it is inflamed, but how much it can take."},
+  {n:"Back and neck", d:"Imaging almost never explains low back pain, and that is good news. It responds to movement and worsens with prolonged rest."},
+  {n:"Hip and hamstrings", d:"The area with the most recurrences in team sport. Going back when it stops hurting is exactly what makes it tear again."},
+  {n:"Knee", d:"Front-of-knee pain is almost always weak quadriceps and volume raised too fast, not a cartilage problem."},
+  {n:"Ankle and foot", d:"The sprain is the worst-treated injury in amateur sport: 40 % recur because nobody retrained balance after the first one."}
+ ],
+
+ doH1:"From 0 to 10, and what to do with each number.",
+ doEntrada:"The question that matters is not how much it hurts, but whether you can load through it without making it worse. This answers that.",
+ doAria:"Pain level from 0 to 10", doReglaEti:"With training",
+ doNota:"The rule we use comes from tendon rehabilitation: you can load with pain up to 4 out of 10 as long as it is back to baseline at twenty-four hours. If it is worse the next day, the load was too much even if it did not hurt at the time.",
+ doNiveles:[
+  {t:"Awareness, not pain", d:"You know it is there, but it does not change how you move or distract you while training.", a:"Train normally. Check how it is tomorrow."},
+  {t:"Tolerable pain", d:"It bothers you, but you can keep correct technique and are not altering the movement to dodge it.", a:"You can load. This is the working range for tendons, provided it is back to baseline at 24 h."},
+  {t:"Pain that changes things", d:"You are already altering the movement without realising, to make it hurt less. Something else starts compensating there.", a:"Drop the load or change the exercise. Do not tough it out."},
+  {t:"High pain", d:"It is hard to think about anything else and the movement no longer looks like the good one.", a:"Stop that exercise today. If it repeats two sessions running, book."},
+  {t:"Severe pain", d:"You cannot carry on and probably cannot bear weight or load normally either.", a:"Stop. If it came on suddenly after an impact, medical assessment today."}
+ ],
+
+ caH1:"Enter the date of the injury and see the calendar.",
+ caEntrada:"It is not a promise: it is how long it usually takes. It is for talking to your coach with dates on the table instead of “we will see”.",
+ caLLes:"Injury", caLFecha:"Date of injury",
+ caNota:"Indicative timelines from the rehabilitation literature. Real discharge depends on meeting the strength and control criteria, not on the date arriving. If the day comes and they are not met, work continues.",
+ caLeyHito:"Phase change", caLeyAlta:"Expected return to sport",
+ caHal:"If the injury was on {f}, return to sport would fall around <b>{a}</b>. That is <b>{s}</b> from today. Show your coach before they put you down for anything.",
+ caPasado:"That date has already passed on the calendar. If you still have symptoms, the timeline is not the problem: book an appointment.",
+ caDow:["M","T","W","T","F","S","S"],
+ caSemanas:"weeks",
+
+ ejH1:"Filter by area, equipment and phase.",
+ ejEntrada:"The ones we send home most. They do not replace a plan made for you, but none does harm when done properly.",
+ ejVacio:"No exercise matches those filters. Remove one.",
+ ejCuentaTxt:"{n} of {t} exercises",
+ ejFacetaZona:"Area", ejFacetaMat:"Equipment", ejFacetaFase:"Phase", ejTodos:"All",
+ ejMateriales:["No equipment","Resistance band","With weight"],
+ ejFases:["Phase 1 · pain","Phase 2 · strength","Phase 3 · sport"],
+ ejercicios:[
+  {n:"Quadriceps isometric", d:"Press the straight knee into the floor and hold 45 seconds. Five sets. It brings knee pain down there and then."},
+  {n:"Single-leg sit to stand", d:"Sit down and stand up from a chair on one leg, without dropping. Three sets of eight each side."},
+  {n:"Knee extension with a band", d:"Seated, straighten the knee against the band and return slowly, counting three seconds down."},
+  {n:"Single-leg hop and land", d:"Hop forward and land on one leg without the knee falling inwards. Quality before quantity."},
+  {n:"Single-leg balance", d:"One minute on one leg, first with eyes open then closed. The exercise almost nobody does after a sprain."},
+  {n:"Single-leg calf raise", d:"Up on the toes of one leg, fast up and three seconds down. Three sets close to failure."},
+  {n:"Band dorsiflexion", d:"Seated, pull the foot towards you against the band. It recovers the degrees you need to walk downstairs properly."},
+  {n:"Lateral hops", d:"Hop side to side over a line, landing stable. It prepares the ankle for changes of direction."},
+  {n:"Glute bridge", d:"On your back, lift the hips squeezing the glutes. Three sets of twelve, without arching the back."},
+  {n:"Nordic hamstring curl", d:"Kneeling, lower forward braking with the hamstrings. The exercise with the most evidence against recurrence."},
+  {n:"Romanian deadlift", d:"With knees nearly straight, lower the weight close to the leg until you feel tension behind the thigh."},
+  {n:"Band external rotation", d:"Elbow to the body, rotate the forearm outwards against the band. Three sets of fifteen, unhurried."},
+  {n:"Overhead press", d:"Push the weight overhead without arching the back. It is the movement almost every shoulder has to get back."},
+  {n:"Cat-camel", d:"On all fours, arch and round the back slowly. Ten repetitions to start moving without fear."},
+  {n:"Bird dog", d:"On all fours, extend opposite arm and leg without the hips moving. Ten each side, controlled."},
+  {n:"Deadlift", d:"The best exercise for a back that no longer hurts, and the worst for one that hurts a lot. A question of when, not whether."}
+ ],
+
+ teH1:"Compare the injured side with the healthy one.",
+ teEntrada:"It is the criterion we use for discharge: less than 10 % difference between sides. Do it at home and bring the numbers to the first appointment.",
+ teNota:"An indicative self-test. Do the healthy side first, rest two minutes, then the injured one. Stop if pain goes above 4 out of 10. If you cannot manage a single repetition, do not write zero: note it and say so in consultation.",
+ teLSano:"Healthy side", teLLes:"Injured side", teFalta:"—",
+ teBienT:"Symmetry within target", teMalT:"There is still a gap",
+ teBienD:"At <b>{p} %</b> on average, the injured side is inside the 10 % margin we ask for before discharge. That alone is not enough, but it is the requirement most people skip.",
+ teMalD:"At <b>{p} %</b> on average there is still more than a 10 % gap. Going back to competition like that explains a good share of recurrences. What is missing is strength on the injured side, not time.",
+ teVacioD:"Fill in both sides of at least one test and we will work out the symmetry.",
+ tests:[
+  {n:"Single-leg sit to stand in 30 seconds", d:"Standing in front of a chair, sit and stand on one leg as many times as you can in half a minute."},
+  {n:"Single-leg calf raise", d:"Up on the toes of one leg, up and down at one second a rep, until you cannot get all the way up."},
+  {n:"Single-leg hamstring bridge", d:"Lying down, heel on a chair, lift the hips on one leg as many times as you can with good form."}
+ ],
+
  altPortada:"A person training with a barbell during rehabilitation",
  altRecuperacion:"Barbells and plates in the strength room of a rehabilitation clinic",
  altCentro:"A room with treatment tables in a physiotherapy clinic",
@@ -737,6 +1128,108 @@ en:{
 
 ar:{
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ orNivUrgente:"راجع الطبيب اليوم", orNivPronto:"احجز هذا الأسبوع", orNivNormal:"يحتمل الانتظار",
+ nOrientacion:"ما الذي أصابني؟", nMapa:"خريطة الجسم", nDolor:"مقياس الألم",
+ nCalendario:"العودة إلى الرياضة", nEjercicios:"تمارين", nTest:"اختبار القوة",
+ tOrientacion:"ما الذي أصابني؟ — أطلس", tMapa:"خريطة الجسم — أطلس", tDolor:"مقياس الألم — أطلس",
+ tCalendario:"العودة إلى الرياضة — أطلس", tEjercicios:"تمارين — أطلس", tTest:"اختبار القوة — أطلس",
+
+ orH1:"أربعة أسئلة لتعرف: أهو مستعجل؟",
+ orEntrada:"هذا ليس تشخيصًا ولا يمكن أن يكون. وظيفته واحدة: أن يخبرك هل تذهب إلى الطبيب اليوم، أم تحجز هذا الأسبوع، أم يحتمل الانتظار.",
+ orNota:"لا أداة على الإنترنت تُغني عن تقييم حضوري. وعند ألم في الصدر أو فقدان مفاجئ للقوة أو حمّى عالية أو ارتطام قوي، اذهب إلى الطوارئ دون المرور من هنا.",
+ orOtra:"ابدأ من جديد", orPedir:"احجز موعدًا",
+ arbolQ:[
+  {q:"هل لديك أيّ من هذه؟ حُمّى، أو فقدان مفاجئ للقوة، أو تنميل ينزل في الذراع أو الساق، أو ألم ليلي لا يهدأ بشيء.", ops:["نعم، أحدها","لا، ولا واحد"]},
+  {q:"كيف بدأ الأمر؟", ops:["دفعةً واحدة: حركة خاطئة أو التواء أو ارتطام","بالتدريج، دون أن أعرف متى تحديدًا"]},
+  {q:"بعده مباشرةً، هل استطعت أن تستند عليه أو تحرّكه؟", ops:["لا، إطلاقًا","نعم، بألم لكنني استطعت"]},
+  {q:"منذ متى وأنت على هذه الحال؟", ops:["أقل من ستة أسابيع","أكثر من ثلاثة أشهر"]},
+  {q:"هل تورّم كثيرًا في الساعات الأولى؟", ops:["نعم، بشكل ملحوظ","لا، قليلًا أو أبدًا"]},
+  {q:"هل يؤلم عند بدء الحركة ويخفّ بعد الإحماء؟", ops:["نعم، هكذا تمامًا","لا، يزداد سوءًا كلما تحركت أكثر"]}
+ ],
+ arbolS:[
+  {t:"هذا يجب أن يراه طبيب اليوم", d:"ما أشرت إليه ليس شأن العلاج الطبيعي ابتداءً. فالحمّى وفقدان القوة المفاجئ والتنميل النازل في الطرف والألم الليلي الذي لا يهدأ علاماتٌ يجب استبعادها قبل علاج أي شيء.", a:"اذهب إلى طبيبك أو إلى الطوارئ اليوم. وبعدها، إن أُحلت إلينا، فنحن هنا."},
+  {t:"تقييم طبي قبل البدء", d:"عدم القدرة على الاستناد أو التحريك إطلاقًا بعد ارتطام أو التواء يُلزم باستبعاد كسر أو تمزّق كامل. وذلك يُرى بالتصوير، لا باليد.", a:"احجز موعدًا طبيًا اليوم أو غدًا. أحضِر التقرير ونبدأ."},
+  {t:"هذا الأسبوع خير من الذي يليه", d:"التورّم الملحوظ في الساعات الأولى يدلّ عادةً على ما هو أكثر من إجهاد. ليس مستعجلًا، لكن كلما بُكِّر التقييم بُكِّر التحميل الصحيح.", a:"احجز في الأيام القادمة. وفي الأثناء: لا ثلج، ونعم للحركة اللطيفة."},
+  {t:"يحتمل الانتظار أيامًا", d:"مما تصف لا توجد علامات إنذار. والمعقول تقييم على مهل، وقياس القوة التي تنطلق منها، ثم خطة.", a:"احجز حين يناسبك. ولا حاجة إلى التوقف تمامًا في الأثناء."},
+  {t:"ألم مزمن: مقاربة أخرى", d:"ما تجاوز ثلاثة أشهر يغيّر المسألة. فمن هناك نادرًا ما يكون النسيج وحده هو الحاكم، ويختلف العلاج كثيرًا عن علاج إصابة حديثة.", a:"احجز مع من يتولّى الألم المزمن. والجلسة الأولى أطول من المعتاد."},
+  {t:"نمط الوتر المعروف", d:"أن يؤلم عند البدء ويخفّ بعد الإحماء هو بصمة اعتلال الوتر. والخبر الجيد أنه يستجيب جيدًا جدًا للحِمل المتدرّج، وسيئًا جدًا للراحة.", a:"احجز هذا الأسبوع. ولا توقف التدريب كليًا: سنعدّل ماذا وكم."}
+ ],
+
+ mpH1:"أشِر إلى موضع الألم.",
+ mpEntrada:"اضغط على منطقة فترى ما يأتينا منها أكثر، وكم يستغرق عادةً، وبماذا يُعالج.",
+ mpAria:"خريطة الجسم، المناطق التي نعالجها",
+ mpVacio:"اضغط على إحدى المناطق المعلَّمة في الرسم.",
+ mpLesiones:"أكثر ما نراه هنا", mpTrata:"بماذا يُعالج",
+ zonas:[
+  {n:"الكتف", d:"يتحسّن أغلب ألم الكتف الذي نراه بالقوة المتدرّجة قبل أي شيء آخر. والسؤال ليس أملتهبٌ هو، بل كم يحتمل."},
+  {n:"الظهر والرقبة", d:"نادرًا ما تفسّر الصور ألم أسفل الظهر، وهذا خبر جيد. فهو يستجيب للحركة ويسوء بالراحة الطويلة."},
+  {n:"الورك والأوتار الخلفية", d:"أكثر المناطق تكرارًا للإصابة في الرياضات الجماعية. والعودة حين يزول الألم هي بالضبط ما يجعلها تتمزّق ثانيةً."},
+  {n:"الركبة", d:"ألم مقدّمة الركبة سببه غالبًا ضعف عضلة الفخذ الرباعية ورفع الحِمل بسرعة، لا مشكلة في الغضروف."},
+  {n:"الكاحل والقدم", d:"الالتواء أسوأ إصابات الرياضة الهاوية علاجًا: ٤٠٪ منها تتكرر لأن أحدًا لم يُعِد تدريب التوازن بعد الأولى."}
+ ],
+
+ doH1:"من ٠ إلى ١٠، وماذا تفعل عند كل رقم.",
+ doEntrada:"السؤال المهم ليس كم يؤلم، بل: أتستطيع التحميل مع هذا الألم دون أن يسوء؟ وهذا يجيب عنه.",
+ doAria:"مستوى الألم من ٠ إلى ١٠", doReglaEti:"مع التدريب",
+ doNota:"القاعدة التي نعتمدها من تأهيل الأوتار: يمكن التحميل بألم حتى ٤ من ١٠ ما دام قد عاد بعد أربع وعشرين ساعة إلى ما كان عليه. فإن كان في اليوم التالي أسوأ، فالحِمل كان زائدًا وإن لم يؤلم في حينه.",
+ doNiveles:[
+  {t:"إحساس، لا ألم", d:"تشعر بوجوده، لكنه لا يغيّر طريقة حركتك ولا يشغلك أثناء التدريب.", a:"تدرّب بشكل طبيعي. وتحقّق من حاله غدًا."},
+  {t:"ألم محتمَل", d:"يزعجك، لكنك تحافظ على الأداء الصحيح ولا تغيّر الحركة لتفاديه.", a:"يمكنك التحميل. وهذا هو نطاق العمل مع الأوتار، بشرط أن يعود بعد ٢٤ ساعة كما كان."},
+  {t:"ألم يغيّر الأداء", d:"صرت تعدّل الحركة دون أن تنتبه ليقلّ الألم. وهنا يبدأ شيء آخر بالتعويض.", a:"أنقص الحِمل أو غيّر التمرين. ولا تصبر عليه أنَفَةً."},
+  {t:"ألم مرتفع", d:"يصعب التفكير في غيره، ولم تعد الحركة تشبه الحركة السليمة.", a:"أوقف ذلك التمرين اليوم. وإن تكرّر جلستين متتاليتين، فاحجز."},
+  {t:"ألم شديد", d:"لا تستطيع المتابعة، وغالبًا لا تستطيع الاستناد أو التحميل بشكل طبيعي.", a:"توقّف. وإن ظهر فجأةً بعد ارتطام، فتقييم طبي اليوم."}
+ ],
+
+ caH1:"ضع تاريخ الإصابة وانظر إلى التقويم.",
+ caEntrada:"ليس وعدًا: هذا ما يستغرقه الأمر عادةً. وينفع لتحدّث مدرّبك بتواريخ على الطاولة بدل «سنرى».",
+ caLLes:"الإصابة", caLFecha:"تاريخ الإصابة",
+ caNota:"مُدد إرشادية من أدبيات التأهيل. والإذن الحقيقي بالعودة يتوقّف على تحقّق معايير القوة والتحكّم، لا على حلول التاريخ. فإن حلّ اليوم ولم تتحقق، واصلنا العمل.",
+ caLeyHito:"تغيّر المرحلة", caLeyAlta:"العودة المتوقعة إلى الرياضة",
+ caHal:"إن كانت الإصابة في {f}، فالعودة إلى الرياضة تقع نحو <b>{a}</b>. أي <b>{s}</b> من اليوم. أرِ ذلك مدرّبك قبل أن يسجّلك في شيء.",
+ caPasado:"ذلك التاريخ مضى بحسب التقويم. وإن كنت ما زلت تشكو، فالمشكلة ليست في المدة: احجز موعدًا.",
+ caDow:["ن","ث","ر","خ","ج","س","ح"],
+ caSemanas:"أسبوعًا",
+
+ ejH1:"صفِّ حسب المنطقة والأدوات والمرحلة.",
+ ejEntrada:"أكثر ما نرسله إلى البيت. وهي لا تُغني عن خطة مصمَّمة لك، لكن أيًّا منها لا يضرّ إذا أُدّي جيدًا.",
+ ejVacio:"لا تمرين يطابق هذه المرشّحات. أزل أحدها.",
+ ejCuentaTxt:"{n} من {t} تمرينًا",
+ ejFacetaZona:"المنطقة", ejFacetaMat:"الأدوات", ejFacetaFase:"المرحلة", ejTodos:"الكل",
+ ejMateriales:["بلا أدوات","شريط مطاطي","بأثقال"],
+ ejFases:["المرحلة ١ · الألم","المرحلة ٢ · القوة","المرحلة ٣ · الرياضة"],
+ ejercicios:[
+  {n:"شدّ ثابت لعضلة الفخذ", d:"اضغط الركبة الممدودة على الأرض واثبت ٤٥ ثانية. خمس مجموعات. يخفّض ألم الركبة في حينه."},
+  {n:"نهوض من كرسي على ساق واحدة", d:"اجلس وانهض من كرسي على ساق واحدة دون أن ترتمي. ثلاث مجموعات من ثماني لكل جهة."},
+  {n:"بسط الركبة بشريط مطاطي", d:"جالسًا، ابسط الركبة ضد الشريط وارجع ببطء، عادًّا ثلاث ثوانٍ في النزول."},
+  {n:"قفزة وهبوط على ساق واحدة", d:"اقفز إلى الأمام واهبط على ساق واحدة دون أن تنحرف الركبة إلى الداخل. الجودة قبل الكمية."},
+  {n:"التوازن على ساق واحدة", d:"دقيقة على ساق واحدة، بعينين مفتوحتين ثم مغمضتين. وهو التمرين الذي لا يفعله أحد تقريبًا بعد الالتواء."},
+  {n:"رفع الكعب على ساق واحدة", d:"على أطراف أصابع ساق واحدة، صعودًا سريعًا ونزولًا في ثلاث ثوانٍ. ثلاث مجموعات قرب الإجهاد."},
+  {n:"ثني الكاحل بالشريط", d:"جالسًا، اسحب القدم نحوك ضد الشريط. يستعيد الدرجات اللازمة لنزول الدرج كما ينبغي."},
+  {n:"قفزات جانبية", d:"اقفز يمينًا ويسارًا فوق خط، مع هبوط ثابت. يهيّئ الكاحل لتغييرات الاتجاه."},
+  {n:"جسر المؤخرة", d:"مستلقيًا على ظهرك، ارفع الحوض ضاغطًا على عضلات المؤخرة. ثلاث مجموعات من اثنتي عشرة، دون تقويس الظهر."},
+  {n:"تمرين نورديك اللامركزي", d:"راكعًا، اسقط إلى الأمام مكابحًا بالأوتار الخلفية. وهو الأقوى دليلًا ضد تكرار الإصابة."},
+  {n:"الرفعة الرومانية", d:"بركبتين شبه ممدودتين، أنزِل الثقل ملاصقًا للساق حتى تشعر بالشدّ خلف الفخذ."},
+  {n:"دوران خارجي بالشريط", d:"المرفق ملاصق للجسم، أدر الساعد إلى الخارج ضد الشريط. ثلاث مجموعات من خمس عشرة، بلا عجلة."},
+  {n:"الضغط فوق الرأس", d:"ادفع الثقل إلى الأعلى دون تقويس الظهر. وهي الحركة التي يجب استعادتها في كل كتف تقريبًا."},
+  {n:"القط والجمل", d:"على أربع، قوّس الظهر ودوّره ببطء. عشر تكرارات للبدء بالحركة دون خوف."},
+  {n:"الكلب والطائر", d:"على أربع، مُدّ الذراع والساق المتقابلتين دون أن يتحرك الحوض. عشر لكل جهة، بتحكّم."},
+  {n:"الرفعة الميتة", d:"أفضل تمرين لظهر لم يعد يؤلم، وأسوأ تمرين لظهر يؤلم كثيرًا. مسألة متى، لا مسألة هل."}
+ ],
+
+ teH1:"قارن الجهة المصابة بالسليمة.",
+ teEntrada:"هذا هو المعيار الذي نعتمده للإذن بالعودة: فارق أقل من ١٠٪ بين الجهتين. جرّبه في البيت، وأحضِر الأرقام إلى الموعد الأول.",
+ teNota:"اختبار ذاتي إرشادي. ابدأ بالجهة السليمة، واسترح دقيقتين، ثم المصابة. وتوقّف إن تجاوز الألم ٤ من ١٠. وإن لم تستطع تكرارًا واحدًا فلا تكتب صفرًا: دوّن ذلك واذكره في العيادة.",
+ teLSano:"الجهة السليمة", teLLes:"الجهة المصابة", teFalta:"—",
+ teBienT:"التماثل ضمن الهدف", teMalT:"ما زال هناك فارق",
+ teBienD:"بمعدل <b>{p}٪</b>، تقع الجهة المصابة ضمن هامش الـ١٠٪ الذي نشترطه قبل الإذن بالعودة. وهذا وحده لا يكفي، لكنه الشرط الذي يتجاوزه أكثر الناس.",
+ teMalD:"بمعدل <b>{p}٪</b> ما زال الفارق يتجاوز ١٠٪. والعودة إلى المنافسة هكذا تفسّر جزءًا كبيرًا من تكرار الإصابات. الناقص قوةٌ في الجهة المصابة، لا وقت.",
+ teVacioD:"املأ الجهتين في اختبار واحد على الأقل ونحسب لك التماثل.",
+ tests:[
+  {n:"النهوض على ساق واحدة في ٣٠ ثانية", d:"واقفًا أمام كرسي، اجلس وانهض على ساق واحدة أكبر عدد ممكن في نصف دقيقة."},
+  {n:"رفع الكعب على ساق واحدة", d:"على أطراف أصابع ساق واحدة، صعودًا ونزولًا بإيقاع ثانية للتكرار، حتى لا تستطيع الصعود كاملًا."},
+  {n:"جسر الأوتار الخلفية على ساق واحدة", d:"مستلقيًا والكعب على كرسي، ارفع الحوض على ساق واحدة أكبر عدد ممكن بأداء جيد."}
+ ],
+
  altPortada:"شخص يتدرّب بالبار أثناء إعادة التأهيل",
  altRecuperacion:"بارات وأثقال في صالة القوة بمركز تأهيل",
  altCentro:"قاعة فيها أَسِرّة علاج في مركز علاج طبيعي",
@@ -899,10 +1392,304 @@ ar:{
 }
 };
 
-var RUTAS = ["inicio","tratamientos","lesiones","recuperacion","movilidad","equipo","instalaciones","precios","preguntas","contacto"];
+
+/* ══════════════════════════════════════════════════════════════════
+   Estructura y números compartidos por los tres idiomas. El árbol de
+   decisión vive aquí: si las ramas estuvieran dentro de cada idioma,
+   una versión podría acabar preguntando otra cosa que las demás.
+   ══════════════════════════════════════════════════════════════════ */
+/* A dónde lleva cada respuesta: "nX" otro nodo, "sX" una salida */
+var ARBOL = [
+  ["s0","n1"], ["n2","n3"], ["s1","n4"], ["n5","s4"], ["s2","s3"], ["s5","s3"]
+];
+var NIVELES = ["urgente","urgente","pronto","normal","pronto","normal"];
+/* Puntos calientes del mapa corporal, sobre un lienzo de 300×430 */
+var ZONAS = [[188,100],[150,152],[132,226],[126,300],[122,378]];
+/* A qué zona pertenece cada lesión de la lista */
+var LESION_ZONA = [3,4,1,0,2];
+/* Bandas de la escala de dolor: hasta qué número llega cada nivel */
+var EVA = [2,4,6,8,10];
+/* Facetas de cada ejercicio: [zona, material, fase] */
+var EJ = [
+  [3,0,0],[3,0,1],[3,1,1],[3,0,2],
+  [4,0,0],[4,0,1],[4,1,0],[4,0,2],
+  [2,0,0],[2,0,2],[2,2,1],
+  [0,1,0],[0,2,2],
+  [1,0,0],[1,0,1],[1,2,2]
+];
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Las seis piezas nuevas de ATLAS. Ninguna repite formato de las de
+   los otros dos sitios ni entre sí.
+   ══════════════════════════════════════════════════════════════════ */
+var orNodo = 0, orCamino = [], mpZona = -1, doVal = 4;
+var caLes = 0, caFecha = "", ejZ = -1, ejM = -1, ejF = -1;
+var teVals = [[null,null],[null,null],[null,null]];
+
+/* ── 1. Árbol de decisión ────────────────────────────────────────── */
+function pintarOrientacion(){
+  var cont = document.getElementById("orArbol");
+  if (!cont) return;
+  var t = T[idioma];
+
+  document.getElementById("orRastro").innerHTML = orCamino.map(function(c,i){
+    return '<span class="'+(i === orCamino.length-1 ? "act" : "")+'">'
+      + esc(t.arbolQ[c.n].ops[c.o])+'</span>'; }).join("");
+
+  if (typeof orNodo === "string"){          /* estamos en una salida */
+    var k = +orNodo.slice(1), sal = t.arbolS[k], niv = NIVELES[k];
+    cont.innerHTML =
+      '<div class="salida '+niv+'"><p class="nivel">'
+      + esc(niv === "urgente" ? t.orNivUrgente : niv === "pronto" ? t.orNivPronto : t.orNivNormal)+'</p>'
+      + '<h3>'+esc(sal.t)+'</h3><p style="color:var(--t2)">'+esc(sal.d)+'</p>'
+      + '<p style="margin-top:1rem"><b>'+esc(sal.a)+'</b></p>'
+      + '<div class="acc" style="margin-top:1.4rem">'
+      + (niv === "urgente" ? '' : '<a class="btn sol" href="#/contacto">'+esc(t.orPedir)+'</a>')
+      + '<button class="btn" type="button" id="orOtra">'+esc(t.orOtra)+'</button></div></div>';
+    document.getElementById("orOtra").addEventListener("click", function(){
+      orNodo = 0; orCamino = []; pintarOrientacion();
+    });
+    return;
+  }
+
+  var pr = t.arbolQ[orNodo];
+  cont.innerHTML = '<h3>'+esc(pr.q)+'</h3><div class="arbol-ops">'
+    + pr.ops.map(function(o,i){
+        return '<button class="arbol-op" type="button" data-i="'+i+'">'+esc(o)+'</button>'; }).join("")
+    + '</div>';
+  cont.querySelectorAll(".arbol-op").forEach(function(b){
+    b.addEventListener("click", function(){
+      var i = +this.dataset.i;
+      orCamino.push({n: orNodo, o: i});
+      var destino = ARBOL[orNodo][i];
+      orNodo = destino.charAt(0) === "n" ? +destino.slice(1) : destino;
+      pintarOrientacion();
+    });
+  });
+}
+
+/* ── 2. Mapa corporal clicable ───────────────────────────────────── */
+function pintarMapa(){
+  var svg = document.getElementById("mpSvg");
+  if (!svg) return;
+  var t = T[idioma], C = "var(--l)", F = "var(--f2)";
+  var g = '<ellipse cx="150" cy="42" rx="22" ry="26" fill="'+F+'" stroke="'+C+'"/>'
+    + '<rect x="141" y="66" width="18" height="18" rx="7" fill="'+F+'" stroke="'+C+'"/>'
+    + '<path d="M112 92 Q150 78 188 92 L182 196 Q150 208 118 196 Z" fill="'+F+'" stroke="'+C+'"/>'
+    + '<path d="M112 96 L86 178 L78 232" fill="none" stroke="'+C+'" stroke-width="13" stroke-linecap="round" opacity=".5"/>'
+    + '<path d="M188 96 L214 178 L222 232" fill="none" stroke="'+C+'" stroke-width="13" stroke-linecap="round" opacity=".5"/>'
+    + '<path d="M132 202 L126 300 L122 382" fill="none" stroke="'+C+'" stroke-width="17" stroke-linecap="round" opacity=".5"/>'
+    + '<path d="M168 202 L174 300 L178 382" fill="none" stroke="'+C+'" stroke-width="17" stroke-linecap="round" opacity=".5"/>';
+  ZONAS.forEach(function(z,i){
+    g += '<g class="zona" role="button" tabindex="0" data-i="'+i+'" aria-pressed="'+(mpZona===i)+'">'
+       + '<title>'+esc(t.zonas[i].n)+'</title>'
+       + '<circle cx="'+z[0]+'" cy="'+z[1]+'" r="13"/></g>';
+  });
+  svg.innerHTML = g;
+
+  var panel = document.getElementById("mpPanel");
+  if (mpZona < 0){
+    panel.innerHTML = '<p class="mapa-vacio">'+esc(t.mpVacio)+'</p>';
+  } else {
+    var z = t.zonas[mpZona];
+    var les = t.lesiones.filter(function(_,i){ return LESION_ZONA[i] === mpZona; });
+    panel.innerHTML = '<h3>'+esc(z.n)+'</h3><p style="color:var(--t2)">'+esc(z.d)+'</p>'
+      + (les.length ? '<p class="eti" style="margin-top:1.6rem">'+esc(t.mpLesiones)+'</p>'
+          + les.map(function(l){ return '<p style="margin-bottom:.8rem"><b>'+esc(l.n)+'</b><br>'
+              + '<span style="color:var(--t2);font-size:.92rem">'+esc(l.d)+'</span></p>'; }).join("") : "")
+      + '<div class="acc" style="margin-top:1.4rem"><a class="btn sol" href="#/contacto">'+esc(t.bCita)+'</a></div>';
+  }
+
+  svg.querySelectorAll(".zona").forEach(function(el){
+    function sel(){ mpZona = +el.dataset.i; pintarMapa(); }
+    el.addEventListener("click", sel);
+    el.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); sel(); }
+    });
+  });
+}
+
+/* ── 3. Escala de dolor ──────────────────────────────────────────── */
+function pintarDolor(){
+  var n = document.getElementById("doNum");
+  if (!n) return;
+  var t = T[idioma];
+  document.getElementById("doRange").value = doVal;
+  n.textContent = num(doVal);
+  var b = 0;
+  while (b < EVA.length - 1 && doVal > EVA[b]) b++;
+  var niv = t.doNiveles[b];
+  document.getElementById("doTit").textContent = niv.t;
+  document.getElementById("doTxt").textContent = niv.d;
+  document.getElementById("doAccion").textContent = niv.a;
+}
+
+/* ── 4. Calendario de vuelta al deporte ──────────────────────────── */
+function pintarCalendario(){
+  var sel = document.getElementById("caLes");
+  if (!sel) return;
+  var t = T[idioma], C = t.curvas;
+  sel.innerHTML = C.map(function(c,i){ return '<option value="'+i+'">'+esc(c.n)+'</option>'; }).join("");
+  sel.value = caLes;
+  var inp = document.getElementById("caFecha");
+  if (!caFecha){ caFecha = new Date().toISOString().slice(0,10); }
+  inp.value = caFecha;
+
+  var d0 = new Date(caFecha + "T00:00:00");
+  if (isNaN(d0)) return;
+  var c = C[caLes];
+  var hitos = [
+    {sem: 0,                          f: t.fases[0], alta:false},
+    {sem: Math.round(c.sem * 0.20),   f: t.fases[1], alta:false},
+    {sem: Math.round(c.sem * 0.55),   f: t.fases[2], alta:false},
+    {sem: c.alta,                     f: t.reHal ? t.caLeyAlta : "", alta:true}
+  ];
+  function masSem(d, w){ var x = new Date(d.getTime()); x.setDate(x.getDate() + w*7); return x; }
+  hitos.forEach(function(h){ h.d = masSem(d0, h.sem); });
+  var fin = hitos[hitos.length-1].d;
+
+  document.getElementById("caLeyenda").innerHTML =
+    '<span><i style="--cc:var(--verde)"></i>'+esc(t.caLeyHito)+'</span>'
+  + '<span><i style="--cc:var(--senal)"></i>'+esc(t.caLeyAlta)+'</span>';
+
+  /* Un mes por cuadrícula, desde el de la lesión hasta el del alta */
+  var marcas = {};
+  hitos.forEach(function(h){ marcas[h.d.toDateString()] = h.alta ? "alta" : "hito"; });
+  var html = "", cur = new Date(d0.getFullYear(), d0.getMonth(), 1), guardia = 0;
+  while (cur <= fin && guardia++ < 10){
+    var nm;
+    try{ nm = new Intl.DateTimeFormat(loc(),{month:"long",year:"numeric"}).format(cur); }
+    catch(e){ nm = ""; }
+    html += '<div class="cal-mes"><h4>'+esc(nm)+'</h4><div class="cal-rej">'
+         + t.caDow.map(function(d){ return '<span class="dow">'+esc(d)+'</span>'; }).join("");
+    var primero = new Date(cur.getFullYear(), cur.getMonth(), 1);
+    var hueco = (primero.getDay() + 6) % 7;       /* la semana empieza en lunes */
+    for (var v = 0; v < hueco; v++) html += "<span></span>";
+    var dias = new Date(cur.getFullYear(), cur.getMonth()+1, 0).getDate();
+    for (var dd = 1; dd <= dias; dd++){
+      var f = new Date(cur.getFullYear(), cur.getMonth(), dd);
+      var cls = marcas[f.toDateString()] || "";
+      html += '<span class="'+cls+'">'+num(dd)+"</span>";
+    }
+    html += "</div></div>";
+    cur = new Date(cur.getFullYear(), cur.getMonth()+1, 1);
+  }
+  document.getElementById("caMeses").innerHTML = html;
+
+  function fecha(d){
+    try{ return new Intl.DateTimeFormat(loc(),{day:"numeric",month:"long"}).format(d); }
+    catch(e){ return d.toISOString().slice(0,10); }
+  }
+  document.getElementById("caHitos").innerHTML = hitos.map(function(h){
+    return '<li><span class="f">'+esc(fecha(h.d))+'</span><span>'+esc(h.f)+'</span></li>'; }).join("");
+
+  var hoy = new Date(); hoy.setHours(0,0,0,0);
+  var dias2 = Math.round((fin - hoy) / 864e5);
+  document.getElementById("caHallazgo").innerHTML = dias2 < 0
+    ? esc(t.caPasado)
+    : t.caHal.replace("{f}", esc(fecha(d0))).replace("{a}", esc(fecha(fin)))
+        .replace("{s}", num(Math.max(0, Math.round(dias2/7))) + " " + t.caSemanas);
+}
+
+/* ── 5. Buscador por facetas ─────────────────────────────────────── */
+function pintarEjercicios(){
+  var cont = document.getElementById("ejLista");
+  if (!cont) return;
+  var t = T[idioma];
+
+  var grupos = [
+    {tit:t.ejFacetaZona, ops:t.zonas.map(function(z){ return z.n; }), val:ejZ, set:function(v){ ejZ = v; }},
+    {tit:t.ejFacetaMat,  ops:t.ejMateriales, val:ejM, set:function(v){ ejM = v; }},
+    {tit:t.ejFacetaFase, ops:t.ejFases,      val:ejF, set:function(v){ ejF = v; }}
+  ];
+  var fac = document.getElementById("ejFacetas");
+  fac.innerHTML = "";
+  grupos.forEach(function(gr, gi){
+    var d = document.createElement("div");
+    d.className = "faceta";
+    d.innerHTML = "<p>"+esc(gr.tit)+"</p><div></div>";
+    var caja = d.querySelector("div");
+    [-1].concat(gr.ops.map(function(_,i){ return i; })).forEach(function(v){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = v < 0 ? t.ejTodos : gr.ops[v];
+      b.setAttribute("aria-pressed", String(gr.val === v));
+      b.addEventListener("click", function(){ grupos[gi].set(v); pintarEjercicios(); });
+      caja.appendChild(b);
+    });
+    fac.appendChild(d);
+  });
+
+  var vis = [];
+  EJ.forEach(function(e,i){
+    if ((ejZ < 0 || e[0] === ejZ) && (ejM < 0 || e[1] === ejM) && (ejF < 0 || e[2] === ejF)) vis.push(i);
+  });
+  cont.innerHTML = vis.map(function(i){
+    var e = EJ[i], x = t.ejercicios[i];
+    return '<article class="ej"><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p><div class="tags">'
+      + '<i>'+esc(t.zonas[e[0]].n)+'</i><i>'+esc(t.ejMateriales[e[1]])+'</i><i>'+esc(t.ejFases[e[2]])+'</i>'
+      + '</div></article>';
+  }).join("");
+  document.getElementById("ejVacio").hidden = vis.length > 0;
+  document.getElementById("ejCuenta").textContent =
+    t.ejCuentaTxt.replace("{n}", num(vis.length)).replace("{t}", num(EJ.length));
+}
+
+/* ── 6. Test de fuerza ───────────────────────────────────────────── */
+function pintarTest(){
+  var cont = document.getElementById("teLista");
+  if (!cont) return;
+  var t = T[idioma];
+  cont.innerHTML = t.tests.map(function(x,i){
+    var a = teVals[i][0], b = teVals[i][1];
+    var pc = (a > 0 && b !== null) ? Math.round(b / a * 100) : null;
+    return '<div class="test-fila"><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p>'
+      + '<div class="test-inp">'
+      + '<div><label for="teA'+i+'">'+esc(t.teLSano)+'</label><input id="teA'+i+'" type="number" min="0" max="200" data-i="'+i+'" data-l="0" value="'+(a===null?"":a)+'"></div>'
+      + '<div><label for="teB'+i+'">'+esc(t.teLLes)+'</label><input id="teB'+i+'" type="number" min="0" max="200" data-i="'+i+'" data-l="1" value="'+(b===null?"":b)+'"></div>'
+      + '<div class="res '+(pc===null?"":(pc>=90?"bien":"mal"))+'">'+(pc===null?esc(t.teFalta):num(pc)+"%")+'</div>'
+      + '</div></div>';
+  }).join("");
+
+  cont.querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      var v = this.value === "" ? null : Math.max(0, +this.value);
+      teVals[+this.dataset.i][+this.dataset.l] = v;
+      pintarTest();
+      var f = document.getElementById(this.id);
+      if (f){ f.focus(); f.setSelectionRange(f.value.length, f.value.length); }
+    });
+  });
+
+  var pcs = [];
+  teVals.forEach(function(v){ if (v[0] > 0 && v[1] !== null) pcs.push(v[1] / v[0] * 100); });
+  var caja = document.getElementById("teTotal");
+  if (!pcs.length){
+    caja.className = "test-total";
+    caja.innerHTML = "<p>"+esc(t.teVacioD)+"</p>";
+    return;
+  }
+  var media = Math.round(pcs.reduce(function(a,b){ return a+b; }, 0) / pcs.length);
+  var bien = media >= 90;
+  caja.className = "test-total " + (bien ? "bien" : "mal");
+  caja.innerHTML = '<h3 style="font-size:1.3rem;margin-bottom:.5rem">'+esc(bien ? t.teBienT : t.teMalT)+'</h3>'
+    + "<p>" + (bien ? t.teBienD : t.teMalD).replace("{p}", num(media)) + "</p>";
+}
+
+function pintarNuevas(){
+  pintarOrientacion(); pintarMapa(); pintarDolor();
+  pintarCalendario(); pintarEjercicios(); pintarTest();
+}
+
+var RUTAS = ["inicio","orientacion","tratamientos","lesiones","mapa","dolor",
+             "recuperacion","calendario","movilidad","test","ejercicios",
+             "equipo","instalaciones","precios","preguntas","contacto"];
 var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",lesiones:"tLesiones",recuperacion:"tRecuperacion",
   movilidad:"tMovilidad",equipo:"tEquipo",instalaciones:"tInstalaciones",precios:"tPrecios",
-  preguntas:"tPreguntas",contacto:"tContacto"};
+  preguntas:"tPreguntas",contacto:"tContacto",
+  orientacion:"tOrientacion",mapa:"tMapa",dolor:"tDolor",
+  calendario:"tCalendario",ejercicios:"tEjercicios",test:"tTest"};
 var idioma = "es", reSel = 0, moSel = 0;
 
 function loc(){ return T[idioma]._loc; }
@@ -1083,7 +1870,7 @@ function aplicar(codigo){
   for (i=0;i<b.length;i++) b[i].setAttribute("aria-pressed", String(b[i].dataset.lang===codigo));
   document.title = t[TITULOS[ruta()]] || t.tInicio;
   var ac = document.getElementById("acuse"); if (ac){ ac.textContent=""; ac.classList.remove("mal"); }
-  pintarListas(); pintarRecuperacion(); pintarMovilidad(); cuerpo();
+  pintarListas(); pintarRecuperacion(); pintarMovilidad(); cuerpo(); pintarNuevas();
   try{ localStorage.setItem("atlas_lang", codigo); }catch(e){}
 }
 
@@ -1112,6 +1899,15 @@ document.getElementById("f").addEventListener("submit", function(e){
   if (tel.length < 7){ ac.textContent = t.errTel; ac.classList.add("mal"); return; }
   ac.classList.remove("mal"); ac.textContent = t.okMsg; e.target.reset();
 });
+
+
+/* Eventos de las seis piezas nuevas */
+(function(){
+  function on(id, ev, fn){ var el = document.getElementById(id); if (el) el.addEventListener(ev, fn); }
+  on("doRange", "input", function(){ doVal = +this.value; pintarDolor(); });
+  on("caLes", "change", function(){ caLes = +this.value; pintarCalendario(); });
+  on("caFecha", "change", function(){ caFecha = this.value; pintarCalendario(); });
+})();
 
 (function(){
   var g=null; try{ g=localStorage.getItem("atlas_lang"); }catch(e){}

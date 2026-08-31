@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATLAS — Fisioterapia y readaptación deportiva</title>
+<meta name="description" content="Fisioterapia y readaptación deportiva. Diagnóstico, tratamiento y vuelta a entrenar con criterio, no con calendario.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Outfit:wght@300;400;500&family=Rubik:wght@300;400;500;600&display=swap">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   ATLAS — el atlas es la primera vértebra cervical, la que sostiene el
+   cráneo y permite decir que sí con la cabeza. De ahí el nombre.
+
+   Una clínica no vende ilusión: vende que le digan a uno cuándo va a
+   poder volver a correr, y con qué criterio. Por eso la página está
+   construida alrededor de dos gráficas y no alrededor de fotos de
+   camillas.
+   ══════════════════════════════════════════════════════════════════ */
+:root{
+  --f:#f6f7f6; --f2:#eceeed; --sup:#fff;
+  --t:#10171a; --t2:#4d585c; --t3:#828d90;
+  --verde:#1f7a6b; --senal:#c4512e;
+  --l:rgba(16,23,26,.13); --l2:rgba(16,23,26,.06);
+  --s1:#1a6fb0; --s2:#c8641a; --s3:#0f8f7a;
+  --disp:"Bricolage Grotesque",system-ui,sans-serif;
+  --c:"Outfit",system-ui,sans-serif;
+  --marco:min(1260px,100% - 2.75rem);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --f:#0d1214; --f2:#151c1f; --sup:#1a2226;
+  --t:#e8ecec; --t2:#9ba7ab; --t3:#6a7679;
+  --verde:#4fb3a0; --senal:#e08a63;
+  --l:rgba(232,236,236,.15); --l2:rgba(232,236,236,.07);
+  --s1:#3f88c4; --s2:#c47f32; --s3:#20a086;
+}}
+:root[data-theme="dark"]{
+  --f:#0d1214; --f2:#151c1f; --sup:#1a2226;
+  --t:#e8ecec; --t2:#9ba7ab; --t3:#6a7679;
+  --verde:#4fb3a0; --senal:#e08a63;
+  --l:rgba(232,236,236,.15); --l2:rgba(232,236,236,.07);
+  --s1:#3f88c4; --s2:#c47f32; --s3:#20a086;
+}
+/* Rubik cubre latino y árabe con el mismo carácter, así que la página
+   no cambia de personalidad al cambiar de idioma. */
+html[dir="rtl"]{ --disp:"Rubik",sans-serif; --c:"Rubik",sans-serif; }
+
+*,*::before,*::after{box-sizing:border-box;}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+body{margin:0;background:var(--f);color:var(--t);font-family:var(--c);font-weight:300;
+  font-size:clamp(15px,1.02vw,16.5px);line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+html[dir="rtl"] body{line-height:1.95;font-weight:400;}
+h1,h2,h3{font-family:var(--disp);font-weight:500;margin:0;line-height:1.06;letter-spacing:-.02em;text-wrap:balance;}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{line-height:1.45;letter-spacing:0;font-weight:600;}
+p{margin:0 0 .95em;max-width:62ch;} p:last-child{margin-bottom:0;}
+a{color:inherit;} :focus-visible{outline:2px solid var(--verde);outline-offset:3px;}
+.marco{width:var(--marco);margin-inline:auto;}
+.bl{padding-block:clamp(2.75rem,6vw,5rem);} .raya{border-top:1px solid var(--l);}
+.eti{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--verde);font-weight:500;margin:0 0 1rem;}
+/* En árabe no se espacian las letras: descosería la palabra. */
+html[dir="rtl"] .eti{letter-spacing:0;text-transform:none;font-size:.9rem;font-weight:600;}
+
+header.a{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--f) 93%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--l);}
+.barra{display:flex;align-items:center;gap:1.2rem;padding-block:.85rem;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-family:var(--disp);
+  font-weight:600;font-size:1.2rem;letter-spacing:-.02em;}
+html[dir="rtl"] .logo{letter-spacing:0;font-size:1.4rem;}
+.logo svg{width:22px;height:22px;color:var(--verde);}
+nav.a{display:flex;gap:1.1rem;margin-inline-start:auto;font-size:.82rem;overflow-x:auto;scrollbar-width:none;}
+nav.a::-webkit-scrollbar{display:none;}
+nav.a a{text-decoration:none;color:var(--t2);white-space:nowrap;padding-block:.25rem;border-bottom:1px solid transparent;}
+nav.a a:hover{color:var(--t);}
+nav.a a[aria-current="page"]{color:var(--t);border-bottom-color:var(--verde);}
+.idi{display:flex;gap:.5rem;font-size:.76rem;flex-shrink:0;}
+.idi button{background:none;border:0;cursor:pointer;font:inherit;font-family:var(--c);color:var(--t3);padding:.2rem 0;}
+.idi button[aria-pressed="true"]{color:var(--verde);font-weight:500;}
+.idi button:hover{color:var(--t);}
+@media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.a{order:3;width:100%;margin-inline-start:0}}
+
+[data-ruta]{display:none;} [data-ruta].on{display:block;animation:ap .4s ease both;}
+@keyframes ap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.hero{display:grid;gap:2.5rem;align-items:center;padding-block:clamp(2.5rem,6vw,4.5rem);}
+@media(min-width:940px){.hero{grid-template-columns:1.1fr .9fr;gap:3.5rem;}}
+.hero h1{font-size:clamp(2.3rem,5.6vw,4.2rem);max-width:15ch;}
+html[dir="rtl"] .hero h1{max-width:18ch;}
+.entrada{font-size:clamp(1rem,1.3vw,1.14rem);color:var(--t2);max-width:48ch;margin-top:1.3rem;}
+.cuerpo{width:100%;height:auto;display:block;}
+
+.acc{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem;}
+.btn{display:inline-block;text-decoration:none;font-size:.8rem;letter-spacing:.08em;
+  padding:.95rem 1.9rem;border:1px solid var(--t);background:transparent;color:var(--t);
+  cursor:pointer;font-family:var(--c);font-weight:500;border-radius:999px;transition:.2s;}
+html[dir="rtl"] .btn{letter-spacing:0;font-size:.95rem;}
+.btn.sol{background:var(--verde);border-color:var(--verde);color:var(--sup);}
+.btn.sol:hover{background:transparent;color:var(--verde);}
+.btn:hover{border-color:var(--verde);color:var(--verde);}
+
+.rej{display:grid;gap:1.1rem;}
+.r3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.r4{grid-template-columns:repeat(auto-fit,minmax(195px,1fr));}
+.cel{background:var(--sup);border:1px solid var(--l);border-radius:14px;padding:1.5rem 1.4rem;}
+.cel h3{font-size:1.2rem;margin-bottom:.5rem;}
+.cel p{color:var(--t2);font-size:.94rem;}
+.cel .sub{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verde);
+  display:block;margin-bottom:.7rem;font-weight:500;}
+html[dir="rtl"] .cel .sub{letter-spacing:0;text-transform:none;font-size:.86rem;}
+.dato .v{font-family:var(--disp);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:500;line-height:1;letter-spacing:-.03em;}
+html[dir="rtl"] .dato .v{letter-spacing:0;}
+.dato .u{font-size:.76rem;color:var(--t3);margin-top:.6rem;}
+.precio{font-family:var(--disp);font-size:1.9rem;font-weight:500;margin-top:1rem;color:var(--verde);}
+
+.lista{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.5rem;max-width:60ch;}
+.lista li{display:grid;grid-template-columns:1.2rem 1fr;gap:.6rem;align-items:baseline;color:var(--t2);font-size:.94rem;}
+.lista li::before{content:"✓";color:var(--verde);font-size:.85rem;}
+.lista.no li::before{content:"×";color:var(--t3);}
+
+.mandos{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem;}
+.mandos button{font-size:.82rem;padding:.55rem 1.05rem;border:1px solid var(--l);background:var(--sup);
+  color:var(--t2);cursor:pointer;font-family:var(--c);border-radius:999px;}
+.mandos button[aria-pressed="true"]{background:var(--t);color:var(--f);border-color:var(--t);}
+.mandos button:hover{border-color:var(--verde);color:var(--verde);}
+.mandos button[aria-pressed="true"]:hover{color:var(--f);}
+.leyenda{display:flex;flex-wrap:wrap;gap:.3rem 1.3rem;margin-bottom:1rem;font-size:.82rem;color:var(--t2);}
+.leyenda span{display:flex;align-items:center;gap:.45rem;}
+.leyenda i{width:.8rem;height:.8rem;border-radius:3px;background:var(--cc);flex-shrink:0;}
+.grafica{overflow-x:auto;} .grafica svg{display:block;min-width:30rem;width:100%;height:auto;}
+.gr-guia{stroke:var(--l2);stroke-width:1;} .gr-eje{stroke:var(--l);stroke-width:1;}
+.gr-tex{fill:var(--t3);font-family:var(--c);font-size:10.5px;}
+html[dir="rtl"] .gr-tex{font-family:"Rubik",sans-serif;font-size:11px;}
+.hallazgo{margin-top:1.5rem;padding:1.1rem 1.3rem;background:var(--f2);border-radius:12px;
+  border-inline-start:3px solid var(--verde);font-size:.97rem;}
+.hallazgo b{color:var(--verde);}
+.metodo{font-size:.78rem;color:var(--t3);margin-top:1.2rem;max-width:70ch;}
+.tabla{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:.8rem;}
+.tabla th,.tabla td{border-bottom:1px solid var(--l2);padding:.5rem;text-align:start;}
+.tabla th{font-weight:500;color:var(--t2);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;}
+html[dir="rtl"] .tabla th{letter-spacing:0;text-transform:none;font-size:.86rem;}
+.tabla td{color:var(--t2);}
+
+.faq{border-top:1px solid var(--l);}
+.faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
+  list-style:none;display:flex;gap:1rem;align-items:baseline;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";margin-inline-start:auto;color:var(--verde);}
+.faq[open] summary::after{content:"–";}
+.faq p{color:var(--t2);padding-bottom:1.2rem;}
+
+form{display:grid;gap:1.3rem;max-width:36rem;}
+.par{display:grid;gap:1.3rem;} @media(min-width:640px){.par{grid-template-columns:1fr 1fr;}}
+label{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.4rem;}
+html[dir="rtl"] label{letter-spacing:0;text-transform:none;font-size:.88rem;}
+input,select,textarea{width:100%;font:inherit;font-family:var(--c);color:var(--t);background:var(--sup);
+  border:1px solid var(--l);padding:.7rem .85rem;border-radius:10px;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--verde);}
+textarea{resize:vertical;min-height:5rem;}
+select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--t3) 50%),
+                   linear-gradient(135deg,var(--t3) 50%,transparent 50%);
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+  background-position:right .85rem center,right .55rem center;}
+/* background-position no tiene versión lógica: se refleja a mano. */
+html[dir="rtl"] select{background-position:left .55rem center,left .85rem center;}
+.aviso{font-size:.78rem;color:var(--t3);}
+.acuse{font-size:.9rem;color:var(--verde);min-height:1.4em;margin:.6rem 0 0;}
+.acuse.mal{color:var(--senal);}
+footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem;color:var(--t3);}
+.pie{display:flex;flex-wrap:wrap;gap:.7rem 2rem;align-items:center;}
+.pie nav{display:flex;gap:1.2rem;flex-wrap:wrap;} .pie a{text-decoration:none;}
+.pie a:hover{color:var(--verde);} .pie .fin{margin-inline-start:auto;}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block;}
+</style>
+</head>
+<body>
+
+<header class="a">
+  <div class="marco barra">
+    <a class="logo" href="#/inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M12 3.5v17"/><path d="M7.5 7h9"/><path d="M6.5 12h11"/><path d="M8 17h8"/>
+      </svg>
+      <span data-t="marca">ATLAS</span>
+    </a>
+    <nav class="a" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
+      <a href="#/inicio"        data-t="nInicio">Inicio</a>
+      <a href="#/tratamientos"  data-t="nTratamientos">Tratamientos</a>
+      <a href="#/lesiones"      data-t="nLesiones">Lesiones</a>
+      <a href="#/recuperacion"  data-t="nRecuperacion">Recuperación</a>
+      <a href="#/movilidad"     data-t="nMovilidad">Movilidad</a>
+      <a href="#/equipo"        data-t="nEquipo">Equipo</a>
+      <a href="#/instalaciones" data-t="nInstalaciones">Centro</a>
+      <a href="#/precios"       data-t="nPrecios">Precios</a>
+      <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
+      <a href="#/contacto"      data-t="nContacto">Cita</a>
+    </nav>
+    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section data-ruta="inicio">
+  <div class="marco hero">
+    <div>
+      <p class="eti" data-t="iEti">Fisioterapia y readaptación deportiva</p>
+      <h1 data-t="iH1">Volver a entrenar por criterio, no por calendario.</h1>
+      <p class="entrada" data-t="iEntrada">El alta no llega cuando se cumplen las semanas, sino cuando la rodilla aguanta lo que le vas a pedir. Aquí eso se mide antes de decírtelo.</p>
+      <div class="acc">
+        <a class="btn sol" href="#/contacto" data-t="bCita">Pedir cita</a>
+        <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
+      </div>
+    </div>
+    <svg class="cuerpo" id="cuerpo" viewBox="0 0 300 420" role="img" data-t-attr="aria-label:cuerpoAlt" aria-label="Esquema corporal con las zonas que tratamos"></svg>
+  </div>
+  <div class="marco bl raya">
+    <p class="eti" data-t="iCifrasEti">Cómo trabajamos</p>
+    <div class="rej r4" id="iCifras"></div>
+    <p class="metodo" data-t="iCifrasNota">Los criterios de alta que usamos son los que se emplean en readaptación deportiva: fuerza comparada con el lado sano, salto y control del gesto. Nada de «cuando ya no duela».</p>
+  </div>
+  <div class="marco bl raya">
+    <p class="eti" data-t="nTratamientos">Tratamientos</p>
+    <div class="rej r3" id="iTrat"></div>
+    <div class="acc"><a class="btn" href="#/tratamientos" data-t="bVerTodos">Ver todos</a></div>
+  </div>
+</section>
+
+<section data-ruta="tratamientos">
+  <div class="marco bl">
+    <p class="eti" data-t="nTratamientos">Tratamientos</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="trH1">Lo que hacemos, y en qué orden.</h1>
+    <p class="entrada" data-t="trEntrada">Casi nadie necesita las seis cosas. La primera sesión sirve para saber cuáles sí.</p>
+  </div>
+  <div class="marco"><div class="rej r3" id="trLista"></div>
+    <p class="metodo" data-t="trNota">La terapia manual alivia y prepara; lo que cura de verdad es el ejercicio. Si una clínica te ofrece sólo camilla y máquinas, te está vendiendo la mitad del tratamiento.</p>
+  </div>
+</section>
+
+<section data-ruta="lesiones">
+  <div class="marco bl">
+    <p class="eti" data-t="nLesiones">Lesiones</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h1>
+    <p class="entrada" data-t="leEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
+  </div>
+  <div class="marco"><div class="rej r3" id="leLista"></div></div>
+</section>
+
+<section data-ruta="recuperacion">
+  <div class="marco bl">
+    <p class="eti" data-t="nRecuperacion">Recuperación</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="reH1">Cuánto se tarda de verdad en volver.</h1>
+    <p class="entrada" data-t="reEntrada">Estas curvas son la recuperación típica de tres lesiones frecuentes. La línea es la función recuperada; las bandas, las fases del tratamiento.</p>
+  </div>
+  <div class="marco">
+    <div class="mandos" id="reMandos" role="group" data-t-attr="aria-label:reAria" aria-label="Lesión"></div>
+    <div class="leyenda" id="reLeyenda"></div>
+    <div class="grafica"><svg id="reGrafica" role="img" data-t-attr="aria-label:reGrafAlt" aria-label="Curva de recuperación típica"></svg></div>
+    <p class="hallazgo" id="reHallazgo"></p>
+    <details class="faq" style="margin-top:1.4rem"><summary data-t="verTabla">Ver las fases en tabla</summary><div id="reTabla"></div></details>
+    <p class="metodo" data-t="reNota">Curvas orientativas construidas con los plazos habituales en la literatura de readaptación. Cada persona va a su ritmo: la edad, el deporte y lo que se hacía antes de la lesión cambian mucho el resultado. Esto sirve para saber qué esperar, no para ponerse una fecha.</p>
+  </div>
+</section>
+
+<section data-ruta="movilidad">
+  <div class="marco bl">
+    <p class="eti" data-t="nMovilidad">Movilidad</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="moH1">Un grado se mide. «Mucho mejor» no.</h1>
+    <p class="entrada" data-t="moEntrada">Medimos el rango articular en la primera sesión y lo volvemos a medir cada dos semanas. Es la manera de saber si el tratamiento va o no va.</p>
+  </div>
+  <div class="marco">
+    <div class="mandos" id="moMandos" role="group" data-t-attr="aria-label:moAria" aria-label="Articulación"></div>
+    <div class="leyenda" id="moLeyenda"></div>
+    <div class="grafica" style="max-width:36rem"><svg id="moGrafica" role="img" data-t-attr="aria-label:moGrafAlt" aria-label="Rango articular medido" style="min-width:0"></svg></div>
+    <p class="hallazgo" id="moHallazgo"></p>
+    <p class="metodo" data-t="moNota">Ejemplo real de goniometría en una recuperación de seis semanas. El objetivo no es siempre llegar al máximo teórico: es llegar a lo que el gesto de tu deporte necesita.</p>
+  </div>
+</section>
+
+<section data-ruta="equipo">
+  <div class="marco bl">
+    <p class="eti" data-t="nEquipo">Equipo</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="eqH1">Cuatro personas, y siempre la misma contigo.</h1>
+    <p class="entrada" data-t="eqEntrada">No rotamos pacientes entre fisioterapeutas. Quien te valora el primer día es quien te da el alta.</p>
+  </div>
+  <div class="marco"><div class="rej r4" id="eqLista"></div></div>
+</section>
+
+<section data-ruta="instalaciones">
+  <div class="marco bl">
+    <p class="eti" data-t="nInstalaciones">Centro</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="inH1">Más sala que camilla, y por algo.</h1>
+    <p class="entrada" data-t="inEntrada">Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.</p>
+  </div>
+  <div class="marco">
+    <div class="rej r3" id="inEspacios"></div>
+    <div style="margin-top:1.5rem" class="rej r4" id="inDatos"></div>
+  </div>
+</section>
+
+<section data-ruta="precios">
+  <div class="marco bl">
+    <p class="eti" data-t="nPrecios">Precios</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="prH1">Publicados, y sin sorpresas al salir.</h1>
+    <p class="entrada" data-t="prEntrada">La primera valoración dura una hora y ya incluye tratamiento. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.</p>
+  </div>
+  <div class="marco"><div class="rej r3" id="prPlanes"></div>
+    <div style="margin-top:1.6rem"><ul class="lista" id="prIncluye"></ul></div>
+    <p class="metodo" data-t="prNota">Los bonos no caducan y son transferibles a alguien de tu familia. No trabajamos con permanencia ni con paquetes cerrados de veinte sesiones decididos antes de valorarte.</p>
+  </div>
+</section>
+
+<section data-ruta="preguntas">
+  <div class="marco bl">
+    <p class="eti" data-t="nPreguntas">Preguntas</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="pgH1">Lo que más nos preguntan.</h1>
+  </div>
+  <div class="marco" id="pgLista"></div>
+</section>
+
+<section data-ruta="contacto">
+  <div class="marco bl">
+    <p class="eti" data-t="nContacto">Cita</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Cuéntanos qué te pasa y desde cuándo.</h1>
+    <p class="entrada" data-t="coEntrada">Con eso ya podemos decirte si la primera cita corre prisa o puede esperar a la semana que viene.</p>
+  </div>
+  <div class="marco">
+    <form id="f" novalidate>
+      <div class="par">
+        <div><label for="nom" data-t="lNombre">Nombre</label><input id="nom" autocomplete="name"></div>
+        <div><label for="tel" data-t="lTelefono">Teléfono</label><input id="tel" type="tel" autocomplete="tel" dir="ltr"></div>
+      </div>
+      <div class="par">
+        <div><label for="cor" data-t="lCorreo">Correo</label><input id="cor" type="email" autocomplete="email" inputmode="email" dir="ltr"></div>
+        <div><label for="zon" data-t="lZona">Zona afectada</label>
+          <select id="zon">
+            <option value="" data-t="oElegir">Selecciona</option>
+            <option value="rod" data-t="oRodilla">Rodilla</option>
+            <option value="hom" data-t="oHombro">Hombro</option>
+            <option value="esp" data-t="oEspalda">Espalda o cuello</option>
+            <option value="tob" data-t="oTobillo">Tobillo o pie</option>
+            <option value="cad" data-t="oCadera">Cadera o isquios</option>
+            <option value="otr" data-t="oOtro">Otra</option>
+          </select></div>
+      </div>
+      <div class="par">
+        <div><label for="des" data-t="lDesde">Desde cuándo</label>
+          <select id="des">
+            <option value="" data-t="oElegir">Selecciona</option>
+            <option value="d" data-t="oDias">Unos días</option>
+            <option value="s" data-t="oSemanas">Semanas</option>
+            <option value="m" data-t="oMeses">Meses</option>
+            <option value="a" data-t="oAnios">Más de un año</option>
+          </select></div>
+        <div><label for="dep" data-t="lDeporte">Deporte o actividad</label><input id="dep" data-t-attr="placeholder:phDeporte" placeholder="Correr, 40 km a la semana"></div>
+      </div>
+      <div><label for="msg" data-t="lMensaje">Cuéntanos</label><textarea id="msg" rows="3"></textarea></div>
+      <div>
+        <button class="btn sol" type="submit" data-t="bEnviar">Pedir cita</button>
+        <p class="acuse" id="acuse" role="status" aria-live="polite"></p>
+      </div>
+      <p class="aviso" data-t="coAviso">Tus datos se usan sólo para darte cita. No se ceden a nadie.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="a">
+  <div class="marco pie">
+    <span data-t="marca">ATLAS</span>
+    <nav>
+      <a href="#/tratamientos" data-t="nTratamientos">Tratamientos</a>
+      <a href="#/recuperacion" data-t="nRecuperacion">Recuperación</a>
+      <a href="#/precios" data-t="nPrecios">Precios</a>
+      <a href="#/contacto" data-t="nContacto">Cita</a>
+    </nav>
+    <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
+  </div>
+</footer>
+
+<script>
+var T = {
+es:{
+ _dir:"ltr", _lang:"es", _loc:"es-ES",
+ marca:"ATLAS", ariaMenu:"Secciones", ariaIdioma:"Idioma",
+ nInicio:"Inicio", nTratamientos:"Tratamientos", nLesiones:"Lesiones", nRecuperacion:"Recuperación",
+ nMovilidad:"Movilidad", nEquipo:"Equipo", nInstalaciones:"Centro", nPrecios:"Precios",
+ nPreguntas:"Preguntas", nContacto:"Cita",
+ bCita:"Pedir cita", bPlazos:"Ver plazos reales", bVerTodos:"Ver todos", bEnviar:"Pedir cita",
+ verTabla:"Ver las fases en tabla", pieAviso:"Maqueta de demostración",
+ cuerpoAlt:"Esquema corporal con las zonas que tratamos",
+
+ tInicio:"ATLAS — Fisioterapia y readaptación deportiva",
+ iEti:"Fisioterapia y readaptación deportiva",
+ iH1:"Volver a entrenar por criterio, no por calendario.",
+ iEntrada:"El alta no llega cuando se cumplen las semanas, sino cuando la rodilla aguanta lo que le vas a pedir. Aquí eso se mide antes de decírtelo.",
+ iCifrasEti:"Cómo trabajamos",
+ iCifrasNota:"Los criterios de alta que usamos son los que se emplean en readaptación deportiva: fuerza comparada con el lado sano, salto y control del gesto. Nada de «cuando ya no duela».",
+ cifras:[
+  {v:"60 min", u:"Dura la primera valoración, con tratamiento incluido"},
+  {v:"1", u:"Fisioterapeuta por paciente, de principio a fin"},
+  {v:"90 %", u:"De fuerza respecto al lado sano antes del alta"},
+  {v:"0", u:"Sesiones vendidas antes de valorarte"}
+ ],
+
+ tTratamientos:"Tratamientos — ATLAS",
+ trH1:"Lo que hacemos, y en qué orden.",
+ trEntrada:"Casi nadie necesita las seis cosas. La primera sesión sirve para saber cuáles sí.",
+ trNota:"La terapia manual alivia y prepara; lo que cura de verdad es el ejercicio. Si una clínica te ofrece sólo camilla y máquinas, te está vendiendo la mitad del tratamiento.",
+ tratamientos:[
+  {f:"Fase 1", n:"Valoración", d:"Una hora midiendo: rango articular, fuerza comparada con el lado sano y el gesto que te duele. De ahí sale el plan, no de la resonancia."},
+  {f:"Fase 1", n:"Terapia manual", d:"Para bajar el dolor y recuperar movilidad lo antes posible. Es el principio del tratamiento, nunca el tratamiento entero."},
+  {f:"Fase 2", n:"Ejercicio terapéutico", d:"La parte que cura. Carga progresiva y medida, con deberes para casa que caben en veinte minutos."},
+  {f:"Fase 2", n:"Punción seca", d:"Cuando hay un punto gatillo claro que no cede con lo anterior. Ni siempre, ni a todo el mundo."},
+  {f:"Fase 3", n:"Readaptación", d:"Volver al gesto de tu deporte por partes: primero el patrón, luego la velocidad, luego el contacto o el terreno."},
+  {f:"Fase 3", n:"Prevención", d:"Un plan de mantenimiento de dos días por semana para que no vuelvas dentro de seis meses con lo mismo."}
+ ],
+
+ tLesiones:"Lesiones — ATLAS",
+ leH1:"Las que más vemos, y lo que suele fallar.",
+ leEntrada:"La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.",
+ lesiones:[
+  {n:"Tendinopatía rotuliana", z:"Rodilla", d:"Duele bajo la rótula al saltar o bajar escaleras. Casi nunca es un problema del tendón solo: suele haber poca fuerza de cuádriceps y demasiado volumen de salto en poco tiempo."},
+  {n:"Esguince de tobillo", z:"Tobillo", d:"El más frecuente y el peor tratado. El problema no es el esguince: es que el 40 % repite porque nadie reeducó el equilibrio después."},
+  {n:"Lumbalgia inespecífica", z:"Espalda", d:"Sin causa estructural clara en la imagen, y eso es una buena noticia. Responde mucho mejor al movimiento que al reposo."},
+  {n:"Manguito rotador", z:"Hombro", d:"Dolor al levantar el brazo por encima de la cabeza. Suele mejorar con fuerza progresiva antes que con cualquier otra cosa."},
+  {n:"Isquiosurales", z:"Muslo", d:"La lesión con más recaídas del deporte de equipo. Volver cuando no duele es justo lo que hace que vuelva a romperse."}
+ ],
+
+ tRecuperacion:"Recuperación — ATLAS",
+ reH1:"Cuánto se tarda de verdad en volver.",
+ reEntrada:"Estas curvas son la recuperación típica de tres lesiones frecuentes. La línea es la función recuperada; las bandas, las fases del tratamiento.",
+ reAria:"Lesión", reGrafAlt:"Curva de recuperación típica por semanas",
+ reNota:"Curvas orientativas construidas con los plazos habituales en la literatura de readaptación. Cada persona va a su ritmo: la edad, el deporte y lo que se hacía antes de la lesión cambian mucho el resultado. Esto sirve para saber qué esperar, no para ponerse una fecha.",
+ reEjeX:"Semanas", reEjeY:"Función recuperada",
+ fases:["Alivio del dolor","Recuperar fuerza","Volver al gesto"],
+ curvas:[
+  {n:"Esguince de tobillo grado II", sem:12, k:0.42, alta:8,
+   d:"A las dos semanas ya casi no duele, y ahí es cuando la gente vuelve y se lo hace otra vez. La reeducación del equilibrio ocupa desde la semana tres hasta el alta."},
+  {n:"Tendinopatía rotuliana", sem:20, k:0.20, alta:14,
+   d:"La curva más lenta y la más frustrante: mejora poco a poco y sin saltos. El tendón responde a la carga progresiva, no al reposo."},
+  {n:"Rotura de isquiosurales grado I", sem:10, k:0.55, alta:6,
+   d:"Recupera rápido y engaña. El criterio de alta no es dejar de notarlo, sino aguantar carrera a velocidad máxima sin déficit de fuerza."}
+ ],
+ reHal:"<b>{n}</b>: el alta deportiva suele estar hacia la semana <b>{a}</b>, cuando la función ronda el {p} %. {d}",
+ thSemana:"Semana", thFase:"Fase", thHito:"Qué toca",
+ hitos:[
+  {s:"1–2", f:"Alivio del dolor", h:"Bajar la inflamación y recuperar movilidad. Carga muy suave desde el primer día."},
+  {s:"3–6", f:"Recuperar fuerza", h:"Fuerza progresiva y trabajo de equilibrio. Aquí es donde más gente abandona porque ya no duele."},
+  {s:"7+",  f:"Volver al gesto", h:"Velocidad, cambios de dirección y el gesto de tu deporte. Alta cuando se cumplen los criterios, no las semanas."}
+ ],
+
+ tMovilidad:"Movilidad — ATLAS",
+ moH1:"Un grado se mide. «Mucho mejor» no.",
+ moEntrada:"Medimos el rango articular en la primera sesión y lo volvemos a medir cada dos semanas. Es la manera de saber si el tratamiento va o no va.",
+ moAria:"Articulación", moGrafAlt:"Rango articular medido en grados",
+ moNota:"Ejemplo real de goniometría en una recuperación de seis semanas. El objetivo no es siempre llegar al máximo teórico: es llegar a lo que el gesto de tu deporte necesita.",
+ moInicio:"Primera sesión", moActual:"A las seis semanas", moObjetivo:"Objetivo",
+ articulaciones:[
+  {n:"Flexión de rodilla", ini:78, act:128, obj:135, max:150,
+   d:"De no poder sentarse en cuclillas a hacerlo con molestia leve. Los últimos quince grados son siempre los que más cuestan."},
+  {n:"Flexión de hombro", ini:95, act:158, obj:170, max:180,
+   d:"Levantar el brazo por encima de la cabeza vuelve a ser posible. Aquí el límite suele ser el dolor, no el tejido."},
+  {n:"Dorsiflexión de tobillo", ini:12, act:31, obj:35, max:40,
+   d:"Parece poco, pero sin estos grados no se puede bajar una escalera con normalidad ni aterrizar bien de un salto."}
+ ],
+ moHal:"<b>{n}</b>: de {i}° a {a}° en seis semanas, con el objetivo en {o}°. {d}",
+
+ tEquipo:"Equipo — ATLAS",
+ eqH1:"Cuatro personas, y siempre la misma contigo.",
+ eqEntrada:"No rotamos pacientes entre fisioterapeutas. Quien te valora el primer día es quien te da el alta.",
+ equipo:[
+  {n:"Fisioterapeuta deportiva", e:"Readaptación de rodilla", d:"Doce años en club de fútbol. Se ocupa de todo lo que sea rodilla y vuelta al campo."},
+  {n:"Fisioterapeuta", e:"Columna y dolor persistente", d:"Especialista en dolor lumbar de más de tres meses, que es un problema distinto al agudo."},
+  {n:"Fisioterapeuta", e:"Hombro y miembro superior", d:"Trabaja sobre todo con deportes de lanzamiento y de raqueta."},
+  {n:"Readaptador", e:"Fuerza y vuelta al deporte", d:"Lleva la sala. Es quien decide contigo si estás para volver o todavía no."}
+ ],
+
+ tInstalaciones:"Centro — ATLAS",
+ inH1:"Más sala que camilla, y por algo.",
+ inEntrada:"Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.",
+ espacios:[
+  {n:"Sala de fuerza", m:"90 m²", d:"Barras, mancuernas hasta 40 kg, plataforma y espacio para correr diez metros. La parte más grande del centro, y no por casualidad."},
+  {n:"Boxes de tratamiento", m:"40 m²", d:"Tres boxes cerrados, con puerta de verdad y no con cortina."},
+  {n:"Zona de valoración", m:"30 m²", d:"Goniometría, dinamometría y plataforma de salto. Aquí se mide antes y después, siempre."}
+ ],
+ inDatos:[
+  {v:"160 m²", u:"Superficie total"},
+  {v:"3", u:"Boxes cerrados"},
+  {v:"7:00", u:"Primera cita de la mañana"},
+  {v:"21:00", u:"Última cita de la tarde"}
+ ],
+
+ tPrecios:"Precios — ATLAS",
+ prH1:"Publicados, y sin sorpresas al salir.",
+ prEntrada:"La primera valoración dura una hora y ya incluye tratamiento. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.",
+ prNota:"Los bonos no caducan y son transferibles a alguien de tu familia. No trabajamos con permanencia ni con paquetes cerrados de veinte sesiones decididos antes de valorarte.",
+ planes:[
+  {n:"Primera valoración", f:"60 minutos", d:"Historia, medición completa y primer tratamiento. Sales con el plan escrito y con deberes.", p:"60 €"},
+  {n:"Sesión de seguimiento", f:"45 minutos", d:"Tratamiento y progresión de los ejercicios. Se ajusta según lo que haya pasado esa semana.", p:"45 €"},
+  {n:"Bono de cinco", f:"5 × 45 minutos", d:"Para tratamientos largos. Sin caducidad y transferible dentro de la familia.", p:"200 €"}
+ ],
+ prIncluye:[
+  "Plan de ejercicios escrito, con vídeo de cada uno",
+  "Mediciones repetidas cada dos semanas, y te las enseñamos",
+  "Informe para tu médico o tu club si lo pides",
+  "Una consulta por mensaje entre sesiones, sin coste"
+ ],
+
+ tPreguntas:"Preguntas — ATLAS",
+ pgH1:"Lo que más nos preguntan.",
+ preguntas:[
+  {q:"¿Cuántas sesiones voy a necesitar?", a:"No lo sabemos antes de verte, y quien te lo diga por teléfono se lo está inventando. Después de la primera valoración te damos un rango y te explicamos de qué depende."},
+  {q:"¿Hace falta volante del médico?", a:"No. Puedes venir directamente. Si al valorarte vemos algo que necesita un médico, te lo decimos y te derivamos ese mismo día."},
+  {q:"¿Puedo seguir entrenando?", a:"Casi siempre sí, cambiando qué haces. El reposo absoluto es la excepción y suele empeorar las cosas. Lo que se ajusta es la carga, no la actividad entera."},
+  {q:"¿Duele la punción seca?", a:"Da un calambre corto, molesto pero breve, y luego agujetas un día o dos. No la usamos siempre: sólo cuando hay un punto claro que no cede con ejercicio."},
+  {q:"¿Trabajáis con seguros?", a:"Con algunos sí, aunque las sesiones concertadas suelen ser de veinte minutos. Nosotros preferimos citas más largas, y por eso también atendemos en privado."},
+  {q:"¿Y si vivo lejos?", a:"Se puede llevar buena parte del seguimiento por videollamada, sobre todo la progresión de los ejercicios. Presencial hacen falta la valoración y las mediciones."}
+ ],
+
+ tContacto:"Cita — ATLAS",
+ coH1:"Cuéntanos qué te pasa y desde cuándo.",
+ coEntrada:"Con eso ya podemos decirte si la primera cita corre prisa o puede esperar a la semana que viene.",
+ lNombre:"Nombre", lTelefono:"Teléfono", lCorreo:"Correo", lZona:"Zona afectada",
+ lDesde:"Desde cuándo", lDeporte:"Deporte o actividad", phDeporte:"Correr, 40 km a la semana",
+ lMensaje:"Cuéntanos",
+ oElegir:"Selecciona", oRodilla:"Rodilla", oHombro:"Hombro", oEspalda:"Espalda o cuello",
+ oTobillo:"Tobillo o pie", oCadera:"Cadera o isquios", oOtro:"Otra",
+ oDias:"Unos días", oSemanas:"Semanas", oMeses:"Meses", oAnios:"Más de un año",
+ coAviso:"Tus datos se usan sólo para darte cita. No se ceden a nadie.",
+ okMsg:"Recibido. Te llamamos hoy mismo para darte hora.",
+ errNombre:"Falta tu nombre.",
+ errTel:"Necesitamos un teléfono para llamarte."
+},
+
+en:{
+ _dir:"ltr", _lang:"en", _loc:"en-GB",
+ marca:"ATLAS", ariaMenu:"Sections", ariaIdioma:"Language",
+ nInicio:"Home", nTratamientos:"Treatments", nLesiones:"Injuries", nRecuperacion:"Recovery",
+ nMovilidad:"Mobility", nEquipo:"Team", nInstalaciones:"Clinic", nPrecios:"Prices",
+ nPreguntas:"Questions", nContacto:"Booking",
+ bCita:"Book an appointment", bPlazos:"See real timelines", bVerTodos:"See all", bEnviar:"Book an appointment",
+ verTabla:"See the phases as a table", pieAviso:"Demonstration mock-up",
+ cuerpoAlt:"Body diagram showing the areas we treat",
+
+ tInicio:"ATLAS — Physiotherapy and sports rehabilitation",
+ iEti:"Physiotherapy and sports rehabilitation",
+ iH1:"Back to training on criteria, not on the calendar.",
+ iEntrada:"Discharge does not arrive when the weeks are up, but when the knee holds what you are about to ask of it. Here that gets measured before we tell you.",
+ iCifrasEti:"How we work",
+ iCifrasNota:"The discharge criteria we use are the ones used in sports rehabilitation: strength compared with the healthy side, hop tests and control of the movement. Not “when it stops hurting”.",
+ cifras:[
+  {v:"60 min", u:"First assessment, treatment included"},
+  {v:"1", u:"Physiotherapist per patient, start to finish"},
+  {v:"90 %", u:"Of the healthy side's strength before discharge"},
+  {v:"0", u:"Sessions sold before assessing you"}
+ ],
+
+ tTratamientos:"Treatments — ATLAS",
+ trH1:"What we do, and in what order.",
+ trEntrada:"Almost nobody needs all six. The first session is for working out which ones you do.",
+ trNota:"Manual therapy relieves and prepares; what actually heals is exercise. If a clinic offers you only a couch and machines, it is selling you half the treatment.",
+ tratamientos:[
+  {f:"Phase 1", n:"Assessment", d:"An hour of measuring: joint range, strength against the healthy side and the movement that hurts. The plan comes from that, not from the scan."},
+  {f:"Phase 1", n:"Manual therapy", d:"To bring pain down and recover movement as soon as possible. It is the beginning of treatment, never the whole of it."},
+  {f:"Phase 2", n:"Therapeutic exercise", d:"The part that heals. Progressive, measured load, with homework that fits into twenty minutes."},
+  {f:"Phase 2", n:"Dry needling", d:"When there is a clear trigger point that will not settle with the rest. Not always, and not for everyone."},
+  {f:"Phase 3", n:"Return to sport", d:"Back to your sport's movement in stages: the pattern first, then speed, then contact or terrain."},
+  {f:"Phase 3", n:"Prevention", d:"A two-day-a-week maintenance plan so you are not back in six months with the same thing."}
+ ],
+
+ tLesiones:"Injuries — ATLAS",
+ leH1:"The ones we see most, and what usually goes wrong.",
+ leEntrada:"An injury is rarely where it hurts. These are the five that come through the door most often, and what sits behind each.",
+ lesiones:[
+  {n:"Patellar tendinopathy", z:"Knee", d:"Pain under the kneecap when jumping or going downstairs. Rarely a tendon problem alone: usually there is weak quadriceps and too much jumping volume in too little time."},
+  {n:"Ankle sprain", z:"Ankle", d:"The most common and the worst treated. The problem is not the sprain: it is that 40 % happen again because nobody retrained balance afterwards."},
+  {n:"Non-specific low back pain", z:"Back", d:"No clear structural cause on imaging, and that is good news. It responds far better to movement than to rest."},
+  {n:"Rotator cuff", z:"Shoulder", d:"Pain lifting the arm overhead. It usually improves with progressive strength before anything else."},
+  {n:"Hamstrings", z:"Thigh", d:"The injury with the most recurrences in team sport. Going back when it stops hurting is exactly what makes it tear again."}
+ ],
+
+ tRecuperacion:"Recovery — ATLAS",
+ reH1:"How long going back actually takes.",
+ reEntrada:"These curves are the typical recovery for three common injuries. The line is function recovered; the bands are the phases of treatment.",
+ reAria:"Injury", reGrafAlt:"Typical recovery curve by week",
+ reNota:"Indicative curves built from the usual timelines in the rehabilitation literature. Everyone moves at their own pace: age, sport and what you did before the injury change the result considerably. This is to know what to expect, not to set yourself a date.",
+ reEjeX:"Weeks", reEjeY:"Function recovered",
+ fases:["Pain relief","Rebuilding strength","Back to the movement"],
+ curvas:[
+  {n:"Grade II ankle sprain", sem:12, k:0.42, alta:8,
+   d:"By week two it barely hurts, and that is when people go back and do it again. Balance retraining runs from week three to discharge."},
+  {n:"Patellar tendinopathy", sem:20, k:0.20, alta:14,
+   d:"The slowest and most frustrating curve: it improves gradually and without jumps. A tendon responds to progressive load, not to rest."},
+  {n:"Grade I hamstring tear", sem:10, k:0.55, alta:6,
+   d:"It recovers fast and that is deceptive. The discharge criterion is not that you stop feeling it, but holding maximum-speed running with no strength deficit."}
+ ],
+ reHal:"<b>{n}</b>: return to sport is usually around week <b>{a}</b>, when function is near {p} %. {d}",
+ thSemana:"Week", thFase:"Phase", thHito:"What happens",
+ hitos:[
+  {s:"1–2", f:"Pain relief", h:"Bring inflammation down and recover movement. Very gentle load from day one."},
+  {s:"3–6", f:"Rebuilding strength", h:"Progressive strength and balance work. This is where most people drop out, because it no longer hurts."},
+  {s:"7+",  f:"Back to the movement", h:"Speed, changes of direction and your sport's movement. Discharge when the criteria are met, not the weeks."}
+ ],
+
+ tMovilidad:"Mobility — ATLAS",
+ moH1:"A degree can be measured. “Much better” cannot.",
+ moEntrada:"We measure joint range at the first session and measure again every two weeks. It is how we know whether the treatment is working.",
+ moAria:"Joint", moGrafAlt:"Measured joint range in degrees",
+ moNota:"A real goniometry example across a six-week recovery. The aim is not always to reach the theoretical maximum: it is to reach what your sport's movement needs.",
+ moInicio:"First session", moActual:"At six weeks", moObjetivo:"Target",
+ articulaciones:[
+  {n:"Knee flexion", ini:78, act:128, obj:135, max:150,
+   d:"From not being able to squat to squatting with mild discomfort. The last fifteen degrees are always the hardest."},
+  {n:"Shoulder flexion", ini:95, act:158, obj:170, max:180,
+   d:"Lifting the arm overhead becomes possible again. Here the limit is usually pain rather than tissue."},
+  {n:"Ankle dorsiflexion", ini:12, act:31, obj:35, max:40,
+   d:"It looks like little, but without these degrees you cannot go downstairs normally or land properly from a jump."}
+ ],
+ moHal:"<b>{n}</b>: from {i}° to {a}° in six weeks, with the target at {o}°. {d}",
+
+ tEquipo:"Team — ATLAS",
+ eqH1:"Four people, and always the same one with you.",
+ eqEntrada:"We do not rotate patients between physiotherapists. Whoever assesses you on day one is who discharges you.",
+ equipo:[
+  {n:"Sports physiotherapist", e:"Knee rehabilitation", d:"Twelve years at a football club. Handles anything knee-related and return to play."},
+  {n:"Physiotherapist", e:"Spine and persistent pain", d:"Specialist in low back pain lasting over three months, which is a different problem from the acute kind."},
+  {n:"Physiotherapist", e:"Shoulder and upper limb", d:"Works mainly with throwing and racquet sports."},
+  {n:"Rehabilitation coach", e:"Strength and return to sport", d:"Runs the gym floor. The one who decides with you whether you are ready to go back or not yet."}
+ ],
+
+ tInstalaciones:"Clinic — ATLAS",
+ inH1:"More gym than couch, and for a reason.",
+ inEntrada:"A hundred and sixty square metres divided on purpose: most of it is room to move, because that is where recovery happens.",
+ espacios:[
+  {n:"Strength floor", m:"90 m²", d:"Barbells, dumbbells to 40 kg, a platform and ten metres to run. The largest part of the clinic, and not by accident."},
+  {n:"Treatment rooms", m:"40 m²", d:"Three closed rooms, with real doors rather than curtains."},
+  {n:"Assessment area", m:"30 m²", d:"Goniometry, dynamometry and a jump platform. Measurements before and after, always."}
+ ],
+ inDatos:[
+  {v:"160 m²", u:"Total floor area"},
+  {v:"3", u:"Closed treatment rooms"},
+  {v:"7:00", u:"First appointment of the day"},
+  {v:"21:00", u:"Last appointment of the day"}
+ ],
+
+ tPrecios:"Prices — ATLAS",
+ prH1:"Published, with no surprises on the way out.",
+ prEntrada:"The first assessment lasts an hour and already includes treatment. If we are not what you need, we tell you there and refer you on.",
+ prNota:"Session packs do not expire and are transferable within your family. We do not work with minimum terms or with twenty-session packages decided before assessing you.",
+ planes:[
+  {n:"First assessment", f:"60 minutes", d:"History, full measurement and first treatment. You leave with a written plan and homework.", p:"€60"},
+  {n:"Follow-up session", f:"45 minutes", d:"Treatment and exercise progression, adjusted to whatever happened that week.", p:"€45"},
+  {n:"Pack of five", f:"5 × 45 minutes", d:"For longer treatments. No expiry and transferable within the family.", p:"€200"}
+ ],
+ prIncluye:[
+  "A written exercise plan, with a video of each one",
+  "Measurements repeated every two weeks, and shown to you",
+  "A report for your doctor or club on request",
+  "One message consultation between sessions, free"
+ ],
+
+ tPreguntas:"Questions — ATLAS",
+ pgH1:"What we get asked most.",
+ preguntas:[
+  {q:"How many sessions will I need?", a:"We do not know before seeing you, and anyone who tells you over the phone is making it up. After the first assessment we give you a range and explain what it depends on."},
+  {q:"Do I need a doctor's referral?", a:"No. You can come directly. If on assessment we see something that needs a doctor, we tell you and refer you that same day."},
+  {q:"Can I keep training?", a:"Almost always yes, changing what you do. Complete rest is the exception and usually makes things worse. What gets adjusted is the load, not the whole activity."},
+  {q:"Does dry needling hurt?", a:"It gives a short cramp, unpleasant but brief, and then soreness for a day or two. We do not always use it: only when there is a clear point that will not settle with exercise."},
+  {q:"Do you work with insurers?", a:"With some, though contracted sessions tend to be twenty minutes. We prefer longer appointments, which is why we also see people privately."},
+  {q:"What if I live far away?", a:"A good part of the follow-up can be done by video call, especially exercise progression. The assessment and the measurements have to be in person."}
+ ],
+
+ tContacto:"Booking — ATLAS",
+ coH1:"Tell us what is wrong and since when.",
+ coEntrada:"With that we can already tell you whether the first appointment is urgent or can wait until next week.",
+ lNombre:"Name", lTelefono:"Telephone", lCorreo:"Email", lZona:"Affected area",
+ lDesde:"Since when", lDeporte:"Sport or activity", phDeporte:"Running, 40 km a week",
+ lMensaje:"Tell us",
+ oElegir:"Select", oRodilla:"Knee", oHombro:"Shoulder", oEspalda:"Back or neck",
+ oTobillo:"Ankle or foot", oCadera:"Hip or hamstrings", oOtro:"Other",
+ oDias:"A few days", oSemanas:"Weeks", oMeses:"Months", oAnios:"Over a year",
+ coAviso:"Your details are used only to arrange your appointment. They are given to nobody.",
+ okMsg:"Received. We will call you today to arrange a time.",
+ errNombre:"Your name is missing.",
+ errTel:"We need a telephone number to call you."
+},
+
+ar:{
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ marca:"أطلس", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
+ nInicio:"الرئيسية", nTratamientos:"العلاجات", nLesiones:"الإصابات", nRecuperacion:"التعافي",
+ nMovilidad:"مدى الحركة", nEquipo:"الفريق", nInstalaciones:"المركز", nPrecios:"الأسعار",
+ nPreguntas:"أسئلة", nContacto:"حجز موعد",
+ bCita:"احجز موعدًا", bPlazos:"المدد الحقيقية", bVerTodos:"عرض الكل", bEnviar:"احجز موعدًا",
+ verTabla:"عرض المراحل في جدول", pieAviso:"نموذج عرض توضيحي",
+ cuerpoAlt:"رسم للجسم يوضّح المناطق التي نعالجها",
+
+ tInicio:"أطلس — علاج طبيعي وتأهيل رياضي",
+ iEti:"علاج طبيعي وتأهيل رياضي",
+ iH1:"العودة إلى التدريب بمعيار، لا بالتقويم.",
+ iEntrada:"لا يأتي الإذن بالعودة حين تنقضي الأسابيع، بل حين تحتمل الركبة ما ستطلبه منها. وهنا يُقاس ذلك قبل أن نخبرك به.",
+ iCifrasEti:"كيف نعمل",
+ iCifrasNota:"معايير الإذن بالعودة التي نعتمدها هي المستعملة في التأهيل الرياضي: القوة مقارنةً بالجهة السليمة، واختبارات القفز، والتحكّم في الحركة. لا «حين يزول الألم».",
+ cifras:[
+  {v:"٦٠ دقيقة", u:"مدة التقييم الأول، والعلاج مشمول"},
+  {v:"١", u:"أخصائي واحد لكل مريض، من البداية إلى النهاية"},
+  {v:"٩٠٪", u:"من قوة الجهة السليمة قبل الإذن بالعودة"},
+  {v:"٠", u:"جلسات تُباع قبل تقييمك"}
+ ],
+
+ tTratamientos:"العلاجات — أطلس",
+ trH1:"ما نفعله، وبأي ترتيب.",
+ trEntrada:"لا أحد تقريبًا يحتاج الستة كلها. والجلسة الأولى لمعرفة أيّها يلزمك.",
+ trNota:"العلاج اليدوي يخفّف ويهيّئ؛ أما الذي يشفي فعلًا فهو التمرين. وإن عرض عليك مركزٌ سريرًا وأجهزةً فحسب، فهو يبيعك نصف العلاج.",
+ tratamientos:[
+  {f:"المرحلة ١", n:"التقييم", d:"ساعة من القياس: مدى الحركة، والقوة مقارنةً بالجهة السليمة، والحركة التي تؤلمك. ومن هذا تخرج الخطة، لا من صورة الرنين."},
+  {f:"المرحلة ١", n:"العلاج اليدوي", d:"لخفض الألم واستعادة الحركة بأسرع ما يمكن. وهو بداية العلاج، لا العلاج كله."},
+  {f:"المرحلة ٢", n:"التمرين العلاجي", d:"الجزء الذي يشفي. حِمل متدرّج ومقيس، مع واجبات بيتية تسع في عشرين دقيقة."},
+  {f:"المرحلة ٢", n:"الوخز الجاف", d:"حين تكون هناك نقطة زناد واضحة لا تستجيب لما سبق. ليس دائمًا، ولا لكل أحد."},
+  {f:"المرحلة ٣", n:"إعادة التأهيل", d:"العودة إلى حركة رياضتك على أجزاء: النمط أولًا، ثم السرعة، ثم الاحتكاك أو الأرض."},
+  {f:"المرحلة ٣", n:"الوقاية", d:"خطة صيانة يومين في الأسبوع حتى لا تعود بعد ستة أشهر بالشكوى نفسها."}
+ ],
+
+ tLesiones:"الإصابات — أطلس",
+ leH1:"أكثر ما نراه، وما يُخطئ فيه الناس عادةً.",
+ leEntrada:"نادرًا ما تكون الإصابة حيث يوجد الألم. وهذه أكثر خمس إصابات دخولًا من الباب، وما وراء كل واحدة منها.",
+ lesiones:[
+  {n:"اعتلال وتر الرضفة", z:"الركبة", d:"ألم أسفل الصابونة عند القفز أو نزول الدرج. ونادرًا ما يكون مشكلة في الوتر وحده: غالبًا ضعف في عضلة الفخذ الرباعية وحجم قفز كبير في وقت قصير."},
+  {n:"التواء الكاحل", z:"الكاحل", d:"الأكثر شيوعًا والأسوأ علاجًا. والمشكلة ليست الالتواء: بل أن ٤٠٪ منها تتكرر لأن أحدًا لم يُعِد تدريب التوازن بعده."},
+  {n:"ألم أسفل الظهر غير النوعي", z:"الظهر", d:"بلا سبب بنيوي واضح في الصور، وهذا خبر جيد. ويستجيب للحركة أكثر بكثير مما يستجيب للراحة."},
+  {n:"الكفة المدوّرة", z:"الكتف", d:"ألم عند رفع الذراع فوق الرأس. ويتحسّن عادةً بالقوة المتدرّجة قبل أي شيء آخر."},
+  {n:"أوتار الركبة الخلفية", z:"الفخذ", d:"الإصابة الأكثر تكرارًا في الرياضات الجماعية. والعودة حين يزول الألم هي بالضبط ما يجعلها تتمزّق ثانيةً."}
+ ],
+
+ tRecuperacion:"التعافي — أطلس",
+ reH1:"كم يستغرق التعافي فعلًا.",
+ reEntrada:"هذه المنحنيات هي التعافي المعتاد لثلاث إصابات شائعة. الخط هو الوظيفة المستعادة؛ والأشرطة هي مراحل العلاج.",
+ reAria:"الإصابة", reGrafAlt:"منحنى التعافي المعتاد بالأسابيع",
+ reNota:"منحنيات إرشادية مبنيّة على المدد المعتادة في أدبيات التأهيل. ولكلٍّ إيقاعه: العمر والرياضة وما كنت تفعله قبل الإصابة تغيّر النتيجة كثيرًا. وهذا لمعرفة ما يُتوقَّع، لا لتحديد موعد لنفسك.",
+ reEjeX:"أسابيع", reEjeY:"الوظيفة المستعادة",
+ fases:["تخفيف الألم","استعادة القوة","العودة إلى الحركة"],
+ curvas:[
+  {n:"التواء كاحل من الدرجة الثانية", sem:12, k:0.42, alta:8,
+   d:"في الأسبوع الثاني يكاد الألم يزول، وعندها يعود الناس فيصيبون أنفسهم من جديد. أما إعادة تدريب التوازن فتمتدّ من الأسبوع الثالث حتى الإذن بالعودة."},
+  {n:"اعتلال وتر الرضفة", sem:20, k:0.20, alta:14,
+   d:"أبطأ المنحنيات وأكثرها إحباطًا: يتحسّن بالتدريج وبلا قفزات. فالوتر يستجيب للحِمل المتدرّج، لا للراحة."},
+  {n:"تمزّق أوتار خلفية من الدرجة الأولى", sem:10, k:0.55, alta:6,
+   d:"يتعافى سريعًا وهذا مخادع. ومعيار العودة ليس أن تكفّ عن الشعور به، بل أن تحتمل الجري بأقصى سرعة دون نقص في القوة."}
+ ],
+ reHal:"<b>{n}</b>: الإذن بالعودة إلى الرياضة يكون عادةً نحو الأسبوع <b>{a}</b>، حين تقارب الوظيفة {p}٪. {d}",
+ thSemana:"الأسبوع", thFase:"المرحلة", thHito:"ما يجري فيها",
+ hitos:[
+  {s:"١–٢", f:"تخفيف الألم", h:"خفض الالتهاب واستعادة الحركة. وحِمل خفيف جدًا من اليوم الأول."},
+  {s:"٣–٦", f:"استعادة القوة", h:"قوة متدرّجة وعمل على التوازن. وهنا ينسحب أكثر الناس، لأن الألم زال."},
+  {s:"٧+",  f:"العودة إلى الحركة", h:"سرعة وتغيير اتجاه وحركة رياضتك. والإذن حين تتحقق المعايير، لا حين تنقضي الأسابيع."}
+ ],
+
+ tMovilidad:"مدى الحركة — أطلس",
+ moH1:"الدرجة تُقاس. أما «تحسّن كثيرًا» فلا.",
+ moEntrada:"نقيس مدى حركة المفصل في الجلسة الأولى، ونعيد القياس كل أسبوعين. وهذه طريقتنا لنعرف: أينفع العلاج أم لا.",
+ moAria:"المفصل", moGrafAlt:"مدى حركة المفصل مقيسًا بالدرجات",
+ moNota:"مثال حقيقي من قياس الزوايا خلال تعافٍ مدته ست أسابيع. والهدف ليس دائمًا بلوغ الحد الأقصى النظري: بل بلوغ ما تحتاجه حركة رياضتك.",
+ moInicio:"الجلسة الأولى", moActual:"بعد ستة أسابيع", moObjetivo:"الهدف",
+ articulaciones:[
+  {n:"ثني الركبة", ini:78, act:128, obj:135, max:150,
+   d:"من العجز عن القرفصاء إلى أدائها بانزعاج خفيف. والدرجات الخمس عشرة الأخيرة هي الأصعب دائمًا."},
+  {n:"ثني الكتف", ini:95, act:158, obj:170, max:180,
+   d:"يعود رفع الذراع فوق الرأس ممكنًا. والحدّ هنا هو الألم عادةً، لا النسيج."},
+  {n:"عطف الكاحل الظهري", ini:12, act:31, obj:35, max:40,
+   d:"يبدو قليلًا، لكن بدون هذه الدرجات لا يمكن نزول الدرج بشكل طبيعي ولا الهبوط الصحيح من قفزة."}
+ ],
+ moHal:"<b>{n}</b>: من {i}° إلى {a}° في ستة أسابيع، والهدف عند {o}°. {d}",
+
+ tEquipo:"الفريق — أطلس",
+ eqH1:"أربعة أشخاص، وواحد منهم معك دائمًا.",
+ eqEntrada:"لا نُنقل المرضى بين الأخصائيين. فمن يقيّمك في اليوم الأول هو من يأذن لك بالعودة.",
+ equipo:[
+  {n:"أخصائية علاج رياضي", e:"تأهيل الركبة", d:"اثنتا عشرة سنة في نادٍ لكرة القدم. تتولّى كل ما يخصّ الركبة والعودة إلى الملعب."},
+  {n:"أخصائي علاج طبيعي", e:"العمود الفقري والألم المزمن", d:"متخصص في ألم أسفل الظهر الممتدّ أكثر من ثلاثة أشهر، وهو مشكلة مختلفة عن الحادّ."},
+  {n:"أخصائي علاج طبيعي", e:"الكتف والطرف العلوي", d:"يعمل أساسًا مع رياضات الرمي والمضرب."},
+  {n:"مدرّب تأهيل", e:"القوة والعودة إلى الرياضة", d:"يدير الصالة. وهو من يقرّر معك: أأنت جاهز للعودة أم لا بعد."}
+ ],
+
+ tInstalaciones:"المركز — أطلس",
+ inH1:"صالة أكثر من أَسِرّة، ولذلك سبب.",
+ inEntrada:"مئة وستون مترًا موزّعة عن قصد: معظمها مساحة للحركة، لأن هناك يحدث التعافي.",
+ espacios:[
+  {n:"صالة القوة", m:"٩٠ م²", d:"بارات وأثقال حتى ٤٠ كغ ومنصّة ومساحة للجري عشرة أمتار. وهي أكبر أجزاء المركز، وليس ذلك مصادفة."},
+  {n:"غرف العلاج", m:"٤٠ م²", d:"ثلاث غرف مغلقة، بأبواب حقيقية لا بستائر."},
+  {n:"منطقة التقييم", m:"٣٠ م²", d:"قياس زوايا وقياس قوة ومنصّة قفز. هنا يُقاس قبل وبعد، دائمًا."}
+ ],
+ inDatos:[
+  {v:"١٦٠ م²", u:"المساحة الإجمالية"},
+  {v:"٣", u:"غرف علاج مغلقة"},
+  {v:"٧:٠٠", u:"أول موعد في الصباح"},
+  {v:"٢١:٠٠", u:"آخر موعد في المساء"}
+ ],
+
+ tPrecios:"الأسعار — أطلس",
+ prH1:"معلنة، وبلا مفاجآت عند الخروج.",
+ prEntrada:"التقييم الأول ساعة، والعلاج مشمول فيه. وإن لم نكن ما تحتاجه، قلنا لك ذلك هناك وأحلناك إلى غيرنا.",
+ prNota:"البطاقات لا تنتهي صلاحيتها وقابلة للتحويل إلى أحد من عائلتك. ولا نعمل بمدة إلزام ولا بباقات مغلقة من عشرين جلسة تُقرَّر قبل تقييمك.",
+ planes:[
+  {n:"التقييم الأول", f:"٦٠ دقيقة", d:"التاريخ المرضي وقياس كامل وأول علاج. وتخرج بخطة مكتوبة وبواجبات.", p:"٦٠ يورو"},
+  {n:"جلسة متابعة", f:"٤٥ دقيقة", d:"علاج وتدرّج في التمارين، يُعدَّل بحسب ما جرى في ذلك الأسبوع.", p:"٤٥ يورو"},
+  {n:"بطاقة خمس جلسات", f:"٥ × ٤٥ دقيقة", d:"للعلاجات الطويلة. بلا انتهاء صلاحية وقابلة للتحويل داخل العائلة.", p:"٢٠٠ يورو"}
+ ],
+ prIncluye:[
+  "خطة تمارين مكتوبة، مع مقطع مصوَّر لكل تمرين",
+  "قياسات تتكرر كل أسبوعين، ونعرضها عليك",
+  "تقرير لطبيبك أو ناديك عند الطلب",
+  "استشارة واحدة بالرسائل بين الجلسات، بلا مقابل"
+ ],
+
+ tPreguntas:"أسئلة — أطلس",
+ pgH1:"أكثر ما نُسأل عنه.",
+ preguntas:[
+  {q:"كم جلسة سأحتاج؟", a:"لا نعرف قبل أن نراك، ومن يخبرك بالهاتف فهو يخترع الرقم. وبعد التقييم الأول نعطيك نطاقًا ونشرح لك على أي شيء يعتمد."},
+  {q:"هل أحتاج إحالة من طبيب؟", a:"لا. يمكنك القدوم مباشرةً. وإن رأينا عند التقييم ما يحتاج طبيبًا، أخبرناك وأحلناك في اليوم نفسه."},
+  {q:"هل أستطيع مواصلة التدريب؟", a:"في الغالب نعم، مع تغيير ما تفعله. فالراحة التامة استثناء وتزيد الأمر سوءًا عادةً. ما يُعدَّل هو الحِمل، لا النشاط كله."},
+  {q:"هل يؤلم الوخز الجاف؟", a:"يُحدث تشنّجًا قصيرًا مزعجًا لكنه سريع، ثم ألم عضلي يوم أو يومين. ولا نستعمله دائمًا: فقط حين توجد نقطة واضحة لا تستجيب للتمرين."},
+  {q:"هل تتعاملون مع شركات التأمين؟", a:"مع بعضها نعم، وإن كانت الجلسات المتعاقد عليها عشرين دقيقة عادةً. ونحن نفضّل مواعيد أطول، ولهذا نستقبل أيضًا بشكل خاص."},
+  {q:"وإن كنت أسكن بعيدًا؟", a:"يمكن إجراء جزء كبير من المتابعة عبر مكالمة مرئية، خصوصًا تدرّج التمارين. أما التقييم والقياسات فلا بدّ أن تكون حضوريًا."}
+ ],
+
+ tContacto:"حجز موعد — أطلس",
+ coH1:"احكِ لنا ما بك، ومنذ متى.",
+ coEntrada:"بهذا نستطيع أن نخبرك: أموعدك الأول مستعجل أم يحتمل الانتظار إلى الأسبوع القادم.",
+ lNombre:"الاسم", lTelefono:"الهاتف", lCorreo:"البريد", lZona:"المنطقة المصابة",
+ lDesde:"منذ متى", lDeporte:"الرياضة أو النشاط", phDeporte:"الجري، ٤٠ كم أسبوعيًا",
+ lMensaje:"احكِ لنا",
+ oElegir:"اختر", oRodilla:"الركبة", oHombro:"الكتف", oEspalda:"الظهر أو الرقبة",
+ oTobillo:"الكاحل أو القدم", oCadera:"الورك أو الأوتار الخلفية", oOtro:"غير ذلك",
+ oDias:"أيام قليلة", oSemanas:"أسابيع", oMeses:"أشهر", oAnios:"أكثر من سنة",
+ coAviso:"لا تُستخدم بياناتك إلا لتحديد موعدك، ولا تُعطى لأحد.",
+ okMsg:"وصلنا طلبك. سنتصل بك اليوم لتحديد الموعد.",
+ errNombre:"الاسم ناقص.",
+ errTel:"نحتاج رقم هاتف للاتصال بك."
+}
+};
+
+var RUTAS = ["inicio","tratamientos","lesiones","recuperacion","movilidad","equipo","instalaciones","precios","preguntas","contacto"];
+var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",lesiones:"tLesiones",recuperacion:"tRecuperacion",
+  movilidad:"tMovilidad",equipo:"tEquipo",instalaciones:"tInstalaciones",precios:"tPrecios",
+  preguntas:"tPreguntas",contacto:"tContacto"};
+var idioma = "es", reSel = 0, moSel = 0;
+
+function loc(){ return T[idioma]._loc; }
+function num(n,d){ try{ return new Intl.NumberFormat(loc(),{minimumFractionDigits:d||0,maximumFractionDigits:d||0}).format(n); }catch(e){ return String(n); } }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+
+/* ── Esquema corporal ────────────────────────────────────────────── */
+function cuerpo(){
+  var el = document.getElementById("cuerpo"); if (!el) return;
+  var g = '', C = "var(--l)", F = "var(--f2)";
+  function e(cx,cy,rx,ry){ return '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="'+F+'" stroke="'+C+'"/>'; }
+  g += e(150,42,22,26);                                     /* cabeza */
+  g += '<rect x="141" y="66" width="18" height="18" rx="7" fill="'+F+'" stroke="'+C+'"/>';  /* cuello */
+  g += '<path d="M112 92 Q150 78 188 92 L182 196 Q150 208 118 196 Z" fill="'+F+'" stroke="'+C+'"/>'; /* tronco */
+  g += '<path d="M112 96 L86 178 L78 232" fill="none" stroke="'+C+'" stroke-width="13" stroke-linecap="round" opacity=".55"/>';
+  g += '<path d="M188 96 L214 178 L222 232" fill="none" stroke="'+C+'" stroke-width="13" stroke-linecap="round" opacity=".55"/>';
+  g += '<path d="M132 202 L126 300 L122 382" fill="none" stroke="'+C+'" stroke-width="17" stroke-linecap="round" opacity=".55"/>';
+  g += '<path d="M168 202 L174 300 L178 382" fill="none" stroke="'+C+'" stroke-width="17" stroke-linecap="round" opacity=".55"/>';
+  /* Los puntos marcan las zonas que tratamos: hombro, columna, cadera,
+     rodilla y tobillo. El del atlas (C1) va en verde, por el nombre. */
+  var zonas = [[150,72,"var(--verde)"],[188,100,"var(--senal)"],[112,100,"var(--senal)"],
+               [150,150,"var(--senal)"],[132,205,"var(--senal)"],[126,300,"var(--senal)"],
+               [174,300,"var(--senal)"],[122,378,"var(--senal)"]];
+  zonas.forEach(function(z){
+    g += '<circle cx="'+z[0]+'" cy="'+z[1]+'" r="7" fill="'+z[2]+'" fill-opacity=".18" stroke="'+z[2]+'" stroke-width="1.6"/>';
+  });
+  el.innerHTML = g;
+}
+
+/* ── Curva de recuperación ───────────────────────────────────────── */
+function pintarRecuperacion(){
+  var svg = document.getElementById("reGrafica"); if (!svg) return;
+  var t = T[idioma], C = t.curvas;
+
+  var m = document.getElementById("reMandos"); m.innerHTML = "";
+  C.forEach(function(c,i){
+    var b = document.createElement("button"); b.type="button"; b.textContent = c.n;
+    b.setAttribute("aria-pressed", String(i===reSel)); b.dataset.i = i;
+    b.addEventListener("click", function(){ reSel = +this.dataset.i; pintarRecuperacion(); });
+    m.appendChild(b);
+  });
+  document.getElementById("reLeyenda").innerHTML = t.fases.map(function(f,i){
+    return '<span><i style="--cc:var(--s'+(i+1)+');opacity:.35"></i>'+f+'</span>';
+  }).join("");
+
+  var c = C[reSel], W=900,H=330,ml=46,mr=18,mt=18,mb=38,iw=W-ml-mr,ih=H-mt-mb;
+  function X(s){ return ml + s/c.sem*iw; }
+  function Y(p){ return mt + ih - p/100*ih; }
+  var g = "";
+  /* Bandas de fase: recesivas, sólo sitúan. */
+  var cortes = [0, Math.round(c.sem*0.2), Math.round(c.sem*0.55), c.sem];
+  for (var i=0;i<3;i++){
+    g += '<rect x="'+X(cortes[i]).toFixed(1)+'" y="'+mt+'" width="'+(X(cortes[i+1])-X(cortes[i])).toFixed(1)
+       + '" height="'+ih+'" fill="var(--s'+(i+1)+')" fill-opacity=".07"/>';
+    g += '<text class="gr-tex" x="'+((X(cortes[i])+X(cortes[i+1]))/2).toFixed(1)+'" y="'+(mt+13)+'" text-anchor="middle">'+esc(t.fases[i])+'</text>';
+  }
+  for (var p=0;p<=100;p+=25){
+    g += '<line class="gr-guia" x1="'+ml+'" y1="'+Y(p).toFixed(1)+'" x2="'+(W-mr)+'" y2="'+Y(p).toFixed(1)+'"/>';
+    g += '<text class="gr-tex" x="'+(ml-7)+'" y="'+(Y(p)+3.5).toFixed(1)+'" text-anchor="end">'+num(p)+'</text>';
+  }
+  g += '<line class="gr-eje" x1="'+ml+'" y1="'+(mt+ih)+'" x2="'+(W-mr)+'" y2="'+(mt+ih)+'"/>';
+
+  /* Curva de recuperación: exponencial saturante. */
+  function fn(s){ return 100*(1-Math.exp(-c.k*s)); }
+  var d = "";
+  for (var s=0; s<=c.sem; s+=0.25) d += (d?" L":"M")+X(s).toFixed(1)+","+Y(fn(s)).toFixed(1);
+  g += '<path d="'+d+'" fill="none" stroke="var(--verde)" stroke-width="2.4" stroke-linecap="round"/>';
+
+  var pAlta = fn(c.alta);
+  g += '<line x1="'+X(c.alta).toFixed(1)+'" y1="'+mt+'" x2="'+X(c.alta).toFixed(1)+'" y2="'+(mt+ih)
+     + '" stroke="var(--senal)" stroke-width="1.4" stroke-dasharray="4 4"/>';
+  g += '<circle cx="'+X(c.alta).toFixed(1)+'" cy="'+Y(pAlta).toFixed(1)+'" r="6" fill="var(--senal)" stroke="var(--f)" stroke-width="2"/>';
+
+  var paso = c.sem > 14 ? 4 : 2;
+  for (var x=0;x<=c.sem;x+=paso){
+    g += '<text class="gr-tex" x="'+X(x).toFixed(1)+'" y="'+(mt+ih+16)+'" text-anchor="middle">'+num(x)+'</text>';
+  }
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = g;
+
+  document.getElementById("reHallazgo").innerHTML = t.reHal
+    .replace("{n}", esc(c.n)).replace("{a}", num(c.alta))
+    .replace("{p}", num(Math.round(pAlta))).replace("{d}", esc(c.d));
+
+  document.getElementById("reTabla").innerHTML =
+    '<table class="tabla"><thead><tr><th>'+t.thSemana+'</th><th>'+t.thFase+'</th><th>'+t.thHito+'</th></tr></thead><tbody>'
+    + t.hitos.map(function(h){ return "<tr><td>"+esc(h.s)+"</td><td>"+esc(h.f)+"</td><td>"+esc(h.h)+"</td></tr>"; }).join("")
+    + '</tbody></table>';
+}
+
+/* ── Goniometría: arco de rango articular ────────────────────────── */
+function pintarMovilidad(){
+  var svg = document.getElementById("moGrafica"); if (!svg) return;
+  var t = T[idioma], A = t.articulaciones;
+
+  var m = document.getElementById("moMandos"); m.innerHTML = "";
+  A.forEach(function(a,i){
+    var b = document.createElement("button"); b.type="button"; b.textContent = a.n;
+    b.setAttribute("aria-pressed", String(i===moSel)); b.dataset.i = i;
+    b.addEventListener("click", function(){ moSel = +this.dataset.i; pintarMovilidad(); });
+    m.appendChild(b);
+  });
+
+  var a = A[moSel], R=148, marg=34, W=2*(R+marg), cx=W/2, cy=R+marg, H=cy+marg;
+  function P(deg, r){
+    var rad = -deg*Math.PI/180;
+    return [cx + Math.cos(rad)*r, cy + Math.sin(rad)*r];
+  }
+  function arco(deg, r, ancho, color, op){
+    var p0 = P(0,r), p1 = P(deg,r);
+    var grande = deg > 180 ? 1 : 0;
+    return '<path d="M'+p0[0].toFixed(1)+','+p0[1].toFixed(1)+' A'+r+','+r+' 0 '+grande+',0 '
+      + p1[0].toFixed(1)+','+p1[1].toFixed(1)+'" fill="none" stroke="'+color+'" stroke-width="'+ancho
+      + '" stroke-linecap="round" opacity="'+op+'"/>';
+  }
+  var g = "";
+  g += arco(a.max, R, 16, "var(--l)", 1);
+  g += arco(a.obj, R, 16, "var(--s1)", .3);
+  g += arco(a.act, R, 16, "var(--verde)", .95);
+  g += arco(a.ini, R-30, 10, "var(--senal)", .8);
+  /* Radios de referencia y etiquetas numéricas */
+  [[a.ini,"var(--senal)",R-30],[a.act,"var(--verde)",R],[a.obj,"var(--s1)",R]].forEach(function(mk){
+    var p = P(mk[0], mk[2]+16);
+    g += '<line x1="'+cx+'" y1="'+cy+'" x2="'+P(mk[0],mk[2])[0].toFixed(1)+'" y2="'+P(mk[0],mk[2])[1].toFixed(1)
+       + '" stroke="'+mk[1]+'" stroke-width="1.4" opacity=".65"/>';
+    g += '<text class="gr-tex" x="'+p[0].toFixed(1)+'" y="'+p[1].toFixed(1)+'" text-anchor="middle" fill="'+mk[1]+'">'+num(mk[0])+'°</text>';
+  });
+  g += '<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="var(--t)"/>';
+  g += '<line x1="'+(cx-R-14)+'" y1="'+cy+'" x2="'+(cx+R+14)+'" y2="'+cy+'" stroke="var(--l)" stroke-width="1.4"/>';
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML = g;
+
+  document.getElementById("moLeyenda").innerHTML =
+    [[t.moInicio,"var(--senal)"],[t.moActual,"var(--verde)"],[t.moObjetivo,"var(--s1)"]]
+      .map(function(l){ return '<span><i style="--cc:'+l[1]+'"></i>'+l[0]+'</span>'; }).join("");
+  document.getElementById("moHallazgo").innerHTML =
+    t.moHal.replace("{n}", esc(a.n)).replace("{i}", num(a.ini))
+        .replace("{a}", num(a.act)).replace("{o}", num(a.obj)).replace("{d}", esc(a.d));
+}
+
+function pintarListas(){
+  var t = T[idioma];
+  function pon(id, arr, fn){ var e = document.getElementById(id); if (e) e.innerHTML = arr.map(fn).join(""); }
+  pon("iCifras", t.cifras, function(c){ return '<div class="cel dato"><div class="v">'+esc(c.v)+'</div><div class="u">'+esc(c.u)+'</div></div>'; });
+  pon("iTrat", t.tratamientos.slice(0,3), function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("trLista", t.tratamientos, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("leLista", t.lesiones, function(x){ return '<div class="cel"><span class="sub">'+esc(x.z)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("eqLista", t.equipo, function(x){ return '<div class="cel"><span class="sub">'+esc(x.e)+'</span><h3 style="font-size:1.05rem">'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("inEspacios", t.espacios, function(x){ return '<div class="cel"><span class="sub">'+esc(x.m)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("inDatos", t.inDatos, function(x){ return '<div class="cel dato"><div class="v">'+esc(x.v)+'</div><div class="u">'+esc(x.u)+'</div></div>'; });
+  pon("prPlanes", t.planes, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p><div class="precio">'+esc(x.p)+'</div></div>'; });
+  var pi = document.getElementById("prIncluye");
+  if (pi) pi.innerHTML = t.prIncluye.map(function(x){ return "<li>"+esc(x)+"</li>"; }).join("");
+  pon("pgLista", t.preguntas, function(p){ return '<details class="faq"><summary>'+esc(p.q)+'</summary><p>'+esc(p.a)+'</p></details>'; });
+}
+
+function ruta(){ var r=(location.hash||"").replace(/^#\/?/,""); return RUTAS.indexOf(r)>=0?r:"inicio"; }
+
+function aplicar(codigo){
+  if (!T[codigo]) codigo = "es";
+  idioma = codigo;
+  var t = T[codigo], i;
+  document.documentElement.lang = t._lang;
+  document.documentElement.dir  = t._dir;
+  var n = document.querySelectorAll("[data-t]");
+  for (i=0;i<n.length;i++){ var k=n[i].getAttribute("data-t"); if (t[k]!==undefined) n[i].textContent = t[k]; }
+  var a = document.querySelectorAll("[data-t-attr]");
+  for (i=0;i<a.length;i++){
+    a[i].getAttribute("data-t-attr").split(",").forEach(function(par){
+      var q=par.split(":"); if (t[q[1].trim()]!==undefined) a[i].setAttribute(q[0].trim(), t[q[1].trim()]);
+    });
+  }
+  var b = document.querySelectorAll(".idi button");
+  for (i=0;i<b.length;i++) b[i].setAttribute("aria-pressed", String(b[i].dataset.lang===codigo));
+  document.title = t[TITULOS[ruta()]] || t.tInicio;
+  var ac = document.getElementById("acuse"); if (ac){ ac.textContent=""; ac.classList.remove("mal"); }
+  pintarListas(); pintarRecuperacion(); pintarMovilidad(); cuerpo();
+  try{ localStorage.setItem("atlas_lang", codigo); }catch(e){}
+}
+
+function enrutar(){
+  var r = ruta(), s = document.querySelectorAll("[data-ruta]"), i;
+  for (i=0;i<s.length;i++) s[i].classList.toggle("on", s[i].getAttribute("data-ruta")===r);
+  var en = document.querySelectorAll("nav.a a");
+  for (i=0;i<en.length;i++){
+    if (en[i].getAttribute("href")==="#/"+r) en[i].setAttribute("aria-current","page");
+    else en[i].removeAttribute("aria-current");
+  }
+  document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
+  window.scrollTo(0,0);
+}
+
+var bs = document.querySelectorAll(".idi button");
+for (var z=0; z<bs.length; z++) bs[z].addEventListener("click", function(){ aplicar(this.dataset.lang); });
+window.addEventListener("hashchange", enrutar);
+
+document.getElementById("f").addEventListener("submit", function(e){
+  e.preventDefault();
+  var t = T[idioma], ac = document.getElementById("acuse");
+  var nom = document.getElementById("nom").value.trim();
+  var tel = document.getElementById("tel").value.replace(/[^0-9+]/g,"");
+  if (nom.length < 2){ ac.textContent = t.errNombre; ac.classList.add("mal"); return; }
+  if (tel.length < 7){ ac.textContent = t.errTel; ac.classList.add("mal"); return; }
+  ac.classList.remove("mal"); ac.textContent = t.okMsg; e.target.reset();
+});
+
+(function(){
+  var g=null; try{ g=localStorage.getItem("atlas_lang"); }catch(e){}
+  if (!g||!T[g]){ var l=(navigator.language||"es").slice(0,2).toLowerCase(); g=T[l]?l:"es"; }
+  aplicar(g); enrutar();
+})();
+</script>
+</body>
+</html>

@@ -409,6 +409,38 @@ html[dir="rtl"] .prof-ini{letter-spacing:0;}
 html[dir="rtl"] .prof-lib{letter-spacing:0;text-transform:none;font-size:.85rem;}
 .prof-pie b{font-size:.86rem;color:var(--t);text-align:end;}
 
+/* ── Cookies y legal ──────────────────────────────────────────────── */
+.ck{position:fixed;inset-inline:0;bottom:0;z-index:100;background:var(--sup);
+  border-top:2px solid var(--verde);box-shadow:0 -18px 40px -25px rgba(0,0,0,.45);}
+.ck-caja{width:var(--marco);margin-inline:auto;display:grid;gap:1.2rem;padding-block:1.3rem;}
+@media(min-width:900px){.ck-caja{grid-template-columns:1fr auto;gap:2.5rem;align-items:center;}}
+.ck-t{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--verde);margin:0 0 .4rem;}
+html[dir="rtl"] .ck-t{letter-spacing:0;text-transform:none;font-size:.88rem;}
+.ck-p{font-size:.86rem;color:var(--t2);margin:0;max-width:74ch;}
+.ck-acc{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;}
+.ck-mas{background:none;border:0;color:var(--t3);cursor:pointer;font:inherit;font-size:.8rem;
+  text-decoration:underline;text-underline-offset:3px;padding:.4rem;}
+.ck-mas:hover{color:var(--verde);}
+.ck-pref{width:var(--marco);margin-inline:auto;padding-bottom:1.4rem;border-top:1px solid var(--l);}
+.ck-fila{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding-block:.9rem;
+  border-bottom:1px solid var(--l2);align-items:start;}
+.ck-fila b{display:block;font-weight:600;font-size:.92rem;}
+.ck-fila span{display:block;font-size:.82rem;color:var(--t3);}
+.ck-fila input{width:1.05rem;height:1.05rem;margin-top:.25rem;accent-color:var(--verde);}
+.ck-pref .btn{margin-top:1.1rem;}
+.maqueta{border-inline-start:3px solid var(--senal);background:var(--sup);border-radius:0 12px 12px 0;
+  padding:1rem 1.2rem;font-size:.84rem;color:var(--t2);margin-top:1.6rem;max-width:70ch;}
+html[dir="rtl"] .maqueta{border-radius:12px 0 0 12px;}
+.legal-b{border-top:1px solid var(--l);padding-block:2rem;}
+.legal-b h2{font-size:clamp(1.3rem,2.5vw,1.8rem);margin-bottom:1rem;}
+.legal-b p{color:var(--t2);font-size:.94rem;}
+.legal-b .fecha{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.6rem;}
+html[dir="rtl"] .legal-b .fecha{letter-spacing:0;text-transform:none;font-size:.85rem;}
+.pie-legal{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;}
+.pie-legal a,.pie-legal button{color:var(--t3);text-decoration:none;font-size:.76rem;
+  background:none;border:0;cursor:pointer;font-family:inherit;padding:0;}
+.pie-legal a:hover,.pie-legal button:hover{color:var(--verde);text-decoration:underline;}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -844,7 +876,38 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 
 
 
+<section data-ruta="legal" id="ap-legal">
+  <div class="marco bl">
+    <p class="eti" data-t="nLegal">Legal</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Tus datos de salud, y qué hacemos con ellos.</h1>
+    <p class="entrada" data-t="leEntrada">Una historia clínica es de las cosas más sensibles que vas a dejar en manos de nadie. Esto es lo que hacemos con la tuya, en cristiano.</p>
+    <p class="maqueta" data-t="leMaqueta">Aviso: esto es una maqueta de demostración. Los textos siguen la estructura de la documentación de un centro sanitario real, pero el centro es inventado y no constituye asesoramiento jurídico ni consejo médico.</p>
+  </div>
+  <div class="marco"><nav class="indice-pag" id="ix-legal" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div id="leBloques"></div>
+  </div>
+</section>
+
 </main>
+
+<div class="ck" id="ck" hidden role="dialog" aria-modal="false" data-t-attr="aria-label:ckTitulo">
+  <div class="ck-caja">
+    <div class="ck-txt">
+      <p class="ck-t" data-t="ckTitulo">Cookies</p>
+      <p class="ck-p" data-t="ckTexto">Sólo usamos cookies propias, y ninguna guarda información sobre tu salud. Las imprescindibles recuerdan el idioma y lo que llevas contestado en el árbol de orientación. Las de medición están apagadas hasta que digas lo contrario.</p>
+    </div>
+    <div class="ck-acc">
+      <button type="button" class="btn sol" id="ckMin" data-t="ckMin">Sólo las imprescindibles</button>
+      <button type="button" class="btn" id="ckTodo" data-t="ckTodo">Aceptar todas</button>
+      <button type="button" class="ck-mas" id="ckMas" data-t="ckMas">Preferencias</button>
+    </div>
+  </div>
+  <div class="ck-pref" id="ckPref" hidden>
+    <div id="ckLista"></div>
+    <button type="button" class="btn sol" id="ckGuardar" data-t="ckGuardar">Guardar mi elección</button>
+  </div>
+</div>
 
 <footer class="a">
   <div class="marco pie-cta">
@@ -869,6 +932,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
   <div class="marco pie-fin">
     <span data-t="pieAviso">Maqueta de demostración</span>
+    <nav class="pie-legal" id="pieLegal"></nav>
     <span class="ltr">© 2026 ATLAS</span>
   </div>
 </footer>
@@ -876,7 +940,56 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", pieCtaH:"El primer paso es una hora, no un compromiso.",
+ _dir:"ltr", _lang:"es", _loc:"es-ES",
+ nLegal:"Legal", tLegal:"Legal — ATLAS", leH1:"Tus datos de salud, y qué hacemos con ellos.",
+ leEntrada:"Una historia clínica es de las cosas más sensibles que vas a dejar en manos de nadie. Esto es lo que hacemos con la tuya, en cristiano.",
+ leMaqueta:"Aviso: esto es una maqueta de demostración. Los textos siguen la estructura de la documentación de un centro sanitario real, pero el centro es inventado y no constituye asesoramiento jurídico ni consejo médico.",
+ leActualizado:"Actualizado en septiembre de 2026",
+ ckTitulo:"Cookies", ckMin:"Sólo las imprescindibles", ckTodo:"Aceptar todas",
+ ckMas:"Preferencias", ckGuardar:"Guardar mi elección", ckPrefs:"Preferencias de cookies",
+ ckTexto:"Sólo usamos cookies propias, y ninguna guarda información sobre tu salud. Las imprescindibles recuerdan el idioma y lo que llevas contestado en el árbol de orientación. Las de medición están apagadas hasta que digas lo contrario.",
+ ckCats:[
+  {n:"Imprescindibles", d:"Recuerdan el idioma y por dónde ibas en el árbol de orientación y en el test de simetría. Nada de eso es un dato de salud ni sale de tu navegador."},
+  {n:"Medición", d:"Cuentan visitas de forma agregada para saber qué dolencias se consultan más. Nunca se cruzan con una cita ni con una historia. Apagadas por defecto."},
+  {n:"Preferencias", d:"Guardan la zona que dejaste elegida en la agenda para no tener que volver a marcarla."}
+ ],
+ legal:[
+  {t:"1. Quiénes somos", p:[
+   "<b>Centro ATLAS Fisioterapia, S.L.</b>, Avenida del Parque 118, bajo, 28045 Madrid (España). Correo: hola@atlas.example. Teléfono: +34 910 000 000.",
+   "Centro sanitario con número de registro autonómico, cuyo documento de autorización está expuesto en recepción y se puede fotografiar. Toda persona que trata pacientes aquí está colegiada y su número se puede comprobar en el colegio profesional correspondiente. Si alguna vez alguien no te lo quiere dar, pídelo por escrito."]},
+  {t:"2. Datos de salud: por qué son distintos", p:[
+   "Los datos sobre tu salud son <b>categoría especial</b> según el artículo 9 del Reglamento General de Protección de Datos. Eso significa que, por defecto, están prohibidos de tratar, y sólo pueden usarse en supuestos tasados. El nuestro es la asistencia sanitaria prestada por profesionales sujetos a secreto profesional.",
+   "En la práctica se traduce en tres cosas concretas. Primera: no se puede pedir consentimiento para \u201ccualquier finalidad\u201d y luego usarlos para lo que sea. Segunda: no se pueden ceder a una aseguradora, a una mutua ni a un club sin tu autorización expresa, escrita y para ese caso concreto. Tercera: una brecha que afecte a datos de salud se notifica a la autoridad en setenta y dos horas y a ti directamente si hay riesgo alto.",
+   "<b>Lo que guardamos:</b> nombre, contacto, motivo de consulta, exploración, mediciones, evolución y alta. Si traes pruebas de imagen, guardamos el informe, no la imagen, salvo que nos pidas lo contrario. <b>Lo que no guardamos:</b> tu número de tarjeta, tu profesión si no es relevante para la lesión, y nada sobre tu vida privada que no tenga que ver con lo que hemos tratado."]},
+  {t:"3. Tu historia clínica", p:[
+   "<b>Conservación.</b> La ley obliga a conservar la historia clínica un mínimo de cinco años desde el alta del proceso asistencial. Nosotros no la guardamos más allá de ese plazo salvo que haya una reclamación abierta o tú nos pidas conservarla porque prevés volver.",
+   "<b>Acceso.</b> Tienes derecho a una copia de tu historia completa. Se entrega en el mismo día si la pides en recepción, y en menos de diez días si la pides por correo. <b>No hay que justificar para qué la quieres</b> y no cobramos por darla, aunque te la lleves a otro centro. Si te la piden y te ponen pegas en algún sitio, eso no es normal.",
+   "<b>Rectificación y supresión.</b> Puedes corregir un dato equivocado (una fecha, una zona mal anotada). Lo que no se puede es borrar una anotación clínica ya hecha: la historia es también un documento de responsabilidad profesional. Lo que sí se hace es añadir tu versión, que queda registrada junto a la del profesional.",
+   "<b>Quién puede verla.</b> El fisioterapeuta que te trata y, en la sesión clínica de los martes, el resto del equipo, sujeto al mismo secreto. Nadie más. Recepción ve tu nombre, teléfono y hora de cita, no tu historia."]},
+  {t:"4. Consentimiento informado", p:[
+   "Antes de aplicar una técnica te explicamos qué hace, qué se espera, qué molestias puede dar y qué alternativas hay. Eso no es un papel que se firma deprisa: es una conversación, y puedes pararla o cambiar de opinión en cualquier momento, incluso a mitad de la sesión.",
+   "<b>Punción seca.</b> Es la única técnica que hacemos con consentimiento por escrito, porque es invasiva. Se explica que la aguja atraviesa la piel, que duele en el momento, que deja agujetas uno o dos días y que puede aparecer un pequeño hematoma. No se aplica si tomas anticoagulantes, si tienes fobia a las agujas o si simplemente no te apetece. Nunca es imprescindible: hay alternativas para lo mismo.",
+   "<b>Menores.</b> A partir de dieciséis años el consentimiento lo da la persona menor. Por debajo lo dan quienes ostentan la patria potestad, aunque escuchamos y explicamos también a la persona menor, que es quien va a hacer los ejercicios.",
+   "<b>Grabaciones.</b> A veces grabamos un gesto en vídeo para comparar la evolución. Se pide permiso cada vez, se guarda en el equipo del centro y se borra al alta salvo que autorices otra cosa. No publicamos vídeos de pacientes en redes sociales, ni con la cara tapada."]},
+  {t:"5. Citas, cancelaciones y pagos", p:[
+   "<b>Cancelar.</b> Sin coste hasta veinticuatro horas antes. Con menos aviso o sin presentarte se cobra la mitad de la sesión, porque esa hora ya no se le puede dar a nadie. La primera vez que pasa no se cobra: a cualquiera se le va un día.",
+   "<b>Si nos retrasamos nosotros.</b> Si empezamos con más de diez minutos de retraso, la sesión dura igualmente su hora completa o no se cobra. El retraso es nuestro problema, no tuyo.",
+   "<b>Bonos.</b> No caducan y son transferibles a alguien de tu familia. Si dejas el tratamiento a la mitad, el bono no consumido se devuelve íntegro, sin descontar \u201cgastos de gestión\u201d.",
+   "<b>Factura.</b> Se emite siempre, la pidas o no, con el desglose y el número de colegiado de quien te ha tratado. Es lo que necesitarás si tienes seguro de reembolso."]},
+  {t:"6. Reclamaciones y derechos del paciente", p:[
+   "Hay hojas de reclamaciones oficiales en recepción y no hay que pedirlas dos veces. Si prefieres, escribe a <b>reclamaciones@atlas.example</b>: contestamos por escrito en menos de quince días, diciendo qué ha pasado y qué vamos a cambiar, no sólo pidiendo disculpas.",
+   "También puedes reclamar directamente ante la consejería de sanidad de tu comunidad autónoma, ante el colegio profesional de fisioterapeutas si la queja es sobre la actuación de un profesional, y ante la Agencia Española de Protección de Datos si es sobre tus datos. No hace falta pasar antes por nosotros: son vías independientes.",
+   "Tienes derecho a pedir una <b>segunda opinión</b>, a cambiar de fisioterapeuta dentro del centro sin dar explicaciones, y a que se te informe de forma comprensible. Si sales de una sesión sin haber entendido qué tienes, algo hemos hecho mal nosotros."]},
+  {t:"7. Cookies", p:[
+   "Sólo usamos cookies propias y almacenamiento local del navegador. <b>Ninguna guarda información sobre tu salud.</b> Lo que respondes en el árbol de orientación o en el test de simetría se queda en tu dispositivo y no llega a ningún servidor nuestro: no lo vemos, ni siquiera de forma agregada.",
+   "No hay píxeles de Facebook, ni de Google Ads, ni herramientas de remarketing. Es una decisión deliberada: en un sitio de salud, ese tipo de seguimiento permite deducir la dolencia de una persona a partir de las páginas que visita, y eso no lo vamos a hacer.",
+   "Puedes cambiar tu elección cuando quieras desde <b>Preferencias de cookies</b>, en el pie. Tu decisión se guarda con la fecha y una versión: si algún día cambiamos las categorías, se te vuelve a preguntar."]},
+  {t:"8. Accesibilidad", p:[
+   "El sitio se ha construido buscando cumplir las pautas WCAG 2.2 en nivel AA: navegación con teclado, foco visible, contraste suficiente en ambos temas, texto alternativo y respeto de la preferencia de movimiento reducido.",
+   "El mapa corporal se puede recorrer con teclado y cada zona tiene nombre, no sólo posición. La escala de dolor no depende del color: cada banda lleva número y descripción escrita. Las horas ocupadas de la agenda están marcadas como deshabilitadas para que un lector de pantalla las anuncie como tales, no sólo tachadas visualmente.",
+   "El centro tiene entrada a nivel de calle, puerta de noventa centímetros, ascensor y aseo adaptado. Si necesitas algo concreto para poder venir, dilo al pedir la cita: se prepara antes, no al llegar."]}
+ ],
+ pieCtaH:"El primer paso es una hora, no un compromiso.",
  pieCtaP:"La valoración incluye tratamiento y sales con un plan escrito. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.",
  pieQue:"Fisioterapia y readaptación deportiva. Una hora por paciente, más sala que camilla y alta por criterios medibles.",
  pieDir:"Avenida del Parque 118, bajo · 28045 Madrid", pieZonas:"Por dolencia", pieCentro:"El centro",
@@ -1249,7 +1362,56 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", pieCtaH:"The first step is an hour, not a commitment.",
+ _dir:"ltr", _lang:"en", _loc:"en-GB",
+ nLegal:"Legal", tLegal:"Legal — ATLAS", leH1:"Your health data, and what we do with it.",
+ leEntrada:"A clinical record is among the most sensitive things you will ever hand over. This is what we do with yours, in plain words.",
+ leMaqueta:"Notice: this is a demonstration mock-up. The texts follow the structure of a real clinic's documentation, but the clinic is invented and this is neither legal advice nor medical advice.",
+ leActualizado:"Updated September 2026",
+ ckTitulo:"Cookies", ckMin:"Essential only", ckTodo:"Accept all",
+ ckMas:"Preferences", ckGuardar:"Save my choice", ckPrefs:"Cookie preferences",
+ ckTexto:"We only use our own cookies, and none of them stores anything about your health. The essential ones remember your language and how far you got in the triage tree. Measurement ones stay off until you say otherwise.",
+ ckCats:[
+  {n:"Essential", d:"They remember your language and where you were in the triage tree and the symmetry test. None of that is health data and none of it leaves your browser."},
+  {n:"Measurement", d:"They count visits in aggregate so we know which complaints get looked up most. They are never linked to an appointment or a record. Off by default."},
+  {n:"Preferences", d:"They store the area you left selected in the diary so you do not have to pick it again."}
+ ],
+ legal:[
+  {t:"1. Who we are", p:[
+   "<b>Centro ATLAS Fisioterapia, S.L.</b>, Avenida del Parque 118, ground floor, 28045 Madrid (Spain). Email: hola@atlas.example. Phone: +34 910 000 000.",
+   "A healthcare centre with a regional registration number, whose authorisation document is displayed at reception and can be photographed. Everyone who treats patients here is professionally registered and their number can be checked with the relevant professional body. If anyone ever refuses to give it, ask for it in writing."]},
+  {t:"2. Health data: why it is different", p:[
+   "Data about your health is a <b>special category</b> under Article 9 of the General Data Protection Regulation. That means processing it is prohibited by default and only allowed in listed situations. Ours is healthcare provided by professionals bound by professional secrecy.",
+   "In practice that comes down to three concrete things. First: nobody can ask consent for \u201cany purpose\u201d and then use it for whatever. Second: it cannot be passed to an insurer, a mutual or a club without your express, written authorisation for that specific case. Third: a breach affecting health data is notified to the authority within seventy-two hours and to you directly if the risk is high.",
+   "<b>What we store:</b> name, contact, reason for consultation, examination, measurements, progress and discharge. If you bring imaging, we store the report, not the image, unless you ask otherwise. <b>What we do not store:</b> your card number, your occupation if it is irrelevant to the injury, and anything about your private life unrelated to what we treated."]},
+  {t:"3. Your clinical record", p:[
+   "<b>Retention.</b> The law requires clinical records to be kept for at least five years from discharge from the episode of care. We do not keep it beyond that unless a claim is open or you ask us to because you expect to come back.",
+   "<b>Access.</b> You have the right to a copy of your full record. It is handed over the same day if you ask at reception, and within ten days if you ask by email. <b>You do not have to justify what you want it for</b> and we do not charge for it, even if you are taking it to another clinic. If somewhere makes difficulties about this, that is not normal.",
+   "<b>Rectification and erasure.</b> You can correct a wrong entry (a date, a mis-recorded area). What cannot be done is deleting a clinical note already made: the record is also a document of professional accountability. What is done instead is adding your version, which is recorded alongside the professional's.",
+   "<b>Who can see it.</b> The physiotherapist treating you and, in the Tuesday clinical session, the rest of the team, under the same duty of secrecy. Nobody else. Reception sees your name, phone and appointment time, not your record."]},
+  {t:"4. Informed consent", p:[
+   "Before applying a technique we explain what it does, what to expect, what discomfort it may cause and what the alternatives are. That is not a form signed in a hurry: it is a conversation, and you can stop it or change your mind at any point, including mid-session.",
+   "<b>Dry needling.</b> It is the only technique we do with written consent, because it is invasive. We explain that the needle passes through the skin, that it hurts at the time, that it leaves soreness for a day or two and that a small bruise may appear. It is not used if you take anticoagulants, if you have a needle phobia, or simply if you do not fancy it. It is never indispensable: there are alternatives for the same thing.",
+   "<b>Minors.</b> From sixteen the young person gives consent themselves. Below that it is given by those with parental responsibility, though we also listen to and explain things to the young person, who is the one who will do the exercises.",
+   "<b>Recordings.</b> We sometimes film a movement to compare progress. Permission is asked each time, it is stored on the clinic's own machine and deleted at discharge unless you authorise otherwise. We do not publish patient videos on social media, not even with the face covered."]},
+  {t:"5. Appointments, cancellations and payment", p:[
+   "<b>Cancelling.</b> Free up to twenty-four hours before. With less notice, or if you do not turn up, half the session is charged, because that hour can no longer be given to anyone else. The first time it happens we do not charge: anyone can lose track of a day.",
+   "<b>If we are the ones running late.</b> If we start more than ten minutes late, the session still lasts its full hour or it is not charged. The delay is our problem, not yours.",
+   "<b>Session blocks.</b> They do not expire and are transferable to a family member. If you stop treatment halfway, the unused balance is refunded in full, with no \u201cadministration fee\u201d deducted.",
+   "<b>Invoice.</b> Always issued, whether you ask or not, itemised and with the registration number of whoever treated you. It is what you will need if you have a reimbursement policy."]},
+  {t:"6. Complaints and patient rights", p:[
+   "Official complaint forms are at reception and you should not have to ask twice. If you prefer, write to <b>reclamaciones@atlas.example</b>: we answer in writing within fifteen days, saying what happened and what we are going to change, not just apologising.",
+   "You can also complain directly to your region's health department, to the physiotherapists' professional body if the complaint concerns a professional's conduct, and to the Spanish Data Protection Agency if it concerns your data. You do not have to come to us first: they are independent routes.",
+   "You have the right to ask for a <b>second opinion</b>, to change physiotherapist within the clinic without explaining why, and to be informed in a way you understand. If you leave a session without having understood what you have, we did something wrong."]},
+  {t:"7. Cookies", p:[
+   "We only use our own cookies and the browser's local storage. <b>None of them stores anything about your health.</b> What you answer in the triage tree or the symmetry test stays on your device and never reaches any server of ours: we do not see it, not even in aggregate.",
+   "There are no Facebook pixels, no Google Ads tags and no remarketing tools. That is a deliberate decision: on a health site, that kind of tracking allows someone's condition to be inferred from the pages they visit, and we are not going to do that.",
+   "You can change your choice at any time from <b>Cookie preferences</b> in the footer. Your decision is stored with a date and a version: if we ever change the categories, you are asked again."]},
+  {t:"8. Accessibility", p:[
+   "The site was built aiming to meet WCAG 2.2 at level AA: keyboard navigation, visible focus, sufficient contrast in both themes, alternative text and respect for the reduced-motion preference.",
+   "The body map can be traversed with a keyboard and every area has a name, not just a position. The pain scale does not depend on colour: each band carries a number and a written description. Taken slots in the diary are marked as disabled so a screen reader announces them as such, not merely struck through visually.",
+   "The clinic has a street-level entrance, a ninety-centimetre door, a lift and an accessible toilet. If you need something specific in order to come, say so when booking: it is prepared beforehand, not on arrival."]}
+ ],
+ pieCtaH:"The first step is an hour, not a commitment.",
  pieCtaP:"The assessment includes treatment and you leave with a written plan. If we are not what you need, we say so there and refer you on.",
  pieQue:"Physiotherapy and sports rehabilitation. An hour per patient, more gym than couch, and discharge on measurable criteria.",
  pieDir:"Avenida del Parque 118, ground floor · 28045 Madrid", pieZonas:"By area", pieCentro:"The clinic",
@@ -1622,7 +1784,56 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", pieCtaH:"الخطوة الأولى ساعة، لا التزام.",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ nLegal:"قانوني", tLegal:"قانوني — أطلس", leH1:"بياناتك الصحية، وماذا نفعل بها.",
+ leEntrada:"الملف الطبي من أشدّ ما ستضعه يومًا في يد أحد حساسيةً. وهذا ما نفعله بملفك، بكلام واضح.",
+ leMaqueta:"تنبيه: هذه نسخة عرض توضيحية. تتبع النصوص بنية وثائق مركز صحي حقيقي، لكن المركز متخيَّل وهذا ليس استشارة قانونية ولا نصيحة طبية.",
+ leActualizado:"محدَّث في أيلول ٢٠٢٦",
+ ckTitulo:"ملفات الارتباط", ckMin:"الضرورية فقط", ckTodo:"قبول الكل",
+ ckMas:"التفضيلات", ckGuardar:"احفظ اختياري", ckPrefs:"تفضيلات ملفات الارتباط",
+ ckTexto:"لا نستخدم إلا ملفات ارتباط خاصة بنا، ولا يحفظ أيٌّ منها شيئًا عن صحتك. تتذكّر الضرورية لغتك وأين وصلت في شجرة التوجيه. أما ملفات القياس فمتوقفة حتى تقول غير ذلك.",
+ ckCats:[
+  {n:"الضرورية", d:"تتذكّر اللغة وأين وصلت في شجرة التوجيه واختبار التماثل. ولا شيء من ذلك بيانات صحية ولا يغادر متصفحك."},
+  {n:"القياس", d:"تحصي الزيارات إجمالًا لنعرف أي الشكاوى يُبحث عنها أكثر. ولا تُربط أبدًا بموعد ولا بملف. ومتوقفة افتراضيًّا."},
+  {n:"التفضيلات", d:"تحفظ المنطقة التي تركتها مختارة في المواعيد كي لا تعيد تحديدها."}
+ ],
+ legal:[
+  {t:"١. من نحن", p:[
+   "<b>مركز أطلس للعلاج الطبيعي ذ.م.م.</b>، جادة الحديقة ١١٨، الطابق الأرضي، ٢٨٠٤٥ مدريد (إسبانيا). البريد: hola@atlas.example. الهاتف: ‎+34 910 000 000‎.",
+   "مركز صحي برقم تسجيل إقليمي، ووثيقة ترخيصه معروضة في الاستقبال ويمكن تصويرها. وكل من يعالج المرضى هنا مسجَّل مهنيًّا ويمكن التحقق من رقمه لدى الهيئة المهنية المختصة. وإن رفض أحدهم يومًا إعطاءه، فاطلبه كتابةً."]},
+  {t:"٢. البيانات الصحية: لماذا هي مختلفة", p:[
+   "البيانات المتعلقة بصحتك <b>فئة خاصة</b> بموجب المادة ٩ من اللائحة العامة لحماية البيانات. ومعنى ذلك أن معالجتها محظورة أصلًا ولا تُباح إلا في حالات محدَّدة. وحالتنا هي الرعاية الصحية التي يقدّمها مهنيون ملزَمون بالسرّ المهني.",
+   "وعمليًّا ينزل ذلك إلى ثلاثة أمور محدَّدة. الأول: لا يجوز طلب موافقة على «أي غرض» ثم استعمالها كيفما اتفق. الثاني: لا يجوز إحالتها إلى شركة تأمين أو صندوق أو نادٍ دون إذنك الصريح المكتوب ولتلك الحالة بعينها. الثالث: أي اختراق يمسّ بيانات صحية يُبلَّغ إلى السلطة خلال اثنتين وسبعين ساعة، وإليك مباشرةً إن كان الخطر مرتفعًا.",
+   "<b>ما نحفظه:</b> الاسم ووسيلة التواصل وسبب الاستشارة والفحص والقياسات والتطور والخروج. وإن أحضرت صورًا تشخيصية حفظنا التقرير لا الصورة، إلا إن طلبت غير ذلك. <b>وما لا نحفظه:</b> رقم بطاقتك، ومهنتك إن لم تكن ذات صلة بالإصابة، وأي شيء عن حياتك الخاصة لا علاقة له بما عالجناه."]},
+  {t:"٣. ملفك الطبي", p:[
+   "<b>مدة الحفظ.</b> يُلزم القانون بحفظ الملف الطبي خمس سنوات على الأقل من الخروج من الحالة العلاجية. ولا نحفظه بعد ذلك إلا إن كانت هناك مطالبة مفتوحة أو طلبت أنت حفظه لأنك تتوقع العودة.",
+   "<b>الاطلاع.</b> لك الحق في نسخة من ملفك كاملًا. وتُسلَّم في اليوم نفسه إن طلبتها في الاستقبال، وخلال أقل من عشرة أيام إن طلبتها بالبريد. <b>ولست ملزَمًا بتبرير سبب طلبها</b> ولا نتقاضى عليها شيئًا، ولو أخذتها إلى مركز آخر. وإن وضع مكانٌ ما عراقيل في ذلك فليس هذا طبيعيًّا.",
+   "<b>التصحيح والمحو.</b> يمكنك تصحيح بيان خاطئ (تاريخ، أو منطقة دُوّنت خطأً). أما ما لا يمكن فهو محو ملاحظة سريرية دُوّنت فعلًا: فالملف وثيقة مسؤولية مهنية أيضًا. وما يُفعَل بدلًا من ذلك هو إضافة روايتك، فتُسجَّل إلى جانب رواية المهني.",
+   "<b>من يمكنه الاطلاع عليه.</b> المعالج الذي يتابعك، وفي جلسة الثلاثاء السريرية بقية الفريق، وهم تحت السرّ نفسه. ولا أحد غيرهم. أما الاستقبال فيرى اسمك وهاتفك وموعدك، لا ملفك."]},
+  {t:"٤. الموافقة المستنيرة", p:[
+   "قبل تطبيق أي تقنية نشرح ما تفعله، وما هو متوقَّع، وما قد تسبّبه من انزعاج، وما البدائل. وليست ورقةً تُوقَّع على عجل: بل محادثة، ويمكنك إيقافها أو تغيير رأيك في أي لحظة، حتى في منتصف الجلسة.",
+   "<b>الوخز الجاف.</b> وهو التقنية الوحيدة التي نجريها بموافقة مكتوبة، لأنها باضعة. ونشرح أن الإبرة تخترق الجلد، وأنها تؤلم في حينها، وأنها تترك ألمًا يومًا أو يومين، وأن كدمة صغيرة قد تظهر. ولا تُطبَّق إن كنت تتناول مميّعات الدم، أو تخاف الإبر، أو ببساطة لا ترغب. ولا تكون ضرورية أبدًا: فثمة بدائل للغرض نفسه.",
+   "<b>القاصرون.</b> من السادسة عشرة يعطي القاصر موافقته بنفسه. ودونها يعطيها أصحاب الولاية، وإن كنا نُصغي إلى القاصر ونشرح له أيضًا، فهو من سيؤدي التمارين.",
+   "<b>التسجيلات.</b> نصوّر أحيانًا حركةً لمقارنة التطور. ويُطلَب الإذن في كل مرة، ويُحفَظ على جهاز المركز، ويُحذَف عند الخروج إلا إن أذنت بغير ذلك. ولا ننشر مقاطع للمرضى على الشبكات، ولا بوجه مغطّى."]},
+  {t:"٥. المواعيد والإلغاء والدفع", p:[
+   "<b>الإلغاء.</b> بلا تكلفة حتى أربع وعشرين ساعة قبل الموعد. وبإشعار أقل أو بعدم الحضور يُحتسب نصف الجلسة، لأن تلك الساعة لم يعد ممكنًا إعطاؤها لأحد. وفي المرة الأولى لا نحتسب شيئًا: فأي أحد قد ينسى يومًا.",
+   "<b>وإن تأخرنا نحن.</b> إن بدأنا بتأخير يتجاوز عشر دقائق، استمرّت الجلسة ساعتها كاملةً أو لم تُحتسب. فالتأخير مشكلتنا لا مشكلتك.",
+   "<b>الباقات.</b> لا تنتهي صلاحيتها وهي قابلة للتحويل إلى أحد أفراد أسرتك. وإن أوقفت العلاج في منتصفه، رُدّ الرصيد غير المستهلك كاملًا، دون خصم «مصاريف إدارية».",
+   "<b>الفاتورة.</b> تُصدَر دائمًا، طلبتها أو لم تطلبها، مفصَّلةً وفيها رقم قيد من عالجك. وهي ما ستحتاجه إن كان لديك تأمين بالتعويض."]},
+  {t:"٦. الشكاوى وحقوق المريض", p:[
+   "استمارات الشكوى الرسمية موجودة في الاستقبال ولا ينبغي أن تُطلَب مرتين. وإن فضّلت فاكتب إلى <b>reclamaciones@atlas.example</b>: نردّ كتابةً خلال أقل من خمسة عشر يومًا، بما جرى وبما سنغيّره، لا بالاعتذار وحده.",
+   "ويمكنك أيضًا الشكوى مباشرةً إلى وزارة الصحة في إقليمك، وإلى الهيئة المهنية للمعالجين الطبيعيين إن كانت الشكوى عن تصرّف مهني، وإلى الوكالة الإسبانية لحماية البيانات إن كانت عن بياناتك. ولا يلزم المرور بنا أولًا: فهذه مسارات مستقلة.",
+   "ولك الحق في طلب <b>رأي ثانٍ</b>، وفي تغيير المعالج داخل المركز دون إبداء أسباب، وفي أن تُعلَم بطريقة تفهمها. فإن خرجت من جلسة دون أن تفهم ما لديك، فقد أخطأنا نحن."]},
+  {t:"٧. ملفات الارتباط", p:[
+   "لا نستخدم إلا ملفات ارتباط خاصة بنا والتخزين المحلي للمتصفح. <b>ولا يحفظ أيٌّ منها شيئًا عن صحتك.</b> فما تجيب به في شجرة التوجيه أو اختبار التماثل يبقى على جهازك ولا يصل إلى أي خادم لنا: لا نراه، ولا حتى بصورة إجمالية.",
+   "ولا توجد بكسلات فيسبوك ولا وسوم إعلانات غوغل ولا أدوات إعادة استهداف. وهو قرار متعمَّد: ففي موقع صحي يتيح ذلك النوع من التتبّع استنتاج علّة الشخص من الصفحات التي يزورها، ولن نفعل ذلك.",
+   "ويمكنك تغيير اختيارك متى شئت من <b>تفضيلات ملفات الارتباط</b> في التذييل. ويُحفَظ قرارك بتاريخه وبرقم إصدار: فإن غيّرنا الفئات يومًا سُئلت من جديد."]},
+  {t:"٨. سهولة الوصول", p:[
+   "بُني الموقع سعيًا إلى استيفاء إرشادات WCAG 2.2 عند المستوى AA: تصفّح بلوحة المفاتيح، وتركيز مرئي، وتباين كافٍ في السمتين، ونص بديل، واحترام تفضيل تقليل الحركة.",
+   "ويمكن تصفّح خريطة الجسم بلوحة المفاتيح، ولكل منطقة اسم لا موضع فقط. ومقياس الألم لا يعتمد على اللون: فلكل نطاق رقم ووصف مكتوب. والساعات المحجوزة في المواعيد مُعلَّمة معطَّلةً كي يعلنها قارئ الشاشة كذلك، لا مشطوبةً بصريًّا فحسب.",
+   "وللمركز مدخل بمستوى الشارع، وباب بعرض تسعين سنتيمترًا، ومصعد، ودورة مياه مهيّأة. وإن احتجت شيئًا بعينه لتتمكّن من المجيء فقُله عند حجز الموعد: يُهيَّأ قبلها لا عند وصولك."]}
+ ],
+ pieCtaH:"الخطوة الأولى ساعة، لا التزام.",
  pieCtaP:"التقييم يشمل العلاج وتخرج بخطة مكتوبة. وإن لم نكن ما تحتاجه قلنا لك ذلك هناك وأحلناك.",
  pieQue:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض، وقاعة أكثر من سرير، وخروج بمعايير قابلة للقياس.",
  pieDir:"جادة الحديقة ١١٨، الطابق الأرضي · ٢٨٠٤٥ مدريد", pieZonas:"حسب المنطقة", pieCentro:"المركز",
@@ -2294,9 +2505,9 @@ var INDICE = {
   precios:[["ap-precios","nPrecios"],["ap-preguntas","nPreguntas"]]
 };
 
-var RUTAS = ["inicio","tratamientos","recuperacion","clinica","precios","contacto"];
+var RUTAS = ["inicio","tratamientos","recuperacion","clinica","precios","contacto","legal"];
 var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",recuperacion:"tRecuperacion",
-  clinica:"tClinica",precios:"tPrecios",contacto:"tContacto"};
+  clinica:"tClinica",precios:"tPrecios",contacto:"tContacto",legal:"tLegal"};
 var idioma = "es", reSel = 0, moSel = 0;
 
 function loc(){ return T[idioma]._loc; }
@@ -2446,7 +2657,7 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
-  pintarAgenda(); pintarBaldosas(); pintarPieClinica();
+  pintarAgenda(); pintarBaldosas(); pintarPieClinica(); pintarCookies(); pintarLegal();
   pon("iPorQue", t.iPorQue, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
@@ -2555,6 +2766,55 @@ var ICONOS = [
   '<path d="M7 4h10l-1.5 6H8.5ZM8.5 10 7 21M15.5 10 17 21"/>',
   '<circle cx="12" cy="12" r="8"/><path d="M12 8v5M12 16h.01"/>'
 ];
+
+/* ── Cookies ──────────────────────────────────────────────────────
+   Consentimiento versionado: si cambian las categorías se vuelve a
+   preguntar en vez de dar por buena la respuesta antigua. */
+var CK_VERSION = 1;
+var CK_CATS = ["necesarias","medicion","preferencias"];
+var ck = null;
+try { ck = JSON.parse(localStorage.getItem("atlas_ck") || "null"); } catch(e){ ck = null; }
+if (ck && ck.v !== CK_VERSION) ck = null;
+
+function ckGuarda(elegidas){
+  ck = {v:CK_VERSION, e:elegidas, f:new Date().toISOString().slice(0,10)};
+  try { localStorage.setItem("atlas_ck", JSON.stringify(ck)); } catch(e){}
+  document.getElementById("ck").hidden = true;
+}
+function ckAbrir(){
+  var c = document.getElementById("ck");
+  c.hidden = false;
+  document.getElementById("ckPref").hidden = false;
+  c.scrollIntoView({block:"end"});
+}
+function pintarCookies(){
+  var caja = document.getElementById("ck");
+  if (!caja) return;
+  var t = T[idioma];
+  caja.hidden = !!ck;
+  document.getElementById("ckLista").innerHTML = CK_CATS.map(function(c,i){
+    var fijo = i === 0, marcada = fijo || (ck && ck.e.indexOf(c) >= 0);
+    return '<label class="ck-fila"><input type="checkbox" value="'+c+'"'
+      + (marcada ? " checked" : "") + (fijo ? " disabled" : "") + '>'
+      + '<span><b>'+esc(t.ckCats[i].n)+'</b><span>'+esc(t.ckCats[i].d)+'</span></span></label>';
+  }).join("");
+}
+
+function pintarLegal(){
+  var t = T[idioma], lb = document.getElementById("leBloques");
+  if (lb) lb.innerHTML = t.legal.map(function(b,i){
+    return '<section class="legal-b" id="ap-le'+i+'">'
+      + '<p class="fecha">'+esc(t.leActualizado)+'</p><h2>'+esc(b.t)+'</h2>'
+      + b.p.map(function(x){ return '<p>'+x+'</p>'; }).join("") + '</section>';
+  }).join("");
+  var pl = document.getElementById("pieLegal");
+  if (pl){
+    pl.innerHTML = t.legal.map(function(b,i){
+      return '<a href="#/legal" data-ir="ap-le'+i+'">'+esc(b.t.replace(/^[0-9٠-٩]+\.\s*/, ""))+'</a>';
+    }).join("") + '<button type="button" id="ckReabrir">'+esc(t.ckPrefs)+'</button>';
+    document.getElementById("ckReabrir").addEventListener("click", ckAbrir);
+  }
+}
 
 function pintarPieClinica(){
   var t = T[idioma];
@@ -2671,10 +2931,11 @@ function aplicar(codigo){
   for (i=0;i<b.length;i++) b[i].setAttribute("aria-pressed", String(b[i].dataset.lang===codigo));
   document.title = t[TITULOS[ruta()]] || t.tInicio;
   var ac = document.getElementById("acuse"); if (ac){ ac.textContent=""; ac.classList.remove("mal"); }
+  INDICE.legal = t.legal.map(function(b,i){ return ["ap-le"+i, null, b.t]; });
   Object.keys(INDICE).forEach(function(r){
     var e = document.getElementById("ix-"+r); if (!e) return;
     e.innerHTML = INDICE[r].map(function(x){
-      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>';
     }).join("");
   });
   pintarListas(); pintarRecuperacion(); pintarMovilidad(); cuerpo(); pintarNuevas();
@@ -2707,6 +2968,19 @@ document.addEventListener("click", function(ev){
     var alto = cab ? cab.getBoundingClientRect().height : 0;
     window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - alto - 12);
   }, 60);
+});
+document.getElementById("ckMin").addEventListener("click", function(){ ckGuarda(["necesarias"]); });
+document.getElementById("ckTodo").addEventListener("click", function(){ ckGuarda(CK_CATS.slice()); });
+document.getElementById("ckMas").addEventListener("click", function(){
+  var pr = document.getElementById("ckPref"); pr.hidden = !pr.hidden;
+  this.setAttribute("aria-expanded", String(!pr.hidden));
+});
+document.getElementById("ckGuardar").addEventListener("click", function(){
+  var marcadas = ["necesarias"];
+  Array.prototype.forEach.call(document.querySelectorAll("#ckLista input:not([disabled])"), function(i){
+    if (i.checked) marcadas.push(i.value);
+  });
+  ckGuarda(marcadas);
 });
 window.addEventListener("hashchange", enrutar);
 

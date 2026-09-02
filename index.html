@@ -47,6 +47,10 @@
 html[dir="rtl"]{ --disp:"Rubik",sans-serif; --c:"Rubik",sans-serif; }
 
 *,*::before,*::after{box-sizing:border-box;}
+/* Un display explícito gana al [hidden] de la hoja del navegador: hay que
+   decirlo a mano o los paneles ocultos se siguen viendo. */
+[hidden]{display:none !important;}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
 body{margin:0;background:var(--f);color:var(--t);font-family:var(--c);font-weight:300;
   font-size:clamp(15px,1.02vw,16.5px);line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -285,6 +289,46 @@ html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-size:1r
 .despues b{display:block;font-weight:600;font-size:.98rem;margin-bottom:.2rem;}
 .despues span{font-size:.9rem;color:var(--t2);}
 
+/* ── Agenda: el sitio se organiza alrededor de la cita, no del folleto ── */
+.cita-btn{display:inline-block;text-decoration:none;background:var(--verde);color:#0d1411;
+  font-size:.82rem;font-weight:600;padding:.5rem 1.1rem;border-radius:999px;flex-shrink:0;}
+.cita-btn:hover{background:var(--t);}
+.agenda{background:var(--sup);border:1px solid var(--l);border-radius:20px;
+  padding:clamp(1.5rem,3.5vw,2.6rem);margin-block:clamp(1rem,3vw,2rem);}
+.ag-cab{display:grid;gap:1rem;margin-bottom:2rem;}
+@media(min-width:860px){.ag-cab{grid-template-columns:1.5fr 1fr;gap:3rem;align-items:end;}}
+.ag-h{font-size:clamp(1.4rem,2.8vw,2rem);max-width:22ch;}
+.ag-nota{font-size:.84rem;color:var(--t3);margin:0;}
+.ag-paso{display:flex;align-items:center;gap:.7rem;margin:0 0 .9rem;font-size:.88rem;color:var(--t2);}
+.ag-paso b{width:1.5rem;height:1.5rem;border-radius:999px;background:var(--verde);color:#0d1411;
+  display:grid;place-items:center;font-size:.75rem;flex-shrink:0;}
+.ag-zonas,.ag-dias,.ag-horas{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.9rem;}
+.ag-zonas button{background:none;border:1px solid var(--l);color:var(--t2);cursor:pointer;font:inherit;
+  font-size:.84rem;padding:.5rem 1rem;border-radius:999px;}
+.ag-zonas button:hover{border-color:var(--verde);color:var(--t);}
+.ag-zonas button[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#0d1411;font-weight:600;}
+.ag-dias{gap:.6rem;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;scrollbar-width:thin;}
+.ag-dias button{background:var(--f2);border:1px solid var(--l);color:var(--t2);cursor:pointer;font:inherit;
+  border-radius:12px;padding:.7rem .95rem;text-align:center;min-width:4.6rem;flex-shrink:0;line-height:1.25;}
+.ag-dias button span{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);}
+html[dir="rtl"] .ag-dias button span{letter-spacing:0;text-transform:none;font-size:.8rem;}
+.ag-dias button b{display:block;font-size:1.25rem;font-weight:600;color:var(--t);}
+.ag-dias button i{display:block;font-style:normal;font-size:.66rem;color:var(--t3);margin-top:.2rem;}
+.ag-dias button:hover{border-color:var(--verde);}
+.ag-dias button[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);}
+.ag-dias button[aria-pressed="true"] span,.ag-dias button[aria-pressed="true"] b,
+.ag-dias button[aria-pressed="true"] i{color:#0d1411;}
+.ag-horas button{background:var(--f2);border:1px solid var(--l);color:var(--t);cursor:pointer;font:inherit;
+  font-size:.86rem;padding:.55rem 0;border-radius:9px;width:5.1rem;font-variant-numeric:tabular-nums;}
+.ag-horas button:hover:not([disabled]){border-color:var(--verde);}
+.ag-horas button[disabled]{color:var(--t3);cursor:not-allowed;text-decoration:line-through;opacity:.55;}
+.ag-horas button[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#0d1411;font-weight:600;}
+.ag-pie{border-top:1px solid var(--l);padding-top:1.5rem;display:grid;gap:1rem;}
+@media(min-width:760px){.ag-pie{grid-template-columns:1fr auto;align-items:center;gap:2rem;}}
+.ag-resumen{font-size:.95rem;color:var(--t2);margin:0;}
+.ag-resumen b{color:var(--t);}
+.ag-hecho{color:var(--verde);font-weight:600;}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -334,8 +378,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
       <a href="#/clinica"      data-t="nClinica">La clínica</a>
       <a href="#/precios"      data-t="nPrecios">Precios</a>
-      <a href="#/contacto"     data-t="nContacto">Contacto</a>
     </nav>
+    <a class="cita-btn" href="#/contacto" data-ir="ap-agenda" data-t="bPedirCita">Pedir cita</a>
     <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -359,6 +403,28 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     </div>
     <img class="foto" src="img/ejercicio.jpg" width="1400" height="933"
          data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
+  </div>
+  <div class="marco" id="ap-agenda">
+    <div class="agenda">
+      <div class="ag-cab">
+        <div>
+          <p class="eti" data-t="agEti">Agenda</p>
+          <h2 class="ag-h" data-t="agH">Elige hueco tú mismo y te lo confirmamos por teléfono.</h2>
+        </div>
+        <p class="ag-nota" data-t="agNota">Huecos reales de una semana tipo. Guardamos dos al día para casos agudos, por eso los verás ocupados a primera hora.</p>
+      </div>
+
+      <p class="ag-paso"><b>1</b><span data-t="agPaso1">¿Qué te duele?</span></p>
+      <div class="ag-zonas" id="agZonas" role="group" data-t-attr="aria-label:agPaso1"></div>
+
+      <p class="ag-paso"><b>2</b><span data-t="agPaso2">¿Qué día te viene bien?</span></p>
+      <div class="ag-dias" id="agDias" role="group" data-t-attr="aria-label:agPaso2"></div>
+
+      <p class="ag-paso"><b>3</b><span data-t="agPaso3">Elige la hora</span></p>
+      <div class="ag-horas" id="agHoras" role="group" data-t-attr="aria-label:agPaso3"></div>
+
+      <div class="ag-pie" id="agPie"></div>
+    </div>
   </div>
   <div class="marco bl raya">
     <p class="eti" data-t="iCifrasEti">Cómo trabajamos</p>
@@ -719,7 +785,17 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", iPorQueEti:"Tres cosas que hacemos distinto", iNoEti:"Lo que no vas a encontrar aquí",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", agEti:"Agenda", agH:"Elige hueco tú mismo y te lo confirmamos por teléfono.",
+ agNota:"Huecos reales de una semana tipo. Guardamos dos al día para casos agudos, por eso los verás ocupados a primera hora.",
+ agPaso1:"¿Qué te duele?", agPaso2:"¿Qué día te viene bien?", agPaso3:"Elige la hora",
+ agZonas:["Rodilla","Hombro","Espalda o cuello","Tobillo o pie","Cadera o isquios","Otra cosa"],
+ agLibres:"{n} libres",
+ agFaltaZona:"Empieza por decirnos qué zona te está dando guerra.",
+ agFaltaHora:"Elige una hora y te preparamos la primera valoración.",
+ agResumen:"Primera valoración de {z}, el {d} a las {h}. Una hora, tratamiento incluido.",
+ agConfirmar:"Reservar este hueco",
+ agHecho:"Hueco reservado. Te llamamos hoy entre las 13:00 y las 15:00 para confirmarlo. (Sitio de demostración: no se guarda nada.)",
+ iPorQueEti:"Tres cosas que hacemos distinto", iNoEti:"Lo que no vas a encontrar aquí",
  iNoNota:"No decimos que todo esto esté mal en cualquier contexto. Decimos que como tratamiento principal no funciona, y que quien te lo vende como tal te está cobrando por que te sientas atendido.",
  ctaIniH:"Si llevas semanas parado sin saber por qué, empieza por la valoración.",
  ctaIniP:"Una hora, con tratamiento incluido, y sales con un plan escrito y un número de sesiones estimado.",
@@ -1067,7 +1143,17 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", iPorQueEti:"Three things we do differently", iNoEti:"What you will not find here",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", agEti:"Diary", agH:"Pick a slot yourself and we confirm it by phone.",
+ agNota:"Real slots from a typical week. We keep two a day for acute cases, which is why the early ones show as taken.",
+ agPaso1:"What hurts?", agPaso2:"Which day suits you?", agPaso3:"Pick a time",
+ agZonas:["Knee","Shoulder","Back or neck","Ankle or foot","Hip or hamstring","Something else"],
+ agLibres:"{n} free",
+ agFaltaZona:"Start by telling us which area is giving you trouble.",
+ agFaltaHora:"Pick a time and we will set up the first assessment.",
+ agResumen:"First assessment for {z}, on {d} at {h}. One hour, treatment included.",
+ agConfirmar:"Hold this slot",
+ agHecho:"Slot held. We call you today between 13:00 and 15:00 to confirm. (Demonstration site: nothing is saved.)",
+ iPorQueEti:"Three things we do differently", iNoEti:"What you will not find here",
  iNoNota:"We are not saying all of this is wrong in every context. We are saying it does not work as the main treatment, and that anyone selling it to you as such is charging you for feeling looked after.",
  ctaIniH:"If you have been out for weeks without knowing why, start with the assessment.",
  ctaIniP:"One hour, treatment included, and you leave with a written plan and an estimated number of sessions.",
@@ -1415,7 +1501,17 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", iPorQueEti:"ثلاثة أمور نفعلها على نحو مختلف", iNoEti:"ما لن تجده هنا",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", agEti:"المواعيد", agH:"اختر الموعد بنفسك ونؤكّده لك هاتفيًّا.",
+ agNota:"مواعيد حقيقية من أسبوع اعتيادي. ونحتفظ باثنين يوميًّا للحالات الحادّة، ولذلك تراها محجوزة في أول النهار.",
+ agPaso1:"ما الذي يؤلمك؟", agPaso2:"أي يوم يناسبك؟", agPaso3:"اختر الساعة",
+ agZonas:["الركبة","الكتف","الظهر أو الرقبة","الكاحل أو القدم","الورك أو أوتار الركبة","شيء آخر"],
+ agLibres:"{n} متاحة",
+ agFaltaZona:"ابدأ بإخبارنا أي منطقة تُتعبك.",
+ agFaltaHora:"اختر ساعةً ونُهيّئ لك التقييم الأول.",
+ agResumen:"تقييم أول لـ{z}، يوم {d} الساعة {h}. ساعة واحدة، والعلاج مشمول.",
+ agConfirmar:"احجز هذا الموعد",
+ agHecho:"حُجز الموعد. نتصل بك اليوم بين الواحدة والثالثة لتأكيده. (موقع للعرض: لا يُحفظ شيء.)",
+ iPorQueEti:"ثلاثة أمور نفعلها على نحو مختلف", iNoEti:"ما لن تجده هنا",
  iNoNota:"لا نقول إن هذا كله خطأ في كل سياق. بل نقول إنه لا ينفع علاجًا رئيسًا، وإن من يبيعك إياه على أنه كذلك إنما يتقاضى منك ثمن شعورك بأنك مُعتنى بك.",
  ctaIniH:"إن كنت متوقفًا منذ أسابيع دون أن تعرف السبب، فابدأ بالتقييم.",
  ctaIniP:"ساعة واحدة، والعلاج مشمول، وتخرج بخطة مكتوبة وعدد جلسات مُقدَّر.",
@@ -2214,6 +2310,7 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
+  pintarAgenda();
   pon("iPorQue", t.iPorQue, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
@@ -2253,6 +2350,89 @@ function pintarListas(){
 }
 
 function ruta(){ var r=(location.hash||"").replace(/^#\/?/,""); return RUTAS.indexOf(r)>=0?r:"inicio"; }
+
+/* ── Agenda ────────────────────────────────────────────────────────
+   Los huecos ocupados no son aleatorios en cada carga: se derivan del día
+   y de la hora, así que el mismo hueco sale ocupado siempre. Si cambiaran
+   al recargar, se notaría que es de mentira. */
+var HORAS_SEM = ["07:30","08:15","09:00","09:45","10:30","11:15","12:00",
+                 "16:00","16:45","17:30","18:15","19:00","19:45","20:30"];
+var HORAS_SAB = ["09:00","09:45","10:30","11:15","12:00","12:45","13:30"];
+var agZona = -1, agDia = 0, agHora = -1, agHecho = false;
+
+function agDiasDisponibles(){
+  var hoy = new Date(), lista = [], d = new Date(hoy);
+  d.setDate(d.getDate() + 1);                  /* nunca damos cita para hoy */
+  while (lista.length < 6){
+    if (d.getDay() !== 0) lista.push(new Date(d));   /* domingo cerrado */
+    d.setDate(d.getDate() + 1);
+  }
+  return lista;
+}
+function agOcupado(fecha, i){
+  var semilla = fecha.getDate() * 31 + fecha.getMonth() * 7 + i * 13;
+  /* Las dos primeras horas del día quedan reservadas para casos agudos */
+  if (i < 2) return true;
+  return (semilla * 2654435761 % 100) / 100 < 0.45;
+}
+function agLibres(fecha){
+  var h = fecha.getDay() === 6 ? HORAS_SAB : HORAS_SEM, n = 0;
+  for (var i = 0; i < h.length; i++) if (!agOcupado(fecha, i)) n++;
+  return n;
+}
+
+function pintarAgenda(){
+  var cz = document.getElementById("agZonas");
+  if (!cz) return;
+  var t = T[idioma], dias = agDiasDisponibles();
+
+  cz.innerHTML = t.agZonas.map(function(z,i){
+    return '<button type="button" data-z="'+i+'" aria-pressed="'+(i===agZona)+'">'+esc(z)+'</button>'; }).join("");
+  Array.prototype.forEach.call(cz.querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){ agZona = +this.dataset.z; agHecho = false; pintarAgenda(); }); });
+
+  var cd = document.getElementById("agDias");
+  cd.innerHTML = dias.map(function(f,i){
+    var libres = agLibres(f);
+    return '<button type="button" data-d="'+i+'" aria-pressed="'+(i===agDia)+'">'
+      + '<span>'+esc(f.toLocaleDateString(t._loc,{weekday:"short"}))+'</span>'
+      + '<b>'+num(f.getDate())+'</b>'
+      + '<i>'+esc(t.agLibres.replace("{n}", num(libres)))+'</i></button>'; }).join("");
+  Array.prototype.forEach.call(cd.querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){ agDia = +this.dataset.d; agHora = -1; agHecho = false; pintarAgenda(); }); });
+
+  var f = dias[agDia], horas = f.getDay() === 6 ? HORAS_SAB : HORAS_SEM;
+  var ch = document.getElementById("agHoras");
+  ch.innerHTML = horas.map(function(h,i){
+    var ocu = agOcupado(f, i);
+    return '<button type="button" data-h="'+i+'"'+(ocu ? " disabled" : "")
+      + ' aria-pressed="'+(i===agHora)+'">'+esc(h)+'</button>'; }).join("");
+  Array.prototype.forEach.call(ch.querySelectorAll("button:not([disabled])"), function(b){
+    b.addEventListener("click", function(){ agHora = +this.dataset.h; agHecho = false; pintarAgenda(); }); });
+
+  var pie = document.getElementById("agPie");
+  if (agHecho){
+    pie.innerHTML = '<p class="ag-resumen ag-hecho">'+esc(t.agHecho)+'</p>';
+    return;
+  }
+  var falta = agZona < 0 ? t.agFaltaZona : agHora < 0 ? t.agFaltaHora : null;
+  if (falta){
+    pie.innerHTML = '<p class="ag-resumen">'+esc(falta)+'</p>';
+    return;
+  }
+  var cuando = f.toLocaleDateString(t._loc, {weekday:"long", day:"numeric", month:"long"});
+  pie.innerHTML = '<p class="ag-resumen">'
+    + esc(t.agResumen).replace("{z}", '<b>'+esc(t.agZonas[agZona])+'</b>')
+                      .replace("{d}", '<b>'+esc(cuando)+'</b>')
+                      .replace("{h}", '<b>'+esc(horas[agHora])+'</b>') + '</p>'
+    + '<button class="btn sol" type="button" id="agConfirmar">'+esc(t.agConfirmar)+'</button>';
+  document.getElementById("agConfirmar").addEventListener("click", function(){
+    agHecho = true; pintarAgenda();
+    /* Deja el formulario relleno: quien confirma no debería repetir los datos */
+    var sel = document.getElementById("zon");
+    if (sel && sel.options[agZona + 1]) sel.selectedIndex = agZona + 1;
+  });
+}
 
 function aplicar(codigo){
   if (!T[codigo]) codigo = "es";

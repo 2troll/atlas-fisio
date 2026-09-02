@@ -289,6 +289,67 @@ html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-size:1r
 .despues b{display:block;font-weight:600;font-size:.98rem;margin-bottom:.2rem;}
 .despues span{font-size:.9rem;color:var(--t2);}
 
+.pie-cta{display:grid;gap:1.5rem;padding-block:clamp(2.2rem,4.5vw,3.4rem);
+  border-bottom:1px solid var(--l);}
+@media(min-width:820px){.pie-cta{grid-template-columns:1.4fr auto;gap:3rem;align-items:center;}}
+.pie-cta h2{font-size:clamp(1.5rem,3vw,2.2rem);max-width:20ch;margin-bottom:.6rem;}
+.pie-cta p{color:var(--t2);font-size:.94rem;margin:0;max-width:52ch;}
+.pie-cta-acc{display:flex;flex-wrap:wrap;gap:.7rem;}
+.pie-rej{display:grid;gap:2rem;padding-block:clamp(2rem,4vw,3rem);}
+@media(min-width:820px){.pie-rej{grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;}}
+.pie-logo{font-size:1.15rem;font-weight:700;display:block;margin-bottom:.9rem;}
+.pie-marca p{font-size:.88rem;color:var(--t2);max-width:36ch;}
+.pie-dir{font-size:.8rem !important;color:var(--t3) !important;}
+.pie-t{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin:0 0 1rem;}
+html[dir="rtl"] .pie-t{letter-spacing:0;text-transform:none;font-size:.85rem;}
+.pie-col nav{display:grid;gap:.55rem;}
+.pie-col a{color:var(--t2);text-decoration:none;font-size:.88rem;}
+.pie-col a:hover{color:var(--verde);}
+.pie-fin{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
+  padding-block:1.2rem;border-top:1px solid var(--l);font-size:.76rem;color:var(--t3);}
+
+/* ── Barra superior: en una clínica lo primero es el teléfono y saber
+   cuándo NO hay que pedir cita sino ir a urgencias. ───────────────── */
+.sup-bar{background:var(--f2);border-bottom:1px solid var(--l);font-size:.76rem;}
+html[dir="rtl"] .sup-bar{font-size:.88rem;}
+.sup-m{display:flex;align-items:center;gap:.4rem 1.4rem;flex-wrap:wrap;padding-block:.5rem;}
+.sup-tel{color:var(--verde);text-decoration:none;font-weight:600;}
+.sup-h{color:var(--t3);}
+.sup-urg{color:var(--t3);margin-inline-start:auto;}
+.sup-urg::before{content:"▲";color:var(--senal);margin-inline-end:.4rem;font-size:.7em;}
+@media(max-width:780px){.sup-urg{margin-inline-start:0}}
+
+/* ── Portada: foto grande y texto encima, no dos columnas ─────────── */
+.port{position:relative;overflow:hidden;background:var(--f2);}
+.port-m{display:grid;gap:2rem;align-items:center;padding-block:clamp(2.5rem,6vw,4.5rem);}
+@media(min-width:940px){.port-m{grid-template-columns:1.05fr .95fr;gap:3.5rem;}}
+.port-txt h1{font-size:clamp(2.1rem,5vw,3.7rem);max-width:15ch;}
+.port-foto{width:100%;height:auto;display:block;border-radius:24px;min-width:0;
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.5);}
+
+/* ── Baldosas por dolencia: es como entra la gente en una web de salud,
+   no por el nombre de los tratamientos. ──────────────────────────── */
+.baldosas-bl{padding-block:clamp(2.5rem,5vw,4rem);}
+.baldosas-h{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:.6rem;}
+.baldosas-p{color:var(--t2);max-width:52ch;margin-bottom:2rem;}
+.baldosas{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+.bald{display:flex;flex-direction:column;gap:.5rem;text-decoration:none;color:inherit;
+  background:var(--sup);border:1px solid var(--l);border-radius:18px;padding:1.4rem;
+  transition:border-color .2s ease,transform .2s ease;}
+.bald:hover{border-color:var(--verde);transform:translateY(-2px);}
+.bald svg{width:26px;height:26px;color:var(--verde);}
+.bald b{font-size:1.02rem;font-weight:600;}
+.bald span{font-size:.82rem;color:var(--t3);}
+.bald i{font-style:normal;font-size:.76rem;color:var(--verde);margin-top:auto;padding-top:.6rem;}
+
+/* ── Barra de confianza con las cifras que se pueden comprobar ─────── */
+.confianza{background:var(--verde);color:#0d1411;}
+.conf-m{display:grid;gap:1.5rem;padding-block:clamp(1.6rem,3vw,2.4rem);
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));}
+.conf-m div{display:flex;flex-direction:column;gap:.2rem;}
+.conf-m b{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1;font-weight:700;}
+.conf-m span{font-size:.82rem;color:rgba(13,20,17,.72);}
+
 /* ── Agenda: el sitio se organiza alrededor de la cita, no del folleto ── */
 .cita-btn{display:inline-block;text-decoration:none;background:var(--verde);color:#0d1411;
   font-size:.82rem;font-weight:600;padding:.5rem 1.1rem;border-radius:999px;flex-shrink:0;}
@@ -383,6 +444,14 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 </head>
 <body>
 
+<div class="sup-bar">
+  <div class="marco sup-m">
+    <a class="sup-tel" href="tel:+34910000000" dir="ltr">+34 910 000 000</a>
+    <span class="sup-h" data-t="supHorario">L–V 7:30–21:00 · S 9:00–14:00</span>
+    <span class="sup-urg" data-t="supUrgencias">¿Golpe fuerte o pérdida de fuerza? Ve a urgencias primero.</span>
+  </div>
+</div>
+
 <header class="a">
   <div class="marco barra">
     <a class="logo" href="#/inicio">
@@ -410,18 +479,29 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <main>
 
 <section data-ruta="inicio" id="ap-inicio">
-  <div class="marco hero">
-    <div>
-      <p class="eti" data-t="iEti">Fisioterapia y readaptación deportiva</p>
-      <h1 data-t="iH1">Volver a entrenar por criterio, no por calendario.</h1>
-      <p class="entrada" data-t="iEntrada">El alta no llega cuando se cumplen las semanas, sino cuando la rodilla aguanta lo que le vas a pedir. Aquí eso se mide antes de decírtelo.</p>
-      <div class="acc">
-        <a class="btn sol" href="#/contacto" data-t="bCita">Pedir cita</a>
-        <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
+  <div class="port">
+    <div class="marco port-m">
+      <div class="port-txt">
+        <h1 data-t="iH1">Volver a entrenar por criterio, no por calendario.</h1>
+        <p class="entrada" data-t="iEntrada">El alta no llega cuando se cumplen las semanas, sino cuando la rodilla aguanta lo que le vas a pedir. Aquí eso se mide antes de decírtelo.</p>
+        <div class="acc">
+          <a class="btn sol" href="#/contacto" data-ir="ap-agenda2" data-t="bCita">Pedir cita</a>
+          <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
+        </div>
       </div>
+      <img class="port-foto" src="img/ejercicio.jpg" width="1400" height="933"
+           data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
     </div>
-    <img class="foto" src="img/ejercicio.jpg" width="1400" height="933"
-         data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
+  </div>
+
+  <div class="marco baldosas-bl">
+    <h2 class="baldosas-h" data-t="baldosasH">¿Por dónde te empiezo a mirar?</h2>
+    <p class="baldosas-p" data-t="baldosasP">Elige la zona y te llevamos directo a lo que hacemos con ella, con plazos y criterios de alta.</p>
+    <div class="baldosas" id="iBaldosas"></div>
+  </div>
+
+  <div class="confianza">
+    <div class="marco conf-m" id="iConfianza"></div>
   </div>
   <div class="marco agenda-hueco" id="ap-agenda"></div>
   <div class="marco bl raya">
@@ -767,24 +847,50 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 </main>
 
 <footer class="a">
-  <div class="marco pie">
-    <span data-t="marca">ATLAS</span>
-    <nav data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
-      <a href="#/inicio"       data-t="nInicio">Inicio</a>
-      <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
-      <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
-      <a href="#/clinica"      data-t="nClinica">La clínica</a>
-      <a href="#/precios"      data-t="nPrecios">Precios</a>
-      <a href="#/contacto"     data-t="nContacto">Contacto</a>
-    </nav>
-    <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
+  <div class="marco pie-cta">
+    <div>
+      <h2 data-t="pieCtaH">El primer paso es una hora, no un compromiso.</h2>
+      <p data-t="pieCtaP">La valoración incluye tratamiento y sales con un plan escrito. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.</p>
+    </div>
+    <div class="pie-cta-acc">
+      <a class="btn sol" href="#/contacto" data-ir="ap-agenda2" data-t="bPedirCita">Pedir cita</a>
+      <a class="btn" href="tel:+34910000000" dir="ltr">+34 910 000 000</a>
+    </div>
+  </div>
+  <div class="marco pie-rej">
+    <div class="pie-marca">
+      <span class="pie-logo" data-t="marca">ATLAS</span>
+      <p data-t="pieQue">Fisioterapia y readaptación deportiva. Una hora por paciente, más sala que camilla y alta por criterios medibles.</p>
+      <p class="pie-dir" data-t="pieDir">Avenida del Parque 118, bajo · 28045 Madrid</p>
+    </div>
+    <div class="pie-col"><p class="pie-t" data-t="pieZonas">Por dolencia</p><nav id="pieZonas"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="nTratamientos">Tratamientos</p><nav id="pieTrat"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="pieCentro">El centro</p><nav id="pieCentro"></nav></div>
+  </div>
+  <div class="marco pie-fin">
+    <span data-t="pieAviso">Maqueta de demostración</span>
+    <span class="ltr">© 2026 ATLAS</span>
   </div>
 </footer>
 
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", proxHueco:"Primer hueco", sinHueco:"Sin huecos esta semana",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", pieCtaH:"El primer paso es una hora, no un compromiso.",
+ pieCtaP:"La valoración incluye tratamiento y sales con un plan escrito. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.",
+ pieQue:"Fisioterapia y readaptación deportiva. Una hora por paciente, más sala que camilla y alta por criterios medibles.",
+ pieDir:"Avenida del Parque 118, bajo · 28045 Madrid", pieZonas:"Por dolencia", pieCentro:"El centro",
+ baldosasH:"¿Por dónde te empiezo a mirar?",
+ baldosasP:"Elige la zona y te llevamos directo a lo que hacemos con ella, con plazos y criterios de alta.",
+ baldosasIr:"Ver plazos y criterios →",
+ baldosasD:["Ligamento, menisco, femoropatelar","Manguito, impingement, inestabilidad",
+            "Lumbalgia, cervicalgia, dolor persistente","Esguince, fascitis, tendón de aquiles",
+            "Isquiosurales, pubalgia, glúteo","Cuéntanos y te orientamos"],
+ supHorario:"L–V 7:30–21:00 · S 9:00–14:00",
+ supUrgencias:"¿Golpe fuerte o pérdida de fuerza? Ve a urgencias primero.",
+ confianza:[{v:"1.240",u:"altas dadas desde 2019"},{v:"4,8/5",u:"valoración media, 312 opiniones"},
+            {v:"< 1 sem",u:"espera media para primera cita"},{v:"0 €",u:"si te derivamos a otro sitio"}],
+ proxHueco:"Primer hueco", sinHueco:"Sin huecos esta semana",
  agEti:"Agenda", agH:"Elige hueco tú mismo y te lo confirmamos por teléfono.",
  agNota:"Huecos reales de una semana tipo. Guardamos dos al día para casos agudos, por eso los verás ocupados a primera hora.",
  agPaso1:"¿Qué te duele?", agPaso2:"¿Qué día te viene bien?", agPaso3:"Elige la hora",
@@ -1143,7 +1249,21 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", proxHueco:"Next slot", sinHueco:"No slots this week",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", pieCtaH:"The first step is an hour, not a commitment.",
+ pieCtaP:"The assessment includes treatment and you leave with a written plan. If we are not what you need, we say so there and refer you on.",
+ pieQue:"Physiotherapy and sports rehabilitation. An hour per patient, more gym than couch, and discharge on measurable criteria.",
+ pieDir:"Avenida del Parque 118, ground floor · 28045 Madrid", pieZonas:"By area", pieCentro:"The clinic",
+ baldosasH:"Where should we start looking?",
+ baldosasP:"Pick the area and we take you straight to what we do with it, with timeframes and discharge criteria.",
+ baldosasIr:"See timeframes and criteria →",
+ baldosasD:["Ligament, meniscus, patellofemoral","Rotator cuff, impingement, instability",
+            "Low back, neck, persistent pain","Sprain, fasciitis, achilles tendon",
+            "Hamstrings, groin pain, glute","Tell us and we point you"],
+ supHorario:"Mon–Fri 7:30–21:00 · Sat 9:00–14:00",
+ supUrgencias:"Heavy blow or loss of strength? Go to A&E first.",
+ confianza:[{v:"1,240",u:"patients discharged since 2019"},{v:"4.8/5",u:"average rating, 312 reviews"},
+            {v:"< 1 wk",u:"average wait for a first appointment"},{v:"€0",u:"if we refer you elsewhere"}],
+ proxHueco:"Next slot", sinHueco:"No slots this week",
  agEti:"Diary", agH:"Pick a slot yourself and we confirm it by phone.",
  agNota:"Real slots from a typical week. We keep two a day for acute cases, which is why the early ones show as taken.",
  agPaso1:"What hurts?", agPaso2:"Which day suits you?", agPaso3:"Pick a time",
@@ -1502,7 +1622,21 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", proxHueco:"أول موعد", sinHueco:"لا مواعيد هذا الأسبوع",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", pieCtaH:"الخطوة الأولى ساعة، لا التزام.",
+ pieCtaP:"التقييم يشمل العلاج وتخرج بخطة مكتوبة. وإن لم نكن ما تحتاجه قلنا لك ذلك هناك وأحلناك.",
+ pieQue:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض، وقاعة أكثر من سرير، وخروج بمعايير قابلة للقياس.",
+ pieDir:"جادة الحديقة ١١٨، الطابق الأرضي · ٢٨٠٤٥ مدريد", pieZonas:"حسب المنطقة", pieCentro:"المركز",
+ baldosasH:"من أين نبدأ الفحص؟",
+ baldosasP:"اختر المنطقة ونأخذك مباشرةً إلى ما نفعله بها، بمُددها ومعايير الخروج.",
+ baldosasIr:"انظر المُدد والمعايير ←",
+ baldosasD:["رباط، غضروف هلالي، فخذي رضفي","الكفّة المدوّرة، انحشار، عدم ثبات",
+            "أسفل الظهر، الرقبة، ألم مزمن","التواء، التهاب لفافة، وتر أخيل",
+            "أوتار الركبة، ألم العانة، الأليَة","أخبرنا ونوجّهك"],
+ supHorario:"الاثنين–الجمعة ٧:٣٠–٢١:٠٠ · السبت ٩:٠٠–١٤:٠٠",
+ supUrgencias:"ضربة قوية أو فقدان قوة؟ اذهب إلى الطوارئ أولًا.",
+ confianza:[{v:"١٢٤٠",u:"حالة خرجت منذ ٢٠١٩"},{v:"٤٫٨/٥",u:"متوسط التقييم، ٣١٢ رأيًا"},
+            {v:"< أسبوع",u:"متوسط الانتظار لأول موعد"},{v:"٠ €",u:"إن أحلناك إلى مكان آخر"}],
+ proxHueco:"أول موعد", sinHueco:"لا مواعيد هذا الأسبوع",
  agEti:"المواعيد", agH:"اختر الموعد بنفسك ونؤكّده لك هاتفيًّا.",
  agNota:"مواعيد حقيقية من أسبوع اعتيادي. ونحتفظ باثنين يوميًّا للحالات الحادّة، ولذلك تراها محجوزة في أول النهار.",
  agPaso1:"ما الذي يؤلمك؟", agPaso2:"أي يوم يناسبك؟", agPaso3:"اختر الساعة",
@@ -2312,7 +2446,7 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
-  pintarAgenda();
+  pintarAgenda(); pintarBaldosas(); pintarPieClinica();
   pon("iPorQue", t.iPorQue, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
@@ -2409,6 +2543,52 @@ function agLibres(fecha){
   var h = fecha.getDay() === 6 ? HORAS_SAB : HORAS_SEM, n = 0;
   for (var i = 0; i < h.length; i++) if (!agOcupado(fecha, i)) n++;
   return n;
+}
+
+/* Cada baldosa abre la agenda con esa zona ya elegida: entrar por la
+   dolencia y salir con hora es el camino corto de una web de clínica. */
+var ICONOS = [
+  '<path d="M12 3v7m0 0-3.5 3.5M12 10l3.5 3.5M8.5 13.5V21M15.5 13.5V21"/>',
+  '<path d="M6 8a3 3 0 0 1 6 0v5m0-5a3 3 0 0 1 6 0v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6Z"/>',
+  '<path d="M12 3v18M9 6h6M8 11h8M9 16h6"/>',
+  '<path d="M8 3v9l-3 5a3 3 0 0 0 3 4h8a3 3 0 0 0 3-4l-3-5V3"/>',
+  '<path d="M7 4h10l-1.5 6H8.5ZM8.5 10 7 21M15.5 10 17 21"/>',
+  '<circle cx="12" cy="12" r="8"/><path d="M12 8v5M12 16h.01"/>'
+];
+
+function pintarPieClinica(){
+  var t = T[idioma];
+  var z = document.getElementById("pieZonas");
+  if (z) z.innerHTML = t.agZonas.slice(0,5).map(function(n,i){
+    return '<a href="#/tratamientos" data-ir="ap-lesiones" data-z="'+i+'">'+esc(n)+'</a>'; }).join("");
+  var tr = document.getElementById("pieTrat");
+  if (tr) tr.innerHTML = t.trDetalle.map(function(x){
+    return '<a href="#/tratamientos" data-ir="ap-tratamientos">'+esc(x.i)+'</a>'; }).join("");
+  var c = document.getElementById("pieCentro");
+  if (c) c.innerHTML = [["clinica","ap-equipo","nEquipo"],["clinica","ap-instalaciones","nInstalaciones"],
+                        ["precios","ap-precios","nPrecios"],["precios","ap-preguntas","nPreguntas"],
+                        ["contacto","ap-agenda2","nContacto"]].map(function(x){
+    return '<a href="#/'+x[0]+'" data-ir="'+x[1]+'">'+esc(t[x[2]])+'</a>'; }).join("");
+}
+
+function pintarBaldosas(){
+  var caja = document.getElementById("iBaldosas");
+  if (!caja) return;
+  var t = T[idioma];
+  caja.innerHTML = t.agZonas.map(function(z,i){
+    return '<a class="bald" href="#/tratamientos" data-ir="ap-lesiones" data-z="'+i+'">'
+      + '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" '
+      + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICONOS[i]+'</svg>'
+      + '<b>'+esc(z)+'</b><span>'+esc(t.baldosasD[i])+'</span>'
+      + '<i>'+esc(t.baldosasIr)+'</i></a>';
+  }).join("");
+  Array.prototype.forEach.call(caja.querySelectorAll(".bald"), function(a){
+    a.addEventListener("click", function(){ agZona = +this.dataset.z; agHecho = false; pintarAgenda(); });
+  });
+
+  var cf = document.getElementById("iConfianza");
+  if (cf) cf.innerHTML = t.confianza.map(function(c){
+    return '<div><b>'+esc(c.v)+'</b><span>'+esc(c.u)+'</span></div>'; }).join("");
 }
 
 function pintarAgenda(){

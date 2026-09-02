@@ -329,6 +329,25 @@ html[dir="rtl"] .ag-dias button span{letter-spacing:0;text-transform:none;font-s
 .ag-resumen b{color:var(--t);}
 .ag-hecho{color:var(--verde);font-weight:600;}
 
+.profs{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));}
+.prof{background:var(--sup);border:1px solid var(--l);border-radius:16px;padding:1.4rem;
+  display:flex;flex-direction:column;}
+.prof-cab{display:flex;gap:.9rem;align-items:center;margin-bottom:.9rem;}
+.prof-ini{width:2.6rem;height:2.6rem;border-radius:999px;display:grid;place-items:center;
+  color:#0d1411;font-weight:700;font-size:.86rem;letter-spacing:.04em;flex-shrink:0;}
+html[dir="rtl"] .prof-ini{letter-spacing:0;}
+.prof-cab h3{font-size:1rem;margin:0;}
+.prof-e{font-size:.8rem;color:var(--verde);margin:.15rem 0 0;}
+.prof-d{font-size:.88rem;color:var(--t2);margin-bottom:1rem;flex:1;}
+.prof-zonas{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem;}
+.prof-zonas span{border:1px solid var(--l);border-radius:999px;padding:.2rem .65rem;
+  font-size:.72rem;color:var(--t3);}
+.prof-pie{border-top:1px solid var(--l);padding-top:.9rem;display:flex;
+  justify-content:space-between;align-items:baseline;gap:.6rem;}
+.prof-lib{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);}
+html[dir="rtl"] .prof-lib{letter-spacing:0;text-transform:none;font-size:.85rem;}
+.prof-pie b{font-size:.86rem;color:var(--t);text-align:end;}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -379,7 +398,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       <a href="#/clinica"      data-t="nClinica">La clínica</a>
       <a href="#/precios"      data-t="nPrecios">Precios</a>
     </nav>
-    <a class="cita-btn" href="#/contacto" data-ir="ap-agenda" data-t="bPedirCita">Pedir cita</a>
+    <a class="cita-btn" href="#/contacto" data-ir="ap-agenda2" data-t="bPedirCita">Pedir cita</a>
     <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -404,28 +423,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <img class="foto" src="img/ejercicio.jpg" width="1400" height="933"
          data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
   </div>
-  <div class="marco" id="ap-agenda">
-    <div class="agenda">
-      <div class="ag-cab">
-        <div>
-          <p class="eti" data-t="agEti">Agenda</p>
-          <h2 class="ag-h" data-t="agH">Elige hueco tú mismo y te lo confirmamos por teléfono.</h2>
-        </div>
-        <p class="ag-nota" data-t="agNota">Huecos reales de una semana tipo. Guardamos dos al día para casos agudos, por eso los verás ocupados a primera hora.</p>
-      </div>
-
-      <p class="ag-paso"><b>1</b><span data-t="agPaso1">¿Qué te duele?</span></p>
-      <div class="ag-zonas" id="agZonas" role="group" data-t-attr="aria-label:agPaso1"></div>
-
-      <p class="ag-paso"><b>2</b><span data-t="agPaso2">¿Qué día te viene bien?</span></p>
-      <div class="ag-dias" id="agDias" role="group" data-t-attr="aria-label:agPaso2"></div>
-
-      <p class="ag-paso"><b>3</b><span data-t="agPaso3">Elige la hora</span></p>
-      <div class="ag-horas" id="agHoras" role="group" data-t-attr="aria-label:agPaso3"></div>
-
-      <div class="ag-pie" id="agPie"></div>
-    </div>
-  </div>
+  <div class="marco agenda-hueco" id="ap-agenda"></div>
   <div class="marco bl raya">
     <p class="eti" data-t="iCifrasEti">Cómo trabajamos</p>
     <div class="rej r4" id="iCifras"></div>
@@ -615,7 +613,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <p class="entrada" data-t="eqEntrada">No rotamos pacientes entre fisioterapeutas. Quien te valora el primer día es quien te da el alta.</p>
   </div>
   <div class="marco"><nav class="indice-pag" id="ix-clinica" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
-  <div class="marco"><div class="rej r4" id="eqLista"></div></div>
+  <div class="marco"><div class="profs" id="eqLista"></div></div>
   <div class="marco bl">
     <p class="eti" data-t="eqComoEti">Cómo trabajamos entre nosotros</p>
     <div id="eqComo" style="max-width:64ch;margin-top:1rem"></div>
@@ -694,6 +692,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Cuéntanos qué te pasa y desde cuándo.</h1>
     <p class="entrada" data-t="coEntrada">Con eso ya podemos decirte si la primera cita corre prisa o puede esperar a la semana que viene.</p>
   </div>
+  <div class="marco agenda-hueco" id="ap-agenda2"></div>
   <div class="marco cont-rej" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
     <div>
     <form id="f" novalidate>
@@ -785,7 +784,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", agEti:"Agenda", agH:"Elige hueco tú mismo y te lo confirmamos por teléfono.",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", proxHueco:"Primer hueco", sinHueco:"Sin huecos esta semana",
+ agEti:"Agenda", agH:"Elige hueco tú mismo y te lo confirmamos por teléfono.",
  agNota:"Huecos reales de una semana tipo. Guardamos dos al día para casos agudos, por eso los verás ocupados a primera hora.",
  agPaso1:"¿Qué te duele?", agPaso2:"¿Qué día te viene bien?", agPaso3:"Elige la hora",
  agZonas:["Rodilla","Hombro","Espalda o cuello","Tobillo o pie","Cadera o isquios","Otra cosa"],
@@ -1143,7 +1143,8 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", agEti:"Diary", agH:"Pick a slot yourself and we confirm it by phone.",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", proxHueco:"Next slot", sinHueco:"No slots this week",
+ agEti:"Diary", agH:"Pick a slot yourself and we confirm it by phone.",
  agNota:"Real slots from a typical week. We keep two a day for acute cases, which is why the early ones show as taken.",
  agPaso1:"What hurts?", agPaso2:"Which day suits you?", agPaso3:"Pick a time",
  agZonas:["Knee","Shoulder","Back or neck","Ankle or foot","Hip or hamstring","Something else"],
@@ -1501,7 +1502,8 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", agEti:"المواعيد", agH:"اختر الموعد بنفسك ونؤكّده لك هاتفيًّا.",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", proxHueco:"أول موعد", sinHueco:"لا مواعيد هذا الأسبوع",
+ agEti:"المواعيد", agH:"اختر الموعد بنفسك ونؤكّده لك هاتفيًّا.",
  agNota:"مواعيد حقيقية من أسبوع اعتيادي. ونحتفظ باثنين يوميًّا للحالات الحادّة، ولذلك تراها محجوزة في أول النهار.",
  agPaso1:"ما الذي يؤلمك؟", agPaso2:"أي يوم يناسبك؟", agPaso3:"اختر الساعة",
  agZonas:["الركبة","الكتف","الظهر أو الرقبة","الكاحل أو القدم","الورك أو أوتار الركبة","شيء آخر"],
@@ -2336,7 +2338,26 @@ function pintarListas(){
   pon("iTrat", t.tratamientos.slice(0,3), function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
   pon("trLista", t.tratamientos, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
   pon("leLista", t.lesiones, function(x){ return '<div class="cel"><span class="sub">'+esc(x.z)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
-  pon("eqLista", t.equipo, function(x){ return '<div class="cel"><span class="sub">'+esc(x.e)+'</span><h3 style="font-size:1.05rem">'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
+  pon("eqLista", t.equipo, function(x, i){
+    var pr = PROF[i], dias = agDiasDisponibles(), f = null, hora = "", k;
+    /* Primer hueco libre de esta persona, contando su desfase de agenda */
+    for (k = pr.desfase; k < dias.length && !f; k++){
+      var hs = dias[k].getDay() === 6 ? HORAS_SAB : HORAS_SEM;
+      for (var j = 0; j < hs.length; j++)
+        if (!agOcupado(dias[k], j + pr.desfase)){ f = dias[k]; hora = hs[j]; break; }
+    }
+    var cuando = f
+      ? f.toLocaleDateString(t._loc, {weekday:"long", day:"numeric"}) + " · " + hora
+      : t.sinHueco;
+    return '<div class="prof">'
+      + '<div class="prof-cab"><span class="prof-ini" style="background:'+pr.color+'">'+esc(pr.ini)+'</span>'
+      +   '<div><h3>'+esc(x.n)+'</h3><p class="prof-e">'+esc(x.e)+'</p></div></div>'
+      + '<p class="prof-d">'+esc(x.d)+'</p>'
+      + '<div class="prof-zonas">'+pr.zonas.map(function(z){
+          return '<span>'+esc(t.agZonas[z])+'</span>'; }).join("")+'</div>'
+      + '<div class="prof-pie"><span class="prof-lib">'+esc(t.proxHueco)+'</span>'
+      +   '<b>'+esc(cuando)+'</b></div></div>';
+  });
   pon("inEspacios", t.espacios, function(x){ return '<div class="cel"><span class="sub">'+esc(x.m)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
   pon("inDatos", t.inDatos, function(x){ return '<div class="cel dato"><div class="v">'+esc(x.v)+'</div><div class="u">'+esc(x.u)+'</div></div>'; });
   pon("prPlanes", t.planes, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p><div class="precio">'+esc(x.p)+'</div></div>'; });
@@ -2355,6 +2376,15 @@ function ruta(){ var r=(location.hash||"").replace(/^#\/?/,""); return RUTAS.ind
    Los huecos ocupados no son aleatorios en cada carga: se derivan del día
    y de la hora, así que el mismo hueco sale ocupado siempre. Si cambiaran
    al recargar, se notaría que es de mentira. */
+/* Qué zona cubre cada persona y con cuántos días de espera. El desfase
+   hace que la agenda de cada uno sea distinta, como en una clínica real. */
+var PROF = [
+  {ini:"MR", zonas:[0,4],   desfase:0, color:"#20a086"},
+  {ini:"JC", zonas:[2],     desfase:2, color:"#3f88c4"},
+  {ini:"LT", zonas:[1],     desfase:1, color:"#9d6bbd"},
+  {ini:"DA", zonas:[0,3,5], desfase:3, color:"#c47f32"}
+];
+
 var HORAS_SEM = ["07:30","08:15","09:00","09:45","10:30","11:15","12:00",
                  "16:00","16:45","17:30","18:15","19:00","19:45","20:30"];
 var HORAS_SAB = ["09:00","09:45","10:30","11:15","12:00","12:45","13:30"];
@@ -2382,56 +2412,65 @@ function agLibres(fecha){
 }
 
 function pintarAgenda(){
-  var cz = document.getElementById("agZonas");
-  if (!cz) return;
+  var huecos = document.querySelectorAll(".agenda-hueco");
+  if (!huecos.length) return;
   var t = T[idioma], dias = agDiasDisponibles();
-
-  cz.innerHTML = t.agZonas.map(function(z,i){
-    return '<button type="button" data-z="'+i+'" aria-pressed="'+(i===agZona)+'">'+esc(z)+'</button>'; }).join("");
-  Array.prototype.forEach.call(cz.querySelectorAll("button"), function(b){
-    b.addEventListener("click", function(){ agZona = +this.dataset.z; agHecho = false; pintarAgenda(); }); });
-
-  var cd = document.getElementById("agDias");
-  cd.innerHTML = dias.map(function(f,i){
-    var libres = agLibres(f);
-    return '<button type="button" data-d="'+i+'" aria-pressed="'+(i===agDia)+'">'
-      + '<span>'+esc(f.toLocaleDateString(t._loc,{weekday:"short"}))+'</span>'
-      + '<b>'+num(f.getDate())+'</b>'
-      + '<i>'+esc(t.agLibres.replace("{n}", num(libres)))+'</i></button>'; }).join("");
-  Array.prototype.forEach.call(cd.querySelectorAll("button"), function(b){
-    b.addEventListener("click", function(){ agDia = +this.dataset.d; agHora = -1; agHecho = false; pintarAgenda(); }); });
-
   var f = dias[agDia], horas = f.getDay() === 6 ? HORAS_SAB : HORAS_SEM;
-  var ch = document.getElementById("agHoras");
-  ch.innerHTML = horas.map(function(h,i){
-    var ocu = agOcupado(f, i);
-    return '<button type="button" data-h="'+i+'"'+(ocu ? " disabled" : "")
-      + ' aria-pressed="'+(i===agHora)+'">'+esc(h)+'</button>'; }).join("");
-  Array.prototype.forEach.call(ch.querySelectorAll("button:not([disabled])"), function(b){
-    b.addEventListener("click", function(){ agHora = +this.dataset.h; agHecho = false; pintarAgenda(); }); });
 
-  var pie = document.getElementById("agPie");
-  if (agHecho){
-    pie.innerHTML = '<p class="ag-resumen ag-hecho">'+esc(t.agHecho)+'</p>';
-    return;
-  }
-  var falta = agZona < 0 ? t.agFaltaZona : agHora < 0 ? t.agFaltaHora : null;
-  if (falta){
-    pie.innerHTML = '<p class="ag-resumen">'+esc(falta)+'</p>';
-    return;
-  }
+  /* Mismo componente en la portada y en la página de cita. El estado es
+     compartido, así que elegir en uno deja el otro igual. */
+  Array.prototype.forEach.call(huecos, function(caja){
+    caja.innerHTML = '<div class="agenda">'
+      + '<div class="ag-cab"><div><p class="eti">'+esc(t.agEti)+'</p>'
+      +   '<h2 class="ag-h">'+esc(t.agH)+'</h2></div>'
+      +   '<p class="ag-nota">'+esc(t.agNota)+'</p></div>'
+      + '<p class="ag-paso"><b>1</b><span>'+esc(t.agPaso1)+'</span></p>'
+      + '<div class="ag-zonas" role="group" aria-label="'+esc(t.agPaso1)+'">'
+      +   t.agZonas.map(function(z,i){
+            return '<button type="button" data-z="'+i+'" aria-pressed="'+(i===agZona)+'">'+esc(z)+'</button>';
+          }).join("") + '</div>'
+      + '<p class="ag-paso"><b>2</b><span>'+esc(t.agPaso2)+'</span></p>'
+      + '<div class="ag-dias" role="group" aria-label="'+esc(t.agPaso2)+'">'
+      +   dias.map(function(d,i){
+            return '<button type="button" data-d="'+i+'" aria-pressed="'+(i===agDia)+'">'
+              + '<span>'+esc(d.toLocaleDateString(t._loc,{weekday:"short"}))+'</span>'
+              + '<b>'+num(d.getDate())+'</b>'
+              + '<i>'+esc(t.agLibres.replace("{n}", num(agLibres(d))))+'</i></button>';
+          }).join("") + '</div>'
+      + '<p class="ag-paso"><b>3</b><span>'+esc(t.agPaso3)+'</span></p>'
+      + '<div class="ag-horas" role="group" aria-label="'+esc(t.agPaso3)+'">'
+      +   horas.map(function(h,i){
+            return '<button type="button" data-h="'+i+'"'+(agOcupado(f,i) ? " disabled" : "")
+              + ' aria-pressed="'+(i===agHora)+'">'+esc(h)+'</button>';
+          }).join("") + '</div>'
+      + '<div class="ag-pie">'+piePie(t, f, horas)+'</div></div>';
+
+    caja.querySelectorAll("[data-z]").forEach(function(b){
+      b.addEventListener("click", function(){ agZona = +this.dataset.z; agHecho = false; pintarAgenda(); }); });
+    caja.querySelectorAll("[data-d]").forEach(function(b){
+      b.addEventListener("click", function(){ agDia = +this.dataset.d; agHora = -1; agHecho = false; pintarAgenda(); }); });
+    caja.querySelectorAll("[data-h]:not([disabled])").forEach(function(b){
+      b.addEventListener("click", function(){ agHora = +this.dataset.h; agHecho = false; pintarAgenda(); }); });
+    var conf = caja.querySelector(".ag-conf");
+    if (conf) conf.addEventListener("click", function(){
+      agHecho = true; pintarAgenda();
+      /* Quien ya ha elegido no debería volver a decir qué le duele */
+      var sel = document.getElementById("zon");
+      if (sel && sel.options[agZona + 1]) sel.selectedIndex = agZona + 1;
+    });
+  });
+}
+
+function piePie(t, f, horas){
+  if (agHecho) return '<p class="ag-resumen ag-hecho">'+esc(t.agHecho)+'</p>';
+  if (agZona < 0) return '<p class="ag-resumen">'+esc(t.agFaltaZona)+'</p>';
+  if (agHora < 0) return '<p class="ag-resumen">'+esc(t.agFaltaHora)+'</p>';
   var cuando = f.toLocaleDateString(t._loc, {weekday:"long", day:"numeric", month:"long"});
-  pie.innerHTML = '<p class="ag-resumen">'
+  return '<p class="ag-resumen">'
     + esc(t.agResumen).replace("{z}", '<b>'+esc(t.agZonas[agZona])+'</b>')
                       .replace("{d}", '<b>'+esc(cuando)+'</b>')
                       .replace("{h}", '<b>'+esc(horas[agHora])+'</b>') + '</p>'
-    + '<button class="btn sol" type="button" id="agConfirmar">'+esc(t.agConfirmar)+'</button>';
-  document.getElementById("agConfirmar").addEventListener("click", function(){
-    agHecho = true; pintarAgenda();
-    /* Deja el formulario relleno: quien confirma no debería repetir los datos */
-    var sel = document.getElementById("zon");
-    if (sel && sel.options[agZona + 1]) sel.selectedIndex = agZona + 1;
-  });
+    + '<button class="btn sol ag-conf" type="button">'+esc(t.agConfirmar)+'</button>';
 }
 
 function aplicar(codigo){

@@ -370,6 +370,24 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <div class="rej r3" id="iTrat"></div>
     <div class="acc"><a class="btn" href="#/tratamientos" data-t="bVerTodos">Ver todos</a></div>
   </div>
+  <div class="marco bl">
+    <p class="eti" data-t="iPorQueEti">Tres cosas que hacemos distinto</p>
+    <div class="filas" id="iPorQue"></div>
+  </div>
+  <div class="marco bl" style="padding-top:0">
+    <p class="eti" data-t="iNoEti">Lo que no vas a encontrar aquí</p>
+    <ul class="lista no" id="iNo"></ul>
+    <p class="metodo" data-t="iNoNota">No decimos que todo esto esté mal en cualquier contexto. Decimos que como tratamiento principal no funciona, y que quien te lo vende como tal te está cobrando por que te sientas atendido.</p>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="cinta">
+      <div>
+        <h3 data-t="ctaIniH">Si llevas semanas parado sin saber por qué, empieza por la valoración.</h3>
+        <p data-t="ctaIniP">Una hora, con tratamiento incluido, y sales con un plan escrito y un número de sesiones estimado.</p>
+      </div>
+      <a class="btn" href="#/contacto" data-t="bPedirCita">Pedir cita</a>
+    </div>
+  </div>
 </section>
 
 <section data-ruta="tratamientos" id="ap-tratamientos">
@@ -701,7 +719,23 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", iPorQueEti:"Tres cosas que hacemos distinto", iNoEti:"Lo que no vas a encontrar aquí",
+ iNoNota:"No decimos que todo esto esté mal en cualquier contexto. Decimos que como tratamiento principal no funciona, y que quien te lo vende como tal te está cobrando por que te sientas atendido.",
+ ctaIniH:"Si llevas semanas parado sin saber por qué, empieza por la valoración.",
+ ctaIniP:"Una hora, con tratamiento incluido, y sales con un plan escrito y un número de sesiones estimado.",
+ iPorQue:[
+  {i:"Una hora, una persona", t:"Nadie atiende a tres pacientes a la vez", d:"En muchos centros el fisioterapeuta va rotando entre tres camillas mientras a ti te deja con un aparato puesto. Aquí la hora es tuya entera. Salen menos sesiones al día y por eso la sesión cuesta lo que cuesta, pero la comparación honesta no es precio contra precio: es precio por hora de atención real."},
+  {i:"Más sala que camilla", t:"El sitio está repartido al revés que en la mayoría", d:"Ciento sesenta metros, y la mayor parte es sala con peso y espacio para correr y saltar. La camilla es donde se prepara el trabajo; la sala es donde se recupera. Un centro con seis boxes y ninguna barra te va a tratar el dolor pero no va a devolverte al deporte."},
+  {i:"Criterios, no semanas", t:"El alta se mide, no se calcula por calendario", d:"Fuerza del lado lesionado comparada con el sano, salto a una pierna, control del gesto y tolerancia a la carga de la semana anterior. Si no llegas al umbral, no te damos el alta aunque hayan pasado los tres meses de manual. Y si llegas antes, te la damos antes."}
+ ],
+ iNo:[
+  "Sesiones de veinte minutos con el fisioterapeuta atendiendo a otros dos a la vez",
+  "Electroterapia o ultrasonido como tratamiento principal mientras esperas sentado",
+  "Bonos cerrados de veinte sesiones vendidos antes de valorarte",
+  "Diagnósticos por mensaje: no podemos saber qué tienes sin explorarte",
+  "Venta de plantillas, aparatos o suplementos con comisión"
+ ],
+
  trDetalleEti:"Cada uno, con su para qué y su para qué no",
  trDetalle:[
   {i:"Valoración", t:"Valoración y diagnóstico funcional", d:["Una hora. Historia clínica, pruebas de movilidad, fuerza y control, y las maniobras que hagan falta para acotar de dónde sale el dolor. No es una charla: al terminar sabes qué tienes, qué vamos a hacer y cuántas sesiones calculamos.","Cuándo no: si vienes con una lesión de menos de cuarenta y ocho horas y mucha inflamación, la valoración completa da información poco fiable. En ese caso hacemos una primera visita corta, te damos pautas para la fase aguda y valoramos de verdad a la semana."]},
@@ -1033,7 +1067,23 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", iPorQueEti:"Three things we do differently", iNoEti:"What you will not find here",
+ iNoNota:"We are not saying all of this is wrong in every context. We are saying it does not work as the main treatment, and that anyone selling it to you as such is charging you for feeling looked after.",
+ ctaIniH:"If you have been out for weeks without knowing why, start with the assessment.",
+ ctaIniP:"One hour, treatment included, and you leave with a written plan and an estimated number of sessions.",
+ iPorQue:[
+  {i:"One hour, one person", t:"Nobody treats three patients at once", d:"In many clinics the physiotherapist rotates between three couches while you are left with a machine on you. Here the hour is entirely yours. That means fewer sessions a day, which is why the session costs what it costs, but the honest comparison is not price against price: it is price per hour of actual attention."},
+  {i:"More gym than couch", t:"The space is divided the opposite way to most places", d:"A hundred and sixty square metres, and most of it is gym with weight and room to run and jump. The couch is where the work is prepared; the gym is where you recover. A clinic with six cubicles and no barbell will treat your pain but will not get you back to sport."},
+  {i:"Criteria, not weeks", t:"Discharge is measured, not counted off a calendar", d:"Strength of the injured side against the healthy one, single-leg hop, movement control and tolerance to last week's load. If you do not reach the threshold we do not discharge you, even if the textbook three months have passed. And if you get there sooner, you are discharged sooner."}
+ ],
+ iNo:[
+  "Twenty-minute sessions with the physiotherapist seeing two other people at the same time",
+  "Electrotherapy or ultrasound as the main treatment while you sit and wait",
+  "Fixed blocks of twenty sessions sold before you have been assessed",
+  "Diagnosis by message: we cannot know what you have without examining you",
+  "Selling insoles, devices or supplements on commission"
+ ],
+
  trDetalleEti:"Each one, with what it is for and what it is not",
  trDetalle:[
   {i:"Assessment", t:"Assessment and functional diagnosis", d:["One hour. History, mobility, strength and control testing, and whatever manoeuvres are needed to pin down where the pain comes from. It is not a chat: by the end you know what you have, what we are going to do and how many sessions we estimate.","When not: if you arrive with an injury less than forty-eight hours old and a lot of swelling, a full assessment gives unreliable information. In that case we do a short first visit, give you acute-phase guidance and assess properly a week later."]},
@@ -1365,7 +1415,23 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", iPorQueEti:"ثلاثة أمور نفعلها على نحو مختلف", iNoEti:"ما لن تجده هنا",
+ iNoNota:"لا نقول إن هذا كله خطأ في كل سياق. بل نقول إنه لا ينفع علاجًا رئيسًا، وإن من يبيعك إياه على أنه كذلك إنما يتقاضى منك ثمن شعورك بأنك مُعتنى بك.",
+ ctaIniH:"إن كنت متوقفًا منذ أسابيع دون أن تعرف السبب، فابدأ بالتقييم.",
+ ctaIniP:"ساعة واحدة، والعلاج مشمول، وتخرج بخطة مكتوبة وعدد جلسات مُقدَّر.",
+ iPorQue:[
+  {i:"ساعة وشخص واحد", t:"لا أحد يعالج ثلاثة مرضى في آن", d:"في كثير من المراكز يتنقّل المعالج بين ثلاثة أسرّة بينما يتركك أنت وجهازًا موضوعًا عليك. أما هنا فالساعة لك كلها. وهذا يعني جلسات أقل في اليوم، ولهذا تكلّف الجلسة ما تكلّفه، لكن المقارنة الصادقة ليست سعرًا بسعر: بل سعرًا لكل ساعة عناية حقيقية."},
+  {i:"قاعة أكثر من سرير", t:"المساحة موزّعة عكس ما في أغلب الأماكن", d:"مئة وستون مترًا، أكثرها قاعة فيها أثقال ومتّسع للجري والقفز. فالسرير حيث يُهيَّأ العمل؛ والقاعة حيث يجري التعافي. والمركز الذي فيه ستّ غرف ولا عارضة واحدة سيعالج ألمك لكنه لن يعيدك إلى الرياضة."},
+  {i:"معايير لا أسابيع", t:"الخروج يُقاس، ولا يُحسب على تقويم", d:"قوة الجهة المصابة قياسًا بالسليمة، والقفز على ساق واحدة، والتحكّم بالحركة، وتحمّل حِمل الأسبوع الماضي. فإن لم تبلغ العتبة لم نمنحك الخروج ولو مضت الأشهر الثلاثة المعهودة. وإن بلغتها أبكر، منحناك إياه أبكر."}
+ ],
+ iNo:[
+  "جلسات من عشرين دقيقة والمعالج يتابع شخصين آخرين في الوقت نفسه",
+  "العلاج الكهربائي أو الموجات فوق الصوتية علاجًا رئيسًا بينما تجلس منتظرًا",
+  "باقات مغلقة من عشرين جلسة تُباع قبل تقييمك",
+  "التشخيص بالرسائل: فلا يمكننا معرفة ما لديك دون فحصك",
+  "بيع نعال طبية أو أجهزة أو مكمّلات بعمولة"
+ ],
+
  trDetalleEti:"كلٌّ منها، ولماذا تُستعمل ولماذا لا",
  trDetalle:[
   {i:"التقييم", t:"التقييم والتشخيص الوظيفي", d:["ساعة واحدة. السيرة المرضية، واختبارات الحركة والقوة والتحكّم، وما يلزم من مناورات لتحديد مصدر الألم. وليست دردشة: ففي نهايتها تعرف ما لديك، وما سنفعله، وكم جلسة نُقدّر.","ومتى لا: إن جئت بإصابة عمرها أقل من ثمانٍ وأربعين ساعة مع تورّم شديد، أعطى التقييم الكامل معلومات غير موثوقة. فنجري حينها زيارة أولى قصيرة، ونعطيك إرشادات المرحلة الحادّة، ونقيّم فعليًّا بعد أسبوع."]},
@@ -2148,6 +2214,10 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
+  pon("iPorQue", t.iPorQue, function(f){
+    return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
+      + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
+  puntos("iNo", t.iNo);
   pon("trDetalle", t.trDetalle, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d">'+f.d.map(function(x){ return '<p>'+esc(x)+'</p>'; }).join("")+'</div></div>'; });

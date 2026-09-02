@@ -241,6 +241,12 @@ html[dir="rtl"] .faceta p{letter-spacing:0;text-transform:none;font-size:.86rem;
 .hero > *{min-width:0;}
 img{max-width:100%;}
 
+.indice-pag{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;padding-block:1.1rem;
+  border-block:1px solid var(--l);margin-bottom:2.5rem;font-size:.8rem;letter-spacing:.06em;}
+html[dir="rtl"] .indice-pag{letter-spacing:0;font-size:.95rem;}
+.indice-pag a{color:var(--t2);text-decoration:none;}
+.indice-pag a:hover{color:var(--verde);}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -285,22 +291,12 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       <span data-t="marca">ATLAS</span>
     </a>
     <nav class="a" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
-      <a href="#/inicio"        data-t="nInicio">Inicio</a>
-      <a href="#/tratamientos"  data-t="nTratamientos">Tratamientos</a>
-      <a href="#/lesiones"      data-t="nLesiones">Lesiones</a>
-      <a href="#/recuperacion"  data-t="nRecuperacion">Recuperación</a>
-      <a href="#/movilidad"     data-t="nMovilidad">Movilidad</a>
-      <a href="#/orientacion" data-t="nOrientacion">¿Qué me pasa?</a>
-      <a href="#/mapa"        data-t="nMapa">Mapa del cuerpo</a>
-      <a href="#/dolor"       data-t="nDolor">Escala de dolor</a>
-      <a href="#/calendario"  data-t="nCalendario">Vuelta al deporte</a>
-      <a href="#/ejercicios"  data-t="nEjercicios">Ejercicios</a>
-      <a href="#/test"        data-t="nTest">Test de fuerza</a>
-      <a href="#/equipo"        data-t="nEquipo">Equipo</a>
-      <a href="#/instalaciones" data-t="nInstalaciones">Centro</a>
-      <a href="#/precios"       data-t="nPrecios">Precios</a>
-      <a href="#/preguntas"     data-t="nPreguntas">Preguntas</a>
-      <a href="#/contacto"      data-t="nContacto">Cita</a>
+      <a href="#/inicio"       data-t="nInicio">Inicio</a>
+      <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
+      <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
+      <a href="#/clinica"      data-t="nClinica">La clínica</a>
+      <a href="#/precios"      data-t="nPrecios">Precios</a>
+      <a href="#/contacto"     data-t="nContacto">Contacto</a>
     </nav>
     <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
@@ -312,7 +308,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 
 <main>
 
-<section data-ruta="inicio">
+<section data-ruta="inicio" id="ap-inicio">
   <div class="marco hero">
     <div>
       <p class="eti" data-t="iEti">Fisioterapia y readaptación deportiva</p>
@@ -338,21 +334,66 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
 </section>
 
-<section data-ruta="tratamientos">
+<section data-ruta="tratamientos" id="ap-tratamientos">
   <div class="marco bl">
     <p class="eti" data-t="nTratamientos">Tratamientos</p>
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="trH1">Lo que hacemos, y en qué orden.</h1>
     <p class="entrada" data-t="trEntrada">Casi nadie necesita las seis cosas. La primera sesión sirve para saber cuáles sí.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-tratamientos" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco"><div class="rej r3" id="trLista"></div>
     <p class="metodo" data-t="trNota">La terapia manual alivia y prepara; lo que cura de verdad es el ejercicio. Si una clínica te ofrece sólo camilla y máquinas, te está vendiendo la mitad del tratamiento.</p>
   </div>
 </section>
 
-<section data-ruta="lesiones">
-  <div class="marco bl">
+<section data-ruta="tratamientos" id="ap-orientacion">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nOrientacion">¿Qué me pasa?</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="orH1">Cuatro preguntas para saber si corre prisa.</h2>
+    <p class="entrada" data-t="orEntrada">Esto no es un diagnóstico y no puede serlo. Sirve para una cosa concreta: saber si tienes que ir hoy al médico, pedir cita esta semana, o puedes esperar.</p>
+  </div>
+  <div class="marco">
+    <div class="rastro" id="orRastro"></div>
+    <div class="arbol" id="orArbol"></div>
+    <p class="metodo" data-t="orNota">Ninguna herramienta por internet sustituye a una valoración presencial. Ante dolor en el pecho, pérdida de fuerza súbita, fiebre alta o un traumatismo fuerte, vaya a urgencias sin pasar por aquí.</p>
+  </div>
+</section>
+
+<section data-ruta="tratamientos" id="ap-mapa">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nMapa">Mapa del cuerpo</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="mpH1">Señale dónde le duele.</h2>
+    <p class="entrada" data-t="mpEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
+  </div>
+  <div class="marco mapa">
+    <svg id="mpSvg" viewBox="0 0 300 430" role="group" data-t-attr="aria-label:mpAria" aria-label="Mapa del cuerpo"></svg>
+    <div class="mapa-panel" id="mpPanel"></div>
+  </div>
+</section>
+
+<section data-ruta="tratamientos" id="ap-dolor">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nDolor">Escala de dolor</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="doH1">Del 0 al 10, y qué hacer con cada número.</h2>
+    <p class="entrada" data-t="doEntrada">La pregunta que importa no es cuánto duele, sino si puedes cargar con ese dolor sin empeorar. Esto lo contesta.</p>
+  </div>
+  <div class="marco eva">
+    <div class="eva-num" id="doNum"></div>
+    <div class="eva-barra"></div>
+    <input type="range" id="doRange" min="0" max="10" step="1" value="4" data-t-attr="aria-label:doAria" aria-label="Nivel de dolor">
+    <div class="eva-caja">
+      <h3 id="doTit"></h3>
+      <p id="doTxt" style="color:var(--t2)"></p>
+      <div class="eva-reg"><span data-t="doReglaEti">Con el entrenamiento</span><b id="doAccion"></b></div>
+    </div>
+    <p class="metodo" data-t="doNota">La regla que usamos viene de la rehabilitación de tendones: se puede cargar con dolor de hasta 4 sobre 10 siempre que a las veinticuatro horas haya vuelto al punto de partida. Si al día siguiente está peor, la carga fue excesiva aunque en el momento no doliera.</p>
+  </div>
+</section>
+
+<section data-ruta="tratamientos" id="ap-lesiones">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nLesiones">Lesiones</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h1>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h2>
     <p class="entrada" data-t="leEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
   </div>
   <div class="marco">
@@ -361,12 +402,13 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <div class="rej r3" id="leLista"></div></div>
 </section>
 
-<section data-ruta="recuperacion">
+<section data-ruta="recuperacion" id="ap-recuperacion">
   <div class="marco bl">
     <p class="eti" data-t="nRecuperacion">Recuperación</p>
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="reH1">Cuánto se tarda de verdad en volver.</h1>
     <p class="entrada" data-t="reEntrada">Estas curvas son la recuperación típica de tres lesiones frecuentes. La línea es la función recuperada; las bandas, las fases del tratamiento.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-recuperacion" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco">
     <img class="banda-foto" src="img/sala-fuerza.jpg" width="1400" height="533"
          data-t-attr="alt:altRecuperacion" alt="Persona entrenando con barra durante la readaptación">
@@ -379,10 +421,42 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
 </section>
 
-<section data-ruta="movilidad">
-  <div class="marco bl">
+<section data-ruta="recuperacion" id="ap-calendario">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nCalendario">Vuelta al deporte</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="caH1">Ponga la fecha de la lesión y vea el calendario.</h2>
+    <p class="entrada" data-t="caEntrada">No es una promesa: es lo que suele tardar. Sirve para hablar con el entrenador con fechas encima de la mesa en vez de con «ya veremos».</p>
+  </div>
+  <div class="marco">
+    <div class="facetas" style="grid-template-columns:1fr 1fr">
+      <div><label for="caLes" data-t="caLLes">Lesión</label><select id="caLes"></select></div>
+      <div><label for="caFecha" data-t="caLFecha">Fecha de la lesión</label><input type="date" id="caFecha"></div>
+    </div>
+    <div class="cal-leyenda" id="caLeyenda"></div>
+    <div class="cal-meses" id="caMeses"></div>
+    <ol class="cal-hitos" id="caHitos"></ol>
+    <p class="hallazgo" id="caHallazgo"></p>
+    <p class="metodo" data-t="caNota">Plazos orientativos de la literatura de readaptación. El alta real depende de que se cumplan los criterios de fuerza y control, no de que llegue la fecha. Si llega el día y no se cumplen, se sigue trabajando.</p>
+  </div>
+</section>
+
+<section data-ruta="recuperacion" id="ap-test">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nTest">Test de fuerza</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="teH1">Compare el lado lesionado con el sano.</h2>
+    <p class="entrada" data-t="teEntrada">Es el criterio que usamos para dar el alta: menos de un 10 % de diferencia entre lados. Hágalo en casa y traiga los números a la primera cita.</p>
+  </div>
+  <div class="marco">
+    <div class="test" id="teLista"></div>
+    <div class="test-total" id="teTotal" style="margin-top:1.6rem"></div>
+    <p class="metodo" data-t="teNota">Autotest orientativo. Haga primero el lado sano, descanse dos minutos y luego el lesionado. Pare si aparece dolor por encima de 4 sobre 10. Si no puede hacer ninguna repetición, no anote cero: anótelo y cuéntelo en consulta.</p>
+  </div>
+</section>
+
+<section data-ruta="recuperacion" id="ap-movilidad">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nMovilidad">Movilidad</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="moH1">Un grado se mide. «Mucho mejor» no.</h1>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="moH1">Un grado se mide. «Mucho mejor» no.</h2>
     <p class="entrada" data-t="moEntrada">Medimos el rango articular en la primera sesión y lo volvemos a medir cada dos semanas. Es la manera de saber si el tratamiento va o no va.</p>
   </div>
   <div class="marco">
@@ -394,19 +468,34 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
 </section>
 
-<section data-ruta="equipo">
+<section data-ruta="recuperacion" id="ap-ejercicios">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
+    <p class="eti" data-t="nEjercicios">Ejercicios</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="ejH1">Filtre por zona, material y fase.</h2>
+    <p class="entrada" data-t="ejEntrada">Los que más mandamos a casa. No sustituyen a un plan hecho para usted, pero ninguno hace daño bien ejecutado.</p>
+  </div>
+  <div class="marco">
+    <div class="facetas" id="ejFacetas"></div>
+    <p class="metodo" id="ejCuenta" style="margin:0 0 1.4rem"></p>
+    <div class="ej-lista" id="ejLista"></div>
+    <p class="mapa-vacio" id="ejVacio" hidden data-t="ejVacio">Ningún ejercicio con esos filtros. Quite alguno.</p>
+  </div>
+</section>
+
+<section data-ruta="clinica" id="ap-equipo">
   <div class="marco bl">
     <p class="eti" data-t="nEquipo">Equipo</p>
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="eqH1">Cuatro personas, y siempre la misma contigo.</h1>
     <p class="entrada" data-t="eqEntrada">No rotamos pacientes entre fisioterapeutas. Quien te valora el primer día es quien te da el alta.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-clinica" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco"><div class="rej r4" id="eqLista"></div></div>
 </section>
 
-<section data-ruta="instalaciones">
-  <div class="marco bl">
+<section data-ruta="clinica" id="ap-instalaciones">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nInstalaciones">Centro</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="inH1">Más sala que camilla, y por algo.</h1>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="inH1">Más sala que camilla, y por algo.</h2>
     <p class="entrada" data-t="inEntrada">Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.</p>
   </div>
   <div class="marco">
@@ -422,27 +511,28 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
 </section>
 
-<section data-ruta="precios">
+<section data-ruta="precios" id="ap-precios">
   <div class="marco bl">
     <p class="eti" data-t="nPrecios">Precios</p>
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="prH1">Publicados, y sin sorpresas al salir.</h1>
     <p class="entrada" data-t="prEntrada">La primera valoración dura una hora y ya incluye tratamiento. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.</p>
   </div>
+  <div class="marco"><nav class="indice-pag" id="ix-precios" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco"><div class="rej r3" id="prPlanes"></div>
     <div style="margin-top:1.6rem"><ul class="lista" id="prIncluye"></ul></div>
     <p class="metodo" data-t="prNota">Los bonos no caducan y son transferibles a alguien de tu familia. No trabajamos con permanencia ni con paquetes cerrados de veinte sesiones decididos antes de valorarte.</p>
   </div>
 </section>
 
-<section data-ruta="preguntas">
-  <div class="marco bl">
+<section data-ruta="precios" id="ap-preguntas">
+  <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nPreguntas">Preguntas</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="pgH1">Lo que más nos preguntan.</h1>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="pgH1">Lo que más nos preguntan.</h2>
   </div>
   <div class="marco" id="pgLista"></div>
 </section>
 
-<section data-ruta="contacto">
+<section data-ruta="contacto" id="ap-contacto">
   <div class="marco bl">
     <p class="eti" data-t="nContacto">Cita</p>
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Cuéntanos qué te pasa y desde cuándo.</h1>
@@ -489,106 +579,34 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 </section>
 
 
-<section data-ruta="orientacion">
-  <div class="marco bl">
-    <p class="eti" data-t="nOrientacion">¿Qué me pasa?</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="orH1">Cuatro preguntas para saber si corre prisa.</h1>
-    <p class="entrada" data-t="orEntrada">Esto no es un diagnóstico y no puede serlo. Sirve para una cosa concreta: saber si tienes que ir hoy al médico, pedir cita esta semana, o puedes esperar.</p>
-  </div>
-  <div class="marco">
-    <div class="rastro" id="orRastro"></div>
-    <div class="arbol" id="orArbol"></div>
-    <p class="metodo" data-t="orNota">Ninguna herramienta por internet sustituye a una valoración presencial. Ante dolor en el pecho, pérdida de fuerza súbita, fiebre alta o un traumatismo fuerte, vaya a urgencias sin pasar por aquí.</p>
-  </div>
-</section>
 
-<section data-ruta="mapa">
-  <div class="marco bl">
-    <p class="eti" data-t="nMapa">Mapa del cuerpo</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="mpH1">Señale dónde le duele.</h1>
-    <p class="entrada" data-t="mpEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
-  </div>
-  <div class="marco mapa">
-    <svg id="mpSvg" viewBox="0 0 300 430" role="group" data-t-attr="aria-label:mpAria" aria-label="Mapa del cuerpo"></svg>
-    <div class="mapa-panel" id="mpPanel"></div>
-  </div>
-</section>
 
-<section data-ruta="dolor">
-  <div class="marco bl">
-    <p class="eti" data-t="nDolor">Escala de dolor</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="doH1">Del 0 al 10, y qué hacer con cada número.</h1>
-    <p class="entrada" data-t="doEntrada">La pregunta que importa no es cuánto duele, sino si puedes cargar con ese dolor sin empeorar. Esto lo contesta.</p>
-  </div>
-  <div class="marco eva">
-    <div class="eva-num" id="doNum"></div>
-    <div class="eva-barra"></div>
-    <input type="range" id="doRange" min="0" max="10" step="1" value="4" data-t-attr="aria-label:doAria" aria-label="Nivel de dolor">
-    <div class="eva-caja">
-      <h3 id="doTit"></h3>
-      <p id="doTxt" style="color:var(--t2)"></p>
-      <div class="eva-reg"><span data-t="doReglaEti">Con el entrenamiento</span><b id="doAccion"></b></div>
-    </div>
-    <p class="metodo" data-t="doNota">La regla que usamos viene de la rehabilitación de tendones: se puede cargar con dolor de hasta 4 sobre 10 siempre que a las veinticuatro horas haya vuelto al punto de partida. Si al día siguiente está peor, la carga fue excesiva aunque en el momento no doliera.</p>
-  </div>
-</section>
 
-<section data-ruta="calendario">
-  <div class="marco bl">
-    <p class="eti" data-t="nCalendario">Vuelta al deporte</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="caH1">Ponga la fecha de la lesión y vea el calendario.</h1>
-    <p class="entrada" data-t="caEntrada">No es una promesa: es lo que suele tardar. Sirve para hablar con el entrenador con fechas encima de la mesa en vez de con «ya veremos».</p>
-  </div>
-  <div class="marco">
-    <div class="facetas" style="grid-template-columns:1fr 1fr">
-      <div><label for="caLes" data-t="caLLes">Lesión</label><select id="caLes"></select></div>
-      <div><label for="caFecha" data-t="caLFecha">Fecha de la lesión</label><input type="date" id="caFecha"></div>
-    </div>
-    <div class="cal-leyenda" id="caLeyenda"></div>
-    <div class="cal-meses" id="caMeses"></div>
-    <ol class="cal-hitos" id="caHitos"></ol>
-    <p class="hallazgo" id="caHallazgo"></p>
-    <p class="metodo" data-t="caNota">Plazos orientativos de la literatura de readaptación. El alta real depende de que se cumplan los criterios de fuerza y control, no de que llegue la fecha. Si llega el día y no se cumplen, se sigue trabajando.</p>
-  </div>
-</section>
 
-<section data-ruta="ejercicios">
-  <div class="marco bl">
-    <p class="eti" data-t="nEjercicios">Ejercicios</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="ejH1">Filtre por zona, material y fase.</h1>
-    <p class="entrada" data-t="ejEntrada">Los que más mandamos a casa. No sustituyen a un plan hecho para usted, pero ninguno hace daño bien ejecutado.</p>
-  </div>
-  <div class="marco">
-    <div class="facetas" id="ejFacetas"></div>
-    <p class="metodo" id="ejCuenta" style="margin:0 0 1.4rem"></p>
-    <div class="ej-lista" id="ejLista"></div>
-    <p class="mapa-vacio" id="ejVacio" hidden data-t="ejVacio">Ningún ejercicio con esos filtros. Quite alguno.</p>
-  </div>
-</section>
 
-<section data-ruta="test">
-  <div class="marco bl">
-    <p class="eti" data-t="nTest">Test de fuerza</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="teH1">Compare el lado lesionado con el sano.</h1>
-    <p class="entrada" data-t="teEntrada">Es el criterio que usamos para dar el alta: menos de un 10 % de diferencia entre lados. Hágalo en casa y traiga los números a la primera cita.</p>
-  </div>
-  <div class="marco">
-    <div class="test" id="teLista"></div>
-    <div class="test-total" id="teTotal" style="margin-top:1.6rem"></div>
-    <p class="metodo" data-t="teNota">Autotest orientativo. Haga primero el lado sano, descanse dos minutos y luego el lesionado. Pare si aparece dolor por encima de 4 sobre 10. Si no puede hacer ninguna repetición, no anote cero: anótelo y cuéntelo en consulta.</p>
-  </div>
-</section>
+
+
+
+
+
+
+
+
+
+
 
 </main>
 
 <footer class="a">
   <div class="marco pie">
     <span data-t="marca">ATLAS</span>
-    <nav>
-      <a href="#/tratamientos" data-t="nTratamientos">Tratamientos</a>
-      <a href="#/recuperacion" data-t="nRecuperacion">Recuperación</a>
-      <a href="#/precios" data-t="nPrecios">Precios</a>
-      <a href="#/contacto" data-t="nContacto">Cita</a>
+    <nav data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
+      <a href="#/inicio"       data-t="nInicio">Inicio</a>
+      <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
+      <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
+      <a href="#/clinica"      data-t="nClinica">La clínica</a>
+      <a href="#/precios"      data-t="nPrecios">Precios</a>
+      <a href="#/contacto"     data-t="nContacto">Contacto</a>
     </nav>
     <span class="fin"><span data-t="pieAviso">Maqueta de demostración</span> · <span class="ltr">© 2026</span></span>
   </div>
@@ -597,7 +615,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", nClinica:"La clínica", ariaEnPagina:"En esta página", tClinica:"La clínica — ATLAS",
+
  orNivUrgente:"Vaya al médico hoy", orNivPronto:"Cite esta semana", orNivNormal:"Puede esperar",
  nOrientacion:"¿Qué me pasa?", nMapa:"Mapa del cuerpo", nDolor:"Escala de dolor",
  nCalendario:"Vuelta al deporte", nEjercicios:"Ejercicios", nTest:"Test de fuerza",
@@ -862,7 +881,8 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", nClinica:"The clinic", ariaEnPagina:"On this page", tClinica:"The clinic — ATLAS",
+
  orNivUrgente:"See a doctor today", orNivPronto:"Book this week", orNivNormal:"It can wait",
  nOrientacion:"What is wrong?", nMapa:"Body map", nDolor:"Pain scale",
  nCalendario:"Return to sport", nEjercicios:"Exercises", nTest:"Strength test",
@@ -1127,7 +1147,8 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nClinica:"العيادة", ariaEnPagina:"في هذه الصفحة", tClinica:"العيادة — أطلس",
+
  orNivUrgente:"راجع الطبيب اليوم", orNivPronto:"احجز هذا الأسبوع", orNivNormal:"يحتمل الانتظار",
  nOrientacion:"ما الذي أصابني؟", nMapa:"خريطة الجسم", nDolor:"مقياس الألم",
  nCalendario:"العودة إلى الرياضة", nEjercicios:"تمارين", nTest:"اختبار القوة",
@@ -1682,14 +1703,18 @@ function pintarNuevas(){
   pintarCalendario(); pintarEjercicios(); pintarTest();
 }
 
-var RUTAS = ["inicio","orientacion","tratamientos","lesiones","mapa","dolor",
-             "recuperacion","calendario","movilidad","test","ejercicios",
-             "equipo","instalaciones","precios","preguntas","contacto"];
-var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",lesiones:"tLesiones",recuperacion:"tRecuperacion",
-  movilidad:"tMovilidad",equipo:"tEquipo",instalaciones:"tInstalaciones",precios:"tPrecios",
-  preguntas:"tPreguntas",contacto:"tContacto",
-  orientacion:"tOrientacion",mapa:"tMapa",dolor:"tDolor",
-  calendario:"tCalendario",ejercicios:"tEjercicios",test:"tTest"};
+var INDICE = {
+  tratamientos:[["ap-tratamientos","nTratamientos"],["ap-orientacion","nOrientacion"],["ap-mapa","nMapa"],
+                ["ap-dolor","nDolor"],["ap-lesiones","nLesiones"]],
+  recuperacion:[["ap-recuperacion","nRecuperacion"],["ap-calendario","nCalendario"],["ap-test","nTest"],
+                ["ap-movilidad","nMovilidad"],["ap-ejercicios","nEjercicios"]],
+  clinica:[["ap-equipo","nEquipo"],["ap-instalaciones","nInstalaciones"]],
+  precios:[["ap-precios","nPrecios"],["ap-preguntas","nPreguntas"]]
+};
+
+var RUTAS = ["inicio","tratamientos","recuperacion","clinica","precios","contacto"];
+var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",recuperacion:"tRecuperacion",
+  clinica:"tClinica",precios:"tPrecios",contacto:"tContacto"};
 var idioma = "es", reSel = 0, moSel = 0;
 
 function loc(){ return T[idioma]._loc; }
@@ -1870,6 +1895,12 @@ function aplicar(codigo){
   for (i=0;i<b.length;i++) b[i].setAttribute("aria-pressed", String(b[i].dataset.lang===codigo));
   document.title = t[TITULOS[ruta()]] || t.tInicio;
   var ac = document.getElementById("acuse"); if (ac){ ac.textContent=""; ac.classList.remove("mal"); }
+  Object.keys(INDICE).forEach(function(r){
+    var e = document.getElementById("ix-"+r); if (!e) return;
+    e.innerHTML = INDICE[r].map(function(x){
+      return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(t[x[1]])+'</a>';
+    }).join("");
+  });
   pintarListas(); pintarRecuperacion(); pintarMovilidad(); cuerpo(); pintarNuevas();
   try{ localStorage.setItem("atlas_lang", codigo); }catch(e){}
 }
@@ -1888,6 +1919,19 @@ function enrutar(){
 
 var bs = document.querySelectorAll(".idi button");
 for (var z=0; z<bs.length; z++) bs[z].addEventListener("click", function(){ aplicar(this.dataset.lang); });
+/* Los enlaces con data-ir cambian de página y además bajan a su apartado */
+document.addEventListener("click", function(ev){
+  var a = ev.target.closest && ev.target.closest("[data-ir]");
+  if (!a) return;
+  var destino = a.getAttribute("data-ir");
+  setTimeout(function(){
+    var el = document.getElementById(destino);
+    if (!el) return;
+    var cab = document.querySelector("header");
+    var alto = cab ? cab.getBoundingClientRect().height : 0;
+    window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - alto - 12);
+  }, 60);
+});
 window.addEventListener("hashchange", enrutar);
 
 document.getElementById("f").addEventListener("submit", function(e){

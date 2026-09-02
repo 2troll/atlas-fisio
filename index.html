@@ -247,6 +247,44 @@ html[dir="rtl"] .indice-pag{letter-spacing:0;font-size:.95rem;}
 .indice-pag a{color:var(--t2);text-decoration:none;}
 .indice-pag a:hover{color:var(--verde);}
 
+/* ── Piezas de página larga ──────────────────────────────────────── */
+.filas{border-top:1px solid var(--l);}
+.fila{display:grid;grid-template-columns:1fr;gap:.9rem;padding-block:1.6rem;border-bottom:1px solid var(--l2);}
+@media(min-width:900px){.fila{grid-template-columns:16rem 1fr;gap:2.5rem;}}
+.fila h3{font-size:1.2rem;margin-bottom:.35rem;}
+.fila .i{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--verde);margin-bottom:.5rem;}
+html[dir="rtl"] .fila .i{letter-spacing:0;text-transform:none;font-size:.88rem;}
+.fila .d{color:var(--t2);}
+.fila .d p{margin-bottom:.8rem;}
+.fila .d p:last-child{margin-bottom:0;}
+
+.cinta{background:var(--verde);color:#0d1411;padding:2.2rem;border-radius:16px;display:grid;gap:1.2rem;align-items:center;}
+@media(min-width:760px){.cinta{grid-template-columns:1fr auto;gap:2.5rem;}}
+.cinta h3{font-size:clamp(1.4rem,2.8vw,2rem);color:#0d1411;max-width:26ch;}
+.cinta p{color:rgba(13,20,17,.75);margin:.5rem 0 0;font-size:.95rem;}
+.cinta .btn{border-color:#0d1411;color:#0d1411;background:transparent;white-space:nowrap;}
+.cinta .btn:hover{background:#0d1411;color:var(--verde);}
+
+.cont-rej{display:grid;gap:2.5rem;}
+@media(min-width:900px){.cont-rej{grid-template-columns:1.4fr 1fr;gap:3.5rem;}}
+.dir{background:var(--sup);border:1px solid var(--l);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;}
+.dir b{font-size:1.15rem;display:block;margin-bottom:.6rem;}
+.dir address{font-style:normal;color:var(--t2);font-size:.94rem;line-height:1.8;}
+.dir .tel{display:inline-block;margin-top:.9rem;color:var(--verde);text-decoration:none;font-size:.94rem;}
+.equipo-c{border-top:1px solid var(--l);}
+.equipo-c div{display:grid;grid-template-columns:1fr auto;gap:1rem;padding-block:1rem;
+  border-bottom:1px solid var(--l2);align-items:center;}
+.equipo-c b{font-weight:600;font-size:.96rem;display:block;}
+.equipo-c span{font-size:.86rem;color:var(--t3);display:block;}
+.equipo-c a{font-size:.86rem;color:var(--verde);text-decoration:none;white-space:nowrap;}
+.despues{counter-reset:d;list-style:none;margin:1.2rem 0 0;padding:0;}
+.despues li{counter-increment:d;display:grid;grid-template-columns:2rem 1fr;gap:1rem;
+  padding-block:1rem;border-bottom:1px solid var(--l2);}
+.despues li::before{content:counter(d);color:var(--verde);font-size:.9rem;padding-top:.2rem;}
+html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-size:1rem;}
+.despues b{display:block;font-weight:600;font-size:.98rem;margin-bottom:.2rem;}
+.despues span{font-size:.9rem;color:var(--t2);}
+
 .faq{border-top:1px solid var(--l);}
 .faq summary{cursor:pointer;padding-block:1.2rem;font-family:var(--disp);font-size:1.1rem;font-weight:500;
   list-style:none;display:flex;gap:1rem;align-items:baseline;}
@@ -344,12 +382,16 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   <div class="marco"><div class="rej r3" id="trLista"></div>
     <p class="metodo" data-t="trNota">La terapia manual alivia y prepara; lo que cura de verdad es el ejercicio. Si una clínica te ofrece sólo camilla y máquinas, te está vendiendo la mitad del tratamiento.</p>
   </div>
+  <div class="marco bl">
+    <p class="eti" data-t="trDetalleEti">Cada uno, con su para qué y su para qué no</p>
+    <div class="filas" id="trDetalle"></div>
+  </div>
 </section>
 
 <section data-ruta="tratamientos" id="ap-orientacion">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nOrientacion">¿Qué me pasa?</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="orH1">Cuatro preguntas para saber si corre prisa.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="orH1">Cuatro preguntas para saber si corre prisa.</h2>
     <p class="entrada" data-t="orEntrada">Esto no es un diagnóstico y no puede serlo. Sirve para una cosa concreta: saber si tienes que ir hoy al médico, pedir cita esta semana, o puedes esperar.</p>
   </div>
   <div class="marco">
@@ -362,7 +404,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="tratamientos" id="ap-mapa">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nMapa">Mapa del cuerpo</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="mpH1">Señale dónde le duele.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="mpH1">Señale dónde le duele.</h2>
     <p class="entrada" data-t="mpEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
   </div>
   <div class="marco mapa">
@@ -374,7 +416,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="tratamientos" id="ap-dolor">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nDolor">Escala de dolor</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="doH1">Del 0 al 10, y qué hacer con cada número.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="doH1">Del 0 al 10, y qué hacer con cada número.</h2>
     <p class="entrada" data-t="doEntrada">La pregunta que importa no es cuánto duele, sino si puedes cargar con ese dolor sin empeorar. Esto lo contesta.</p>
   </div>
   <div class="marco eva">
@@ -393,7 +435,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="tratamientos" id="ap-lesiones">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nLesiones">Lesiones</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h2>
     <p class="entrada" data-t="leEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
   </div>
   <div class="marco">
@@ -424,7 +466,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="recuperacion" id="ap-calendario">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nCalendario">Vuelta al deporte</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="caH1">Ponga la fecha de la lesión y vea el calendario.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="caH1">Ponga la fecha de la lesión y vea el calendario.</h2>
     <p class="entrada" data-t="caEntrada">No es una promesa: es lo que suele tardar. Sirve para hablar con el entrenador con fechas encima de la mesa en vez de con «ya veremos».</p>
   </div>
   <div class="marco">
@@ -443,7 +485,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="recuperacion" id="ap-test">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nTest">Test de fuerza</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="teH1">Compare el lado lesionado con el sano.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="teH1">Compare el lado lesionado con el sano.</h2>
     <p class="entrada" data-t="teEntrada">Es el criterio que usamos para dar el alta: menos de un 10 % de diferencia entre lados. Hágalo en casa y traiga los números a la primera cita.</p>
   </div>
   <div class="marco">
@@ -456,7 +498,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="recuperacion" id="ap-movilidad">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nMovilidad">Movilidad</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="moH1">Un grado se mide. «Mucho mejor» no.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="moH1">Un grado se mide. «Mucho mejor» no.</h2>
     <p class="entrada" data-t="moEntrada">Medimos el rango articular en la primera sesión y lo volvemos a medir cada dos semanas. Es la manera de saber si el tratamiento va o no va.</p>
   </div>
   <div class="marco">
@@ -471,7 +513,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <section data-ruta="recuperacion" id="ap-ejercicios">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nEjercicios">Ejercicios</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="ejH1">Filtre por zona, material y fase.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="ejH1">Filtre por zona, material y fase.</h2>
     <p class="entrada" data-t="ejEntrada">Los que más mandamos a casa. No sustituyen a un plan hecho para usted, pero ninguno hace daño bien ejecutado.</p>
   </div>
   <div class="marco">
@@ -490,12 +532,20 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   </div>
   <div class="marco"><nav class="indice-pag" id="ix-clinica" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco"><div class="rej r4" id="eqLista"></div></div>
+  <div class="marco bl">
+    <p class="eti" data-t="eqComoEti">Cómo trabajamos entre nosotros</p>
+    <div id="eqComo" style="max-width:64ch;margin-top:1rem"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <p class="eti" data-t="eqFormacionEti">Lo que nos exigimos</p>
+    <ul class="lista" id="eqFormacion"></ul>
+  </div>
 </section>
 
 <section data-ruta="clinica" id="ap-instalaciones">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nInstalaciones">Centro</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:20ch" data-t="inH1">Más sala que camilla, y por algo.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="inH1">Más sala que camilla, y por algo.</h2>
     <p class="entrada" data-t="inEntrada">Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.</p>
   </div>
   <div class="marco">
@@ -508,6 +558,11 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       <p class="metodo" data-t="credNota">Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor.</p>
       <ul class="creditos" id="credLista"></ul>
     </div>
+  </div>
+  <div class="marco bl">
+    <p class="eti" data-t="inAccesoEti">Cómo llegar y cuándo abrimos</p>
+    <div class="rej r3" id="inAcceso"></div>
+    <p class="metodo" data-t="inHorario">Abrimos de lunes a viernes de 7:30 a 21:00 y los sábados de 9:00 a 14:00. Las franjas de antes de las nueve y de después de las siete son las que primero se llenan, porque son las que permiten venir sin faltar al trabajo: si puedes a media mañana, tendrás cita mucho antes.</p>
   </div>
 </section>
 
@@ -522,12 +577,29 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <div style="margin-top:1.6rem"><ul class="lista" id="prIncluye"></ul></div>
     <p class="metodo" data-t="prNota">Los bonos no caducan y son transferibles a alguien de tu familia. No trabajamos con permanencia ni con paquetes cerrados de veinte sesiones decididos antes de valorarte.</p>
   </div>
+  <div class="marco bl">
+    <p class="eti" data-t="prCuantasEti">Cuántas sesiones vas a necesitar de verdad</p>
+    <div id="prCuantas" style="max-width:64ch;margin-top:1rem"></div>
+  </div>
+  <div class="marco bl" style="padding-top:0">
+    <p class="eti" data-t="prNoEti">Cuándo te decimos que no</p>
+    <div class="rej r3" id="prNo"></div>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="cinta">
+      <div>
+        <h3 data-t="ctaPrH">La valoración dura una hora y ya incluye tratamiento.</h3>
+        <p data-t="ctaPrP">Si al terminarla no somos lo que necesitas, te lo decimos ahí mismo y te derivamos.</p>
+      </div>
+      <a class="btn" href="#/contacto" data-t="bPedirCita">Pedir cita</a>
+    </div>
+  </div>
 </section>
 
 <section data-ruta="precios" id="ap-preguntas">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nPreguntas">Preguntas</p>
-    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="pgH1">Lo que más nos preguntan.</h2>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="pgH1">Lo que más nos preguntan.</h2>
   </div>
   <div class="marco" id="pgLista"></div>
 </section>
@@ -538,7 +610,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="coH1">Cuéntanos qué te pasa y desde cuándo.</h1>
     <p class="entrada" data-t="coEntrada">Con eso ya podemos decirte si la primera cita corre prisa o puede esperar a la semana que viene.</p>
   </div>
-  <div class="marco">
+  <div class="marco cont-rej" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div>
     <form id="f" novalidate>
       <div class="par">
         <div><label for="nom" data-t="lNombre">Nombre</label><input id="nom" autocomplete="name"></div>
@@ -575,6 +648,19 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       </div>
       <p class="aviso" data-t="coAviso">Tus datos se usan sólo para darte cita. No se ceden a nadie.</p>
     </form>
+    <div style="margin-top:2.5rem">
+      <p class="eti" data-t="coDespuesEti">Qué pasa después de enviarlo</p>
+      <ol class="despues" id="coDespues"></ol>
+    </div>
+    </div>
+    <aside>
+      <p class="eti" data-t="coCentroEti">Dónde estamos</p>
+      <div id="coDirs"></div>
+      <p class="eti" data-t="coUrgenteEti">Si es urgente</p>
+      <p class="metodo" data-t="coUrgente">Si has tenido un golpe fuerte, no puedes apoyar el pie, la articulación se ha deformado o tienes hormigueo que baja por el brazo o la pierna, no pidas cita aquí: ve a urgencias. La fisioterapia entra después, y entra mejor si antes se ha descartado lo grave.</p>
+      <p class="eti" data-t="coEquipoEti">Escribir directamente</p>
+      <div class="equipo-c" id="coEquipo"></div>
+    </aside>
   </div>
 </section>
 
@@ -615,7 +701,73 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", nClinica:"La clínica", ariaEnPagina:"En esta página", tClinica:"La clínica — ATLAS",
+ _dir:"ltr", _lang:"es", _loc:"es-ES",
+ trDetalleEti:"Cada uno, con su para qué y su para qué no",
+ trDetalle:[
+  {i:"Valoración", t:"Valoración y diagnóstico funcional", d:["Una hora. Historia clínica, pruebas de movilidad, fuerza y control, y las maniobras que hagan falta para acotar de dónde sale el dolor. No es una charla: al terminar sabes qué tienes, qué vamos a hacer y cuántas sesiones calculamos.","Cuándo no: si vienes con una lesión de menos de cuarenta y ocho horas y mucha inflamación, la valoración completa da información poco fiable. En ese caso hacemos una primera visita corta, te damos pautas para la fase aguda y valoramos de verdad a la semana."]},
+  {i:"Terapia manual", t:"Terapia manual y movilización", d:["Trabajo con las manos sobre tejido y articulación para bajar dolor y recuperar recorrido. Sirve para abrir una ventana en la que puedes moverte mejor, y esa ventana hay que aprovecharla el mismo día con ejercicio.","Cuándo no: como tratamiento único. Un tratamiento que sólo es camilla te deja mejor al salir y otra vez igual el jueves. Si alguien te propone veinte sesiones de manos y nada más, está vendiendo alivio, no recuperación."]},
+  {i:"Ejercicio", t:"Ejercicio terapéutico", d:["El núcleo de todo lo que hacemos. Carga progresiva y medida para que el tejido aguante lo que le vas a pedir. Se hace en sala, con peso, y se ajusta cada semana según cómo respondes: no es una tabla que se te entrega el primer día y ya.","Cuándo no: nunca se descarta, pero en fase muy aguda se cambia por trabajo isométrico o por carga en el lado sano. Hacer nada casi nunca es la respuesta correcta; hacer lo mismo que hacías, tampoco."]},
+  {i:"Punción seca", t:"Punción seca", d:["Aguja fina sobre el punto gatillo de un músculo contracturado. Es incómoda y deja agujetas un día o dos. Bien indicada quita de encima un dolor que llevaba semanas bloqueando el trabajo de fuerza.","Cuándo no: si tienes miedo a las agujas, si tomas anticoagulantes o si el problema no es muscular. No la usamos de rutina en todas las sesiones: es una herramienta puntual, no un tratamiento en sí."]},
+  {i:"Readaptación", t:"Readaptación deportiva", d:["La parte que casi nadie hace y por la que la gente recae. Volver a correr, saltar, cambiar de dirección y frenar, con criterios medibles y no con sensaciones. El alta no es «ya no me duele»: es pasar unas pruebas concretas.","Cuándo no: si tu objetivo es sólo volver a la vida diaria sin dolor, no la necesitas y no te la vamos a cobrar. Se la proponemos a quien vuelve a un deporte con impacto o con cambios de dirección."]},
+  {i:"Prevención", t:"Prevención y control de carga", d:["Para quien ya está bien y quiere seguir estando. Revisamos cuánto entrenas, cómo has subido la carga y dónde tienes los déficits, y ajustamos. Suele ser una sesión cada cuatro o seis semanas, no una rutina semanal.","Cuándo no: si acabas de terminar un tratamiento, los tres primeros meses no son prevención, son la última fase de la recuperación. No la cobramos aparte."]}
+ ],
+
+ eqComoEti:"Cómo trabajamos entre nosotros",
+ eqComo:[
+  "No rotamos pacientes. Quien te valora el primer día es quien te da el alta, porque la mitad del valor de una sesión está en acordarse de cómo estabas hace tres semanas sin tener que releer la ficha.",
+  "Pero eso no significa que estés en manos de una sola cabeza. Los martes por la mañana repasamos entre los cuatro los casos que no van como esperábamos: qué se ha probado, qué no ha funcionado y qué se cambia. Si tu caso se atasca, lo miran cuatro personas aunque sólo trates con una.",
+  "Todo queda escrito: mediciones, cargas, qué dolió y cuánto. Si un día tu fisioterapeuta está de baja, quien te atienda ese día sabe exactamente por dónde ibas. Y si pides tu historia para llevártela a otro sitio, se te entrega el mismo día y sin preguntas."
+ ],
+ eqFormacionEti:"Lo que nos exigimos",
+ eqFormacion:[
+  "Colegiación en vigor y seguro de responsabilidad civil, verificables por número de colegiado",
+  "Un mínimo de cuarenta horas de formación al año, dentro del horario de trabajo y pagadas por el centro",
+  "Sesión clínica semanal de casos difíciles, con las cuatro personas del equipo",
+  "Nada de venta de productos, aparatos ni suplementos: no cobramos comisión de nada"
+ ],
+
+ inAccesoEti:"Cómo llegar y cuándo abrimos",
+ inAcceso:[
+  {t:"En transporte público", p:"Metro a cuatrocientos metros, salida sur, todo llano. Dos líneas de autobús paran en la misma acera. Es la forma más rápida de llegar en hora punta y la que recomendamos si vienes con muleta."},
+  {t:"En coche", p:"Aparcamiento de rotación a ochenta metros con la primera hora bonificada si vienes a sesión: se valida en recepción. En la calle hay zona regulada, así que no cuentes con dejarlo en la puerta."},
+  {t:"Accesibilidad", p:"Entrada a nivel de calle sin escalón, puerta de noventa centímetros, ascensor y aseo adaptado. Si vienes en silla o con andador, dilo al pedir cita y te reservamos la sala grande, que tiene más espacio de giro."}
+ ],
+ inHorario:"Abrimos de lunes a viernes de 7:30 a 21:00 y los sábados de 9:00 a 14:00. Las franjas de antes de las nueve y de después de las siete son las que primero se llenan, porque son las que permiten venir sin faltar al trabajo: si puedes a media mañana, tendrás cita mucho antes.",
+
+ prCuantasEti:"Cuántas sesiones vas a necesitar de verdad",
+ prCuantas:[
+  "La respuesta honesta es que depende del tejido y del tiempo que lleves así, y que se puede estimar bastante bien el primer día. Un dolor de espalda de tres semanas suele resolverse en cuatro a seis sesiones repartidas en mes y medio. Una tendinopatía de aquiles de un año son tres o cuatro meses, y el número de sesiones importa menos que si haces el trabajo en casa.",
+  "En la primera valoración te damos un número y un plazo. Si a la mitad no vamos por donde dijimos, te lo decimos y cambiamos el plan o te derivamos: no seguimos sumando sesiones a ver si suena la flauta. Es la razón por la que no vendemos bonos de veinte antes de verte.",
+  "Y un dato incómodo: la variable que más predice cuánto tardas no es el tratamiento, es cuántos días a la semana haces los ejercicios en casa. Con dos días la mejora es lenta; con cuatro, el mismo caso se resuelve en la mitad de tiempo. Preferimos darte tres ejercicios que hagas que doce que no."
+ ],
+ prNoEti:"Cuándo te decimos que no",
+ prNo:[
+  {t:"Cuando hace falta un médico antes", p:"Dolor nocturno que no cede con el cambio de postura, pérdida de fuerza clara, fiebre, pérdida de peso sin explicación o un traumatismo importante. Ahí no tocamos: te derivamos y te ayudamos a que te vean pronto."},
+  {t:"Cuando no es lo nuestro", p:"Suelo pélvico, vestibular, respiratorio y neurológico complejo no los tratamos. Tenemos tres centros de confianza a los que mandamos a la gente y a los que llamamos nosotros para explicar el caso, sin cobrar nada por ello."},
+  {t:"Cuando ya estás bien", p:"Pasa más de lo que parece: llega alguien con doce sesiones compradas en otro sitio y con el problema resuelto. Se lo decimos, hacemos una sesión de pautas para que no recaiga y no volvemos a cobrar hasta que haga falta."}
+ ],
+ ctaPrH:"La valoración dura una hora y ya incluye tratamiento.",
+ ctaPrP:"Si al terminarla no somos lo que necesitas, te lo decimos ahí mismo y te derivamos.",
+ bPedirCita:"Pedir cita",
+
+ coDespuesEti:"Qué pasa después de enviarlo", coCentroEti:"Dónde estamos",
+ coUrgenteEti:"Si es urgente", coEquipoEti:"Escribir directamente",
+ coUrgente:"Si has tenido un golpe fuerte, no puedes apoyar el pie, la articulación se ha deformado o tienes hormigueo que baja por el brazo o la pierna, no pidas cita aquí: ve a urgencias. La fisioterapia entra después, y entra mejor si antes se ha descartado lo grave.",
+ coDirs:[
+  {n:"Centro ATLAS", d:"Avenida del Parque 118, bajo<br>28045 Madrid<br>España", t:"+34 910 000 000"}
+ ],
+ coEquipo:[
+  {n:"Citas y horarios", r:"Cambios, anulaciones y bonos", m:"citas@atlas.example"},
+  {n:"Readaptación deportiva", r:"Vuelta a competir y altas", m:"deporte@atlas.example"},
+  {n:"Clubes y empresas", r:"Convenios y seguimiento de plantillas", m:"clubes@atlas.example"}
+ ],
+ despues:[
+  {t:"Te llamamos el mismo día", d:"Entre las 13:00 y las 15:00, o a la hora que nos digas. Si lo que cuentas pinta a algo que debe ver un médico primero, te lo decimos en esa llamada y no te damos cita."},
+  {t:"Te damos hora en menos de una semana", d:"Salvo en las franjas de primera y última hora, que van con más retraso. Si te corre prisa, dilo: guardamos dos huecos diarios para casos agudos."},
+  {t:"La primera cita dura una hora", d:"Trae ropa con la que te puedas mover y, si tienes pruebas de imagen, tráelas. No hacen falta para empezar, pero ahorran tiempo."},
+  {t:"Sales con un plan escrito", d:"Cuántas sesiones calculamos, qué haces en casa desde esa misma tarde y qué tiene que pasar para darte el alta. En papel, no de palabra."}
+ ],
+ nClinica:"La clínica", ariaEnPagina:"En esta página", tClinica:"La clínica — ATLAS",
 
  orNivUrgente:"Vaya al médico hoy", orNivPronto:"Cite esta semana", orNivNormal:"Puede esperar",
  nOrientacion:"¿Qué me pasa?", nMapa:"Mapa del cuerpo", nDolor:"Escala de dolor",
@@ -881,7 +1033,73 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", nClinica:"The clinic", ariaEnPagina:"On this page", tClinica:"The clinic — ATLAS",
+ _dir:"ltr", _lang:"en", _loc:"en-GB",
+ trDetalleEti:"Each one, with what it is for and what it is not",
+ trDetalle:[
+  {i:"Assessment", t:"Assessment and functional diagnosis", d:["One hour. History, mobility, strength and control testing, and whatever manoeuvres are needed to pin down where the pain comes from. It is not a chat: by the end you know what you have, what we are going to do and how many sessions we estimate.","When not: if you arrive with an injury less than forty-eight hours old and a lot of swelling, a full assessment gives unreliable information. In that case we do a short first visit, give you acute-phase guidance and assess properly a week later."]},
+  {i:"Manual therapy", t:"Manual therapy and mobilisation", d:["Hands-on work on tissue and joint to bring pain down and restore range. It opens a window in which you can move better, and that window has to be used the same day with exercise.","When not: as the only treatment. A treatment that is only a couch leaves you better on the way out and the same again by Thursday. If someone offers you twenty hands-on sessions and nothing else, they are selling relief, not recovery."]},
+  {i:"Exercise", t:"Therapeutic exercise", d:["The core of everything we do. Progressive, measured loading so the tissue can take what you are going to ask of it. It happens in the gym, with weight, and it is adjusted every week according to how you respond: it is not a sheet handed to you on day one.","When not: it is never ruled out, but in a very acute phase it is swapped for isometric work or loading on the good side. Doing nothing is almost never the right answer; doing what you were doing is not either."]},
+  {i:"Dry needling", t:"Dry needling", d:["A fine needle into the trigger point of a tight muscle. It is uncomfortable and leaves you sore for a day or two. Well indicated, it lifts a pain that had been blocking strength work for weeks.","When not: if you are afraid of needles, if you take anticoagulants, or if the problem is not muscular. We do not use it routinely in every session: it is an occasional tool, not a treatment in itself."]},
+  {i:"Return to sport", t:"Sports rehabilitation", d:["The part almost nobody does and the reason people re-injure. Getting back to running, jumping, changing direction and decelerating, on measurable criteria rather than on feel. Discharge is not \u201cit does not hurt any more\u201d: it is passing specific tests.","When not: if your goal is only to get back to daily life without pain, you do not need it and we will not charge you for it. We propose it to people returning to a sport with impact or direction changes."]},
+  {i:"Prevention", t:"Prevention and load management", d:["For people who are already well and want to stay that way. We review how much you train, how you have ramped up the load and where your deficits are, and adjust. It is usually one session every four to six weeks, not a weekly routine.","When not: if you have just finished a course of treatment, the first three months are not prevention, they are the last phase of the recovery. We do not charge for them separately."]}
+ ],
+
+ eqComoEti:"How we work with each other",
+ eqComo:[
+  "We do not rotate patients. Whoever assesses you on day one is the one who discharges you, because half the value of a session lies in remembering how you were three weeks ago without having to re-read the notes.",
+  "That does not mean you are in the hands of a single head. On Tuesday mornings the four of us review the cases not going as expected: what has been tried, what has not worked and what changes. If your case stalls, four people look at it even though you only deal with one.",
+  "Everything is written down: measurements, loads, what hurt and how much. If your physiotherapist is off sick one day, whoever sees you knows exactly where you were. And if you ask for your records to take elsewhere, you get them the same day and without questions."
+ ],
+ eqFormacionEti:"What we hold ourselves to",
+ eqFormacion:[
+  "Current registration and professional indemnity insurance, verifiable by registration number",
+  "A minimum of forty hours of training a year, within working hours and paid for by the clinic",
+  "A weekly clinical session on difficult cases, with all four members of the team",
+  "No selling of products, devices or supplements: we take commission on nothing"
+ ],
+
+ inAccesoEti:"Getting here and opening hours",
+ inAcceso:[
+  {t:"By public transport", p:"Metro four hundred metres away, south exit, level all the way. Two bus routes stop on the same pavement. It is the fastest way at rush hour and the one we recommend if you are on crutches."},
+  {t:"By car", p:"A pay-and-display car park eighty metres away with the first hour subsidised if you are coming for a session: validated at reception. Street parking is metered, so do not count on leaving it at the door."},
+  {t:"Accessibility", p:"Street-level entrance with no step, ninety-centimetre door, lift and accessible toilet. If you use a wheelchair or a walking frame, say so when booking and we will reserve the large room, which has more turning space."}
+ ],
+ inHorario:"We open Monday to Friday from 7:30 to 21:00 and Saturdays from 9:00 to 14:00. The slots before nine and after seven fill up first, because they are the ones that let people come without missing work: if you can do mid-morning, you will get an appointment much sooner.",
+
+ prCuantasEti:"How many sessions you will actually need",
+ prCuantas:[
+  "The honest answer is that it depends on the tissue and on how long you have had it, and that it can be estimated fairly well on day one. Three weeks of back pain usually resolves in four to six sessions spread over six weeks. A year-old achilles tendinopathy is three or four months, and the number of sessions matters less than whether you do the work at home.",
+  "At the first assessment we give you a number and a timeframe. If we are not where we said we would be at the halfway point, we tell you and we change the plan or refer you on: we do not keep adding sessions in the hope something works. It is why we do not sell blocks of twenty before seeing you.",
+  "And an uncomfortable fact: the variable that most predicts how long you take is not the treatment, it is how many days a week you do the exercises at home. At two days a week progress is slow; at four, the same case resolves in half the time. We would rather give you three exercises you do than twelve you do not."
+ ],
+ prNoEti:"When we tell you no",
+ prNo:[
+  {t:"When a doctor is needed first", p:"Night pain that does not settle with a change of position, clear loss of strength, fever, unexplained weight loss or a significant trauma. We do not touch that: we refer you and help you get seen quickly."},
+  {t:"When it is not our field", p:"Pelvic floor, vestibular, respiratory and complex neurological work are not ours. We have three trusted centres we send people to, and we ring them ourselves to explain the case, at no charge."},
+  {t:"When you are already fine", p:"It happens more than you would think: someone arrives with twelve sessions bought elsewhere and the problem already resolved. We tell them, do one session of guidance so it does not come back, and do not charge again until there is a reason to."}
+ ],
+ ctaPrH:"The assessment lasts an hour and already includes treatment.",
+ ctaPrP:"If by the end we are not what you need, we say so right there and refer you on.",
+ bPedirCita:"Book an appointment",
+
+ coDespuesEti:"What happens after you send it", coCentroEti:"Where we are",
+ coUrgenteEti:"If it is urgent", coEquipoEti:"Write directly",
+ coUrgente:"If you have taken a heavy blow, cannot put weight on the foot, the joint has deformed, or you have pins and needles running down the arm or leg, do not book here: go to A&E. Physiotherapy comes afterwards, and it works better once the serious things have been ruled out.",
+ coDirs:[
+  {n:"ATLAS clinic", d:"Avenida del Parque 118, ground floor<br>28045 Madrid<br>Spain", t:"+34 910 000 000"}
+ ],
+ coEquipo:[
+  {n:"Appointments and hours", r:"Changes, cancellations and blocks", m:"citas@atlas.example"},
+  {n:"Sports rehabilitation", r:"Return to competition and discharge", m:"deporte@atlas.example"},
+  {n:"Clubs and companies", r:"Agreements and squad follow-up", m:"clubes@atlas.example"}
+ ],
+ despues:[
+  {t:"We call you the same day", d:"Between 13:00 and 15:00, or whenever you tell us. If what you describe sounds like something a doctor should see first, we say so on that call and do not book you in."},
+  {t:"We give you a time within a week", d:"Except in the first and last slots of the day, which run longer. If it is urgent, say so: we keep two slots a day for acute cases."},
+  {t:"The first appointment lasts an hour", d:"Bring clothes you can move in and, if you have imaging, bring it. It is not needed to start, but it saves time."},
+  {t:"You leave with a written plan", d:"How many sessions we estimate, what you do at home from that same afternoon, and what has to happen for us to discharge you. On paper, not by word of mouth."}
+ ],
+ nClinica:"The clinic", ariaEnPagina:"On this page", tClinica:"The clinic — ATLAS",
 
  orNivUrgente:"See a doctor today", orNivPronto:"Book this week", orNivNormal:"It can wait",
  nOrientacion:"What is wrong?", nMapa:"Body map", nDolor:"Pain scale",
@@ -1147,7 +1365,73 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nClinica:"العيادة", ariaEnPagina:"في هذه الصفحة", tClinica:"العيادة — أطلس",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ trDetalleEti:"كلٌّ منها، ولماذا تُستعمل ولماذا لا",
+ trDetalle:[
+  {i:"التقييم", t:"التقييم والتشخيص الوظيفي", d:["ساعة واحدة. السيرة المرضية، واختبارات الحركة والقوة والتحكّم، وما يلزم من مناورات لتحديد مصدر الألم. وليست دردشة: ففي نهايتها تعرف ما لديك، وما سنفعله، وكم جلسة نُقدّر.","ومتى لا: إن جئت بإصابة عمرها أقل من ثمانٍ وأربعين ساعة مع تورّم شديد، أعطى التقييم الكامل معلومات غير موثوقة. فنجري حينها زيارة أولى قصيرة، ونعطيك إرشادات المرحلة الحادّة، ونقيّم فعليًّا بعد أسبوع."]},
+  {i:"العلاج اليدوي", t:"العلاج اليدوي والتحريك", d:["عمل باليدين على النسيج والمفصل لخفض الألم واستعادة المدى. وهو يفتح نافذةً تستطيع فيها الحركة أفضل، ويجب استغلال تلك النافذة في اليوم نفسه بالتمرين.","ومتى لا: علاجًا وحيدًا. فالعلاج الذي لا يتجاوز السرير يتركك أفضل عند الخروج ثم كما كنت يوم الخميس. وإن عرض عليك أحد عشرين جلسة يدوية ولا شيء غيرها، فهو يبيعك تسكينًا لا تعافيًا."]},
+  {i:"التمرين", t:"التمرين العلاجي", d:["جوهر كل ما نفعله. تحميل متدرّج ومقيس ليحتمل النسيج ما ستطلبه منه. ويجري في القاعة، بالأثقال، ويُعدَّل كل أسبوع بحسب استجابتك: وليس ورقةً تُسلَّم إليك أول يوم وانتهى.","ومتى لا: لا يُستبعد أبدًا، لكنه في المرحلة الحادّة جدًّا يُستبدل بعمل ثابت أو بتحميل الجهة السليمة. فألّا تفعل شيئًا نادرًا ما يكون الجواب الصحيح؛ وأن تفعل ما كنت تفعله كذلك."]},
+  {i:"الوخز الجاف", t:"الوخز الجاف", d:["إبرة رفيعة في النقطة المُثيرة لعضلة متشنّجة. وهو غير مريح ويترك ألمًا يومًا أو يومين. وإذا أُحسن اختياره أزاح ألمًا ظلّ أسابيع يعطّل عمل القوة.","ومتى لا: إن كنت تخاف الإبر، أو تتناول مميّعات الدم، أو كانت المشكلة غير عضلية. ولا نستعمله روتينيًّا في كل جلسة: فهو أداة ظرفية لا علاج بذاته."]},
+  {i:"العودة للرياضة", t:"إعادة التأهيل الرياضي", d:["الجزء الذي لا يكاد أحد يفعله، وسببُ انتكاس الناس. العودة إلى الجري والقفز وتغيير الاتجاه والتوقّف، بمعايير قابلة للقياس لا بالإحساس. فالخروج ليس «لم يعد يؤلمني»: بل اجتياز اختبارات محددة.","ومتى لا: إن كان هدفك مجرد العودة إلى الحياة اليومية بلا ألم، فلست بحاجة إليه ولن نُحاسبك عليه. ونقترحه على من يعود إلى رياضة فيها ارتطام أو تغيير اتجاه."]},
+  {i:"الوقاية", t:"الوقاية وإدارة الحِمل", d:["لمن هو بخير ويريد أن يبقى كذلك. نراجع مقدار تدريبك، وكيف رفعت الحِمل، وأين نقاط ضعفك، ثم نُعدّل. وهي عادةً جلسة كل أربعة إلى ستة أسابيع، لا روتين أسبوعي.","ومتى لا: إن كنت قد أنهيت علاجًا للتوّ، فالأشهر الثلاثة الأولى ليست وقاية بل آخر مراحل التعافي. ولا نحاسب عليها منفصلةً."]}
+ ],
+
+ eqComoEti:"كيف نعمل فيما بيننا",
+ eqComo:[
+  "لا نُدوّر المرضى. فمن يقيّمك أول يوم هو من يمنحك الخروج، لأن نصف قيمة الجلسة في تذكّر حالك قبل ثلاثة أسابيع دون الحاجة إلى إعادة قراءة الملف.",
+  "لكن ذلك لا يعني أنك بين يدي عقل واحد. ففي صباح كل ثلاثاء نراجع نحن الأربعة الحالات التي لا تسير كما توقّعنا: ما جُرّب، وما لم ينفع، وما الذي يتغيّر. فإن تعثّرت حالتك نظر فيها أربعة أشخاص وإن كنت لا تتعامل إلا مع واحد.",
+  "وكل شيء يُدوَّن: القياسات، والأحمال، وما آلم وكم. فإن غاب معالجك يومًا لمرض، عرف من يستقبلك أين وصلت بالضبط. وإن طلبت ملفك لتأخذه إلى مكان آخر، سُلِّم إليك في اليوم نفسه وبلا أسئلة."
+ ],
+ eqFormacionEti:"ما نُلزم به أنفسنا",
+ eqFormacion:[
+  "تسجيل مهني ساري وتأمين مسؤولية مهنية، يمكن التحقق منهما برقم القيد",
+  "أربعون ساعة تدريب سنويًا على الأقل، ضمن ساعات العمل وعلى نفقة المركز",
+  "جلسة سريرية أسبوعية للحالات الصعبة، بحضور أفراد الفريق الأربعة",
+  "لا بيع لمنتجات ولا أجهزة ولا مكمّلات: ولا نتقاضى عمولة على شيء"
+ ],
+
+ inAccesoEti:"كيف تصل ومتى نفتح",
+ inAcceso:[
+  {t:"بالنقل العام", p:"المترو على بعد أربعمئة متر، المخرج الجنوبي، والطريق مستوٍ كله. وخطّا حافلات يقفان على الرصيف نفسه. وهي أسرع وسيلة في ساعة الذروة، وننصح بها إن كنت على عكّاز."},
+  {t:"بالسيارة", p:"موقف بالساعة على بعد ثمانين مترًا، والساعة الأولى مدعومة إن كنت قادمًا لجلسة: تُصدَّق في الاستقبال. أما الشارع فمنطقة رسوم، فلا تعوّل على الوقوف عند الباب."},
+  {t:"سهولة الوصول", p:"مدخل بمستوى الشارع بلا درجة، وباب بعرض تسعين سنتيمترًا، ومصعد، ودورة مياه مهيّأة. وإن كنت على كرسي أو بمشّاية فقُل ذلك عند حجز الموعد فنحجز لك القاعة الكبيرة، وفيها مساحة دوران أوسع."}
+ ],
+ inHorario:"نفتح من الاثنين إلى الجمعة من السابعة والنصف إلى التاسعة مساءً، والسبت من التاسعة إلى الثانية. وأوقات ما قبل التاسعة وما بعد السابعة أول ما يمتلئ، لأنها تتيح المجيء دون التغيّب عن العمل: فإن استطعت منتصف الصباح نلت موعدًا أبكر بكثير.",
+
+ prCuantasEti:"كم جلسة ستحتاج فعلًا",
+ prCuantas:[
+  "الجواب الصادق أن ذلك يتوقف على النسيج وعلى مدة إصابتك، وأنه يمكن تقديره تقديرًا جيدًا في اليوم الأول. فألم ظهر عمره ثلاثة أسابيع يُحلّ عادةً في أربع إلى ست جلسات موزّعة على شهر ونصف. أما اعتلال وتر أخيل عمره سنة فثلاثة أو أربعة أشهر، وعدد الجلسات فيه أقل أهمية من التزامك بالعمل في البيت.",
+  "وفي التقييم الأول نعطيك رقمًا ومدة. فإن لم نكن في منتصف الطريق حيث قلنا، أخبرناك وغيّرنا الخطة أو أحلناك: ولا نُراكم الجلسات علّ شيئًا ينفع. ولهذا لا نبيع باقات من عشرين جلسة قبل أن نراك.",
+  "وحقيقة غير مريحة: أكثر ما يتنبأ بمدة تعافيك ليس العلاج، بل عدد أيام أدائك التمارين في البيت أسبوعيًا. فبيومين يكون التحسّن بطيئًا؛ وبأربعة تُحلّ الحالة نفسها في نصف المدة. ونفضّل أن نعطيك ثلاثة تمارين تؤديها على اثني عشر لا تؤديها."
+ ],
+ prNoEti:"متى نقول لك لا",
+ prNo:[
+  {t:"حين يلزم طبيب أولًا", p:"ألم ليلي لا يخفّ بتغيير الوضعية، أو فقدان قوة واضح، أو حمّى، أو نقص وزن بلا تفسير، أو رضّ كبير. فهذا لا نمسّه: بل نُحيلك ونساعدك على أن تُعايَن سريعًا."},
+  {t:"حين لا يكون اختصاصنا", p:"قاع الحوض والدهليزي والتنفّسي والعصبي المعقّد ليست لنا. ولدينا ثلاثة مراكز موثوقة نُرسل الناس إليها ونتصل بها بأنفسنا لشرح الحالة، بلا مقابل."},
+  {t:"حين تكون بخير أصلًا", p:"ويحدث أكثر مما يُظنّ: يأتي أحدهم باثنتي عشرة جلسة اشتراها في مكان آخر ومشكلته محلولة. فنقول له ذلك، ونجري جلسة إرشاد كي لا ينتكس، ولا نحاسبه ثانيةً حتى يستدعي الأمر."}
+ ],
+ ctaPrH:"التقييم يستغرق ساعة ويشمل العلاج أصلًا.",
+ ctaPrP:"وإن تبيّن في نهايته أننا لسنا ما تحتاجه، قلنا لك ذلك هناك وأحلناك.",
+ bPedirCita:"حجز موعد",
+
+ coDespuesEti:"ماذا يحدث بعد الإرسال", coCentroEti:"أين نحن",
+ coUrgenteEti:"إن كان الأمر عاجلًا", coEquipoEti:"المراسلة المباشرة",
+ coUrgente:"إن تلقّيت ضربة قوية، أو تعذّر عليك الاتكاء على قدمك، أو تشوّه المفصل، أو أحسست بتنميل ينزل في الذراع أو الساق، فلا تحجز هنا: اذهب إلى الطوارئ. فالعلاج الطبيعي يأتي بعد ذلك، ويأتي أفضل متى استُبعد الخطير أولًا.",
+ coDirs:[
+  {n:"مركز أطلس", d:"جادة الحديقة ١١٨، الطابق الأرضي<br>٢٨٠٤٥ مدريد<br>إسبانيا", t:"+34 910 000 000"}
+ ],
+ coEquipo:[
+  {n:"المواعيد والأوقات", r:"التعديل والإلغاء والباقات", m:"citas@atlas.example"},
+  {n:"إعادة التأهيل الرياضي", r:"العودة للمنافسة وقرارات الخروج", m:"deporte@atlas.example"},
+  {n:"الأندية والشركات", r:"الاتفاقيات ومتابعة الفرق", m:"clubes@atlas.example"}
+ ],
+ despues:[
+  {t:"نتصل بك في اليوم نفسه", d:"بين الواحدة والثالثة، أو في الوقت الذي تحدده. وإن بدا ما تصفه شيئًا ينبغي أن يراه طبيب أولًا، قلنا لك ذلك في تلك المكالمة ولم نحجز لك."},
+  {t:"نعطيك موعدًا خلال أقل من أسبوع", d:"إلا في أوقات أول اليوم وآخره، فهي أكثر ازدحامًا. وإن كان الأمر مستعجلًا فقُل ذلك: نحتفظ بموعدين يوميًّا للحالات الحادّة."},
+  {t:"الموعد الأول ساعة", d:"أحضِر ثيابًا تستطيع الحركة بها، وإن كانت لديك صور تشخيصية فأحضِرها. وليست لازمة للبدء، لكنها توفّر وقتًا."},
+  {t:"تخرج بخطة مكتوبة", d:"كم جلسة نُقدّر، وماذا تفعل في البيت من عصر ذلك اليوم، وما الذي يجب أن يتحقق كي نمنحك الخروج. على ورق، لا مشافهةً."}
+ ],
+ nClinica:"العيادة", ariaEnPagina:"في هذه الصفحة", tClinica:"العيادة — أطلس",
 
  orNivUrgente:"راجع الطبيب اليوم", orNivPronto:"احجز هذا الأسبوع", orNivNormal:"يحتمل الانتظار",
  nOrientacion:"ما الذي أصابني؟", nMapa:"خريطة الجسم", nDolor:"مقياس الألم",
@@ -1858,6 +2142,29 @@ function pintarMovilidad(){
 function pintarListas(){
   var t = T[idioma];
   function pon(id, arr, fn){ var e = document.getElementById(id); if (e) e.innerHTML = arr.map(fn).join(""); }
+  function celdas(id, arr){ pon(id, arr, function(c){
+    return '<div class="cel"><h3>'+esc(c.t)+'</h3><p>'+esc(c.p)+'</p></div>'; }); }
+  function parrafos(id, arr){ pon(id, arr, function(x){
+    return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
+  function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
+
+  pon("trDetalle", t.trDetalle, function(f){
+    return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
+      + '<div class="d">'+f.d.map(function(x){ return '<p>'+esc(x)+'</p>'; }).join("")+'</div></div>'; });
+  parrafos("eqComo", t.eqComo);
+  puntos("eqFormacion", t.eqFormacion);
+  celdas("inAcceso", t.inAcceso);
+  parrafos("prCuantas", t.prCuantas);
+  celdas("prNo", t.prNo);
+  pon("coDirs", t.coDirs, function(o){
+    return '<div class="dir"><b>'+esc(o.n)+'</b><address>'+o.d+'</address>'
+      + '<a class="tel" href="tel:'+o.t.replace(/\s/g,"")+'" dir="ltr">'+esc(o.t)+'</a></div>'; });
+  pon("coEquipo", t.coEquipo, function(e){
+    return '<div><div><b>'+esc(e.n)+'</b><span>'+esc(e.r)+'</span></div>'
+      + '<a href="mailto:'+e.m+'" dir="ltr">'+esc(e.m)+'</a></div>'; });
+  pon("coDespues", t.despues, function(d){
+    return '<li><div><b>'+esc(d.t)+'</b><span>'+esc(d.d)+'</span></div></li>'; });
+
   pon("iCifras", t.cifras, function(c){ return '<div class="cel dato"><div class="v">'+esc(c.v)+'</div><div class="u">'+esc(c.u)+'</div></div>'; });
   pon("iTrat", t.tratamientos.slice(0,3), function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });
   pon("trLista", t.tratamientos, function(x){ return '<div class="cel"><span class="sub">'+esc(x.f)+'</span><h3>'+esc(x.n)+'</h3><p>'+esc(x.d)+'</p></div>'; });

@@ -98,6 +98,28 @@ nav.a a[aria-current="page"]{color:var(--t);border-bottom-color:var(--verde);}
 .idi button:hover{color:var(--t);}
 @media(max-width:980px){.barra{gap:.6rem 1rem}.idi{margin-inline-start:auto}nav.a{order:3;width:100%;margin-inline-start:0}}
 
+/* ── Menú de móvil ─────────────────────────────────────────────────
+   A 380 px la barra se partía en tres filas y ocupaba 167 px de alto, un
+   cuarto de la pantalla. Debajo del corte se pliega en un panel. */
+.menu-b{display:none;background:none;border:1px solid var(--l);cursor:pointer;
+  width:2.6rem;height:2.6rem;padding:0;flex-direction:column;gap:4px;
+  align-items:center;justify-content:center;flex-shrink:0;margin-inline-start:auto;}
+.menu-b span{display:block;width:1.05rem;height:1.5px;background:var(--t);transition:transform .2s ease,opacity .2s ease;}
+.menu-b[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+.menu-b[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.menu-b[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
+.menu-velo{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;}
+@media(max-width:880px){
+  .menu-b{display:flex;}
+  nav.a{position:fixed;inset-block:0;inset-inline-end:0;width:min(320px,88vw);z-index:58;
+    background:var(--sup);border-inline-start:1px solid var(--l);
+    flex-direction:column;gap:0;padding:5rem 1.4rem 2rem;overflow-y:auto;align-items:stretch;}
+  nav.a[hidden]{display:none !important;}
+  nav.a a{padding-block:.95rem;border-bottom:1px solid var(--l);font-size:1rem;
+    color:var(--t2);white-space:normal;}
+  nav.a a[aria-current="page"]{color:var(--verde);}
+}
+
 [data-ruta]{display:none;} [data-ruta].on{display:block;animation:ap .4s ease both;}
 @keyframes ap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -519,6 +541,11 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
       </svg>
       <span data-t="marca">ATLAS</span>
     </a>
+    <button type="button" class="menu-b" id="menuB" aria-expanded="false" aria-controls="menuP"
+            data-t-attr="aria-label:menuAria">
+      <span></span><span></span><span></span>
+    </button>
+
     <nav class="a" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
       <a href="#/inicio"       data-t="nInicio">Inicio</a>
       <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
@@ -1013,7 +1040,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", metaBase:"Fisioterapia y readaptación deportiva. Una hora por paciente y alta por criterios medibles.",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", menuAria:"Abrir el menú",
+ metaBase:"Fisioterapia y readaptación deportiva. Una hora por paciente y alta por criterios medibles.",
  nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — ATLAS", tEmpleo:"Empleo — ATLAS",
  tErr:"Página no encontrada — ATLAS", pieEmpresaEti:"La casa",
  errEti:"Error 404", errH1:"Esa página no existe.",
@@ -1483,7 +1511,8 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", metaBase:"Physiotherapy and sports rehabilitation. One hour per patient and discharge on measurable criteria.",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", menuAria:"Open the menu",
+ metaBase:"Physiotherapy and sports rehabilitation. One hour per patient and discharge on measurable criteria.",
  nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — ATLAS", tEmpleo:"Jobs — ATLAS",
  tErr:"Page not found — ATLAS", pieEmpresaEti:"The company",
  errEti:"Error 404", errH1:"That page does not exist.",
@@ -1953,7 +1982,8 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", metaBase:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض وخروج بمعايير قابلة للقياس.",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", menuAria:"افتح القائمة",
+ metaBase:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض وخروج بمعايير قابلة للقياس.",
  nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — أطلس", tEmpleo:"وظائف — أطلس",
  tErr:"الصفحة غير موجودة — أطلس", pieEmpresaEti:"الدار",
  errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
@@ -3066,6 +3096,31 @@ function textoEntrada(r){
   var t = sec ? sec.textContent.trim() : "";
   return t.length > 155 ? t.slice(0, 152).replace(/\s+\S*$/, "") + "…" : t;
 }
+/* El panel sólo se oculta con [hidden] por debajo del corte: por encima
+   la navegación es una barra normal y no debe desaparecer nunca. */
+var CORTE_MENU = window.matchMedia("(max-width: 880px)");
+function menuAbrir(abrir){
+  var nav = document.querySelector("nav.a"), bt = document.getElementById("menuB");
+  if (!nav || !bt) return;
+  if (!CORTE_MENU.matches) { nav.hidden = false; return; }
+  nav.hidden = !abrir;
+  bt.setAttribute("aria-expanded", String(abrir));
+  var velo = document.getElementById("menuVelo");
+  if (abrir && !velo){
+    velo = document.createElement("div");
+    velo.className = "menu-velo"; velo.id = "menuVelo";
+    velo.addEventListener("click", function(){ menuAbrir(false); });
+    document.body.appendChild(velo);
+  } else if (!abrir && velo) velo.remove();
+  if (abrir) nav.querySelector("a").focus(); else bt.focus();
+}
+function menuAjustar(){
+  var nav = document.querySelector("nav.a");
+  if (!nav) return;
+  if (CORTE_MENU.matches){ if (!document.getElementById("menuVelo")) nav.hidden = true; }
+  else { nav.hidden = false; menuAbrir(false); }
+}
+
 function pintarMeta(){
   var t = T[idioma], r = ruta();
   var titulo = t[TITULOS[r]] || t.tInicio;
@@ -3292,6 +3347,15 @@ document.getElementById("ckGuardar").addEventListener("click", function(){
   });
   ckGuarda(marcadas);
 });
+document.getElementById("menuB").addEventListener("click", function(){
+  menuAbrir(this.getAttribute("aria-expanded") !== "true");
+});
+document.querySelector("nav.a").addEventListener("click", function(e){
+  if (e.target.tagName === "A") menuAbrir(false);
+});
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") menuAbrir(false); });
+CORTE_MENU.addEventListener("change", menuAjustar);
+menuAjustar();
 window.addEventListener("hashchange", enrutar);
 
 document.getElementById("f").addEventListener("submit", function(e){

@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ATLAS — Fisioterapia y readaptación deportiva</title>
 <meta name="description" content="Fisioterapia y readaptación deportiva. Diagnóstico, tratamiento y vuelta a entrenar con criterio, no con calendario.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1411'/%3E%3Cg stroke='%232fbfa4' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M16 5v22M11 9h10M9.5 15h13M12 21h8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1411'/%3E%3Cg stroke='%232fbfa4' stroke-width='2.4' stroke-linecap='round' fill='none'%3E%3Cpath d='M16 5v22M11 9h10M9.5 15h13M12 21h8'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f7f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1411" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://2troll.github.io/atlas-fisio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ATLAS">
+<meta property="og:url" content="https://2troll.github.io/atlas-fisio/">
+<meta property="og:title" id="ogT" content="">
+<meta property="og:description" id="ogD" content="">
+<meta property="og:locale" id="ogL" content="es_ES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" id="twT" content="">
+<meta name="twitter:description" id="twD" content="">
+<script type="application/ld+json" id="datos"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Outfit:wght@300;400;500&family=Rubik:wght@300;400;500;600&display=swap">
@@ -998,7 +1013,8 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES", nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — ATLAS", tEmpleo:"Empleo — ATLAS",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", metaBase:"Fisioterapia y readaptación deportiva. Una hora por paciente y alta por criterios medibles.",
+ nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — ATLAS", tEmpleo:"Empleo — ATLAS",
  tErr:"Página no encontrada — ATLAS", pieEmpresaEti:"La casa",
  errEti:"Error 404", errH1:"Esa página no existe.",
  errEntrada:"O la dirección está mal escrita, o la teníamos y la hemos movido. Si el enlace venía de aquí, es culpa nuestra.",
@@ -1467,7 +1483,8 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB", nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — ATLAS", tEmpleo:"Jobs — ATLAS",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", metaBase:"Physiotherapy and sports rehabilitation. One hour per patient and discharge on measurable criteria.",
+ nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — ATLAS", tEmpleo:"Jobs — ATLAS",
  tErr:"Page not found — ATLAS", pieEmpresaEti:"The company",
  errEti:"Error 404", errH1:"That page does not exist.",
  errEntrada:"Either the address is mistyped, or we had it and moved it. If the link came from here, it is our fault.",
@@ -1936,7 +1953,8 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — أطلس", tEmpleo:"وظائف — أطلس",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", metaBase:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض وخروج بمعايير قابلة للقياس.",
+ nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — أطلس", tEmpleo:"وظائف — أطلس",
  tErr:"الصفحة غير موجودة — أطلس", pieEmpresaEti:"الدار",
  errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
  errEntrada:"إما أن العنوان مكتوب خطأً، وإما أنها كانت لدينا فنقلناها. وإن كان الرابط من هنا فهو ذنبنا.",
@@ -2857,7 +2875,7 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
-  pintarAgenda(); pintarBaldosas(); pintarPieClinica(); pintarCookies(); pintarLegal(); pintarPaginasBase();
+  pintarAgenda(); pintarBaldosas(); pintarPieClinica(); pintarCookies(); pintarLegal(); pintarPaginasBase(); pintarMeta();
   pon("iPorQue", t.iPorQue, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
@@ -3006,6 +3024,61 @@ function pintarCookies(){
       + (marcada ? " checked" : "") + (fijo ? " disabled" : "") + '>'
       + '<span><b>'+esc(t.ckCats[i].n)+'</b><span>'+esc(t.ckCats[i].d)+'</span></span></label>';
   }).join("");
+}
+
+function grafoDatos(){
+  var t = T[idioma];
+  return {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":["MedicalBusiness","Physiotherapy"], "@id":"https://2troll.github.io/atlas-fisio/#org",
+       "name":"Centro ATLAS Fisioterapia", "url":"https://2troll.github.io/atlas-fisio/",
+       "description":t.pieQue, "email":"hola@atlas.example", "telephone":"+34910000000",
+       "inLanguage":["es","en","ar"],
+       "disclaimer":"Maqueta de demostración: centro ficticio, no se gestionan citas reales.",
+       "address":{"@type":"PostalAddress","streetAddress":"Avenida del Parque 118, bajo",
+         "postalCode":"28045","addressLocality":"Madrid","addressCountry":"ES"},
+       "openingHoursSpecification":[
+         {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens":"07:30","closes":"21:00"},
+         {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"14:00"}],
+       "isAcceptingNewPatients":true,
+       "availableService":t.trDetalle.map(function(x){
+         return {"@type":"MedicalTherapy","name":x.t,"description":x.d[0]}; })},
+      {"@type":"WebSite","@id":"https://2troll.github.io/atlas-fisio/#web",
+       "url":"https://2troll.github.io/atlas-fisio/","name":"ATLAS",
+       "inLanguage":t._lang,"publisher":{"@id":"https://2troll.github.io/atlas-fisio/#org"}},
+      {"@type":"FAQPage","@id":"https://2troll.github.io/atlas-fisio/#faq",
+       "mainEntity":t.preguntas.map(function(p){
+         return {"@type":"Question","name":p.q,
+                 "acceptedAnswer":{"@type":"Answer","text":p.a}}; })}
+    ]
+  };
+}
+
+
+/* ── Metadatos y datos estructurados ───────────────────────────────
+   La descripción de cada página sale de su propia entradilla, y el JSON-LD
+   de los mismos datos que pinta el sitio. Así no hay una copia paralela
+   que se quede vieja cuando se cambia un texto. */
+function textoEntrada(r){
+  var sec = document.querySelector('[data-ruta="'+r+'"] .entrada');
+  var t = sec ? sec.textContent.trim() : "";
+  return t.length > 155 ? t.slice(0, 152).replace(/\s+\S*$/, "") + "…" : t;
+}
+function pintarMeta(){
+  var t = T[idioma], r = ruta();
+  var titulo = t[TITULOS[r]] || t.tInicio;
+  var desc = textoEntrada(r) || t.metaBase;
+  function pon(id, v){ var e = document.getElementById(id); if (e) e.setAttribute("content", v); }
+  var md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute("content", desc);
+  pon("ogT", titulo); pon("twT", titulo);
+  pon("ogD", desc);   pon("twD", desc);
+  pon("ogL", t._lang === "ar" ? "ar_AR" : t._lang === "en" ? "en_GB" : "es_ES");
+
+  var datos = document.getElementById("datos");
+  if (datos) datos.textContent = JSON.stringify(grafoDatos(), null, 0);
 }
 
 function pintarPaginasBase(){
@@ -3188,6 +3261,7 @@ function enrutar(){
   }
   document.title = T[idioma][TITULOS[r]] || T[idioma].tInicio;
   window.scrollTo(0,0);
+  pintarMeta();
 }
 
 var bs = document.querySelectorAll(".idi button");

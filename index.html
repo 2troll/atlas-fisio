@@ -296,7 +296,7 @@ html[dir="rtl"] .despues li::before{content:counter(d,arabic-indic);font-size:1r
 .pie-cta p{color:var(--t2);font-size:.94rem;margin:0;max-width:52ch;}
 .pie-cta-acc{display:flex;flex-wrap:wrap;gap:.7rem;}
 .pie-rej{display:grid;gap:2rem;padding-block:clamp(2rem,4vw,3rem);}
-@media(min-width:820px){.pie-rej{grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2.5rem;}}
+@media(min-width:820px){.pie-rej{grid-template-columns:1.5fr repeat(4,1fr);gap:2rem;}}
 .pie-logo{font-size:1.15rem;font-weight:700;display:block;margin-bottom:.9rem;}
 .pie-marca p{font-size:.88rem;color:var(--t2);max-width:36ch;}
 .pie-dir{font-size:.8rem !important;color:var(--t3) !important;}
@@ -408,6 +408,18 @@ html[dir="rtl"] .prof-ini{letter-spacing:0;}
 .prof-lib{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);}
 html[dir="rtl"] .prof-lib{letter-spacing:0;text-transform:none;font-size:.85rem;}
 .prof-pie b{font-size:.86rem;color:var(--t);text-align:end;}
+
+.err-ruta{font-size:.86rem;color:var(--t3);margin-top:1.2rem;}
+.err-ruta code{background:var(--sup);border:1px solid var(--l);border-radius:6px;padding:.15rem .5rem;
+  color:var(--senal);direction:ltr;display:inline-block;font-family:ui-monospace,monospace;}
+.mapa-rej{display:grid;gap:2rem;}
+@media(min-width:760px){.mapa-rej{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2.5rem;}}
+.mapa-col h2{font-size:1.15rem;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--l);}
+.mapa-col nav{display:grid;gap:.5rem;}
+.mapa-col a{color:var(--t2);text-decoration:none;font-size:.9rem;}
+.mapa-col a:hover{color:var(--verde);}
+.mapa-col .sola{color:var(--t3);font-size:.82rem;}
+.puesto-b{font-size:.8rem;color:var(--verde);display:block;margin-top:.4rem;}
 
 /* ── Cookies y legal ──────────────────────────────────────────────── */
 .ck{position:fixed;inset-inline:0;bottom:0;z-index:100;background:var(--sup);
@@ -876,6 +888,47 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 
 
 
+<section data-ruta="err" id="ap-err">
+  <div class="marco bl">
+    <p class="eti" data-t="errEti">Error 404</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:16ch" data-t="errH1">Esa página no existe.</h1>
+    <p class="entrada" data-t="errEntrada">O la dirección está mal escrita, o la teníamos y la hemos movido. Si el enlace venía de aquí, es culpa nuestra.</p>
+    <p class="err-ruta"><span data-t="errPedida">Has pedido:</span> <code id="errRuta"></code></p>
+    <div class="acc">
+      <a class="btn sol" href="#/contacto" data-ir="ap-agenda2" data-t="bPedirCita">Pedir cita</a>
+      <a class="btn" href="#/mapa" data-t="nMapa">Mapa del sitio</a>
+      <a class="btn" href="#/contacto" data-t="errAvisar">Avisarnos del enlace roto</a>
+    </div>
+  </div>
+</section>
+
+<section data-ruta="mapa" id="ap-mapa">
+  <div class="marco bl">
+    <p class="eti" data-t="nMapa">Mapa del sitio</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:16ch" data-t="mpH1">Todo lo que hay, en una página.</h1>
+    <p class="entrada" data-t="mpEntrada">Generado del propio índice del sitio: si se añade un apartado, aparece aquí solo. No hay una lista escrita a mano que se quede vieja.</p>
+  </div>
+  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
+    <div class="mapa-rej" id="mapaSitio"></div>
+  </div>
+</section>
+
+<section data-ruta="empleo" id="ap-empleo">
+  <div class="marco bl">
+    <p class="eti" data-t="nEmpleo">Empleo</p>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.2rem);max-width:18ch" data-t="emH1">Cuatro personas, y ninguna con veinte pacientes al día.</h1>
+    <p class="entrada" data-t="emEntrada">La razón de que aquí se trabaje a una hora por paciente es que las agendas no están llenas hasta arriba. Eso condiciona el sueldo, y por eso va escrito.</p>
+  </div>
+  <div class="marco">
+    <div class="filas" id="emPuestos"></div>
+  </div>
+  <div class="marco bl" style="padding-top:2rem">
+    <p class="eti" data-t="emComoEti">Cómo es el proceso</p>
+    <ol class="despues" id="emComo"></ol>
+    <p class="metodo" data-t="emNota">Maqueta de demostración: las ofertas son de ejemplo y no hay proceso de selección abierto.</p>
+  </div>
+</section>
+
 <section data-ruta="legal" id="ap-legal">
   <div class="marco bl">
     <p class="eti" data-t="nLegal">Legal</p>
@@ -929,6 +982,11 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
     <div class="pie-col"><p class="pie-t" data-t="pieZonas">Por dolencia</p><nav id="pieZonas"></nav></div>
     <div class="pie-col"><p class="pie-t" data-t="nTratamientos">Tratamientos</p><nav id="pieTrat"></nav></div>
     <div class="pie-col"><p class="pie-t" data-t="pieCentro">El centro</p><nav id="pieCentro"></nav></div>
+    <div class="pie-col"><p class="pie-t" data-t="pieEmpresaEti">La casa</p><nav>
+      <a href="#/empleo" data-t="nEmpleo">Empleo</a>
+      <a href="#/mapa" data-t="nMapa">Mapa del sitio</a>
+      <a href="#/legal" data-t="nLegal">Legal</a>
+    </nav></div>
   </div>
   <div class="marco pie-fin">
     <span data-t="pieAviso">Maqueta de demostración</span>
@@ -940,7 +998,34 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 <script>
 var T = {
 es:{
- _dir:"ltr", _lang:"es", _loc:"es-ES",
+ _dir:"ltr", _lang:"es", _loc:"es-ES", nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — ATLAS", tEmpleo:"Empleo — ATLAS",
+ tErr:"Página no encontrada — ATLAS", pieEmpresaEti:"La casa",
+ errEti:"Error 404", errH1:"Esa página no existe.",
+ errEntrada:"O la dirección está mal escrita, o la teníamos y la hemos movido. Si el enlace venía de aquí, es culpa nuestra.",
+ errPedida:"Has pedido:", errAvisar:"Avisarnos del enlace roto",
+ mpH1:"Todo lo que hay, en una página.",
+ mpEntrada:"Generado del propio índice del sitio: si se añade un apartado, aparece aquí solo. No hay una lista escrita a mano que se quede vieja.",
+ mapaSinApartados:"Página única, sin apartados.",
+ emH1:"Cuatro personas, y ninguna con veinte pacientes al día.",
+ emEntrada:"La razón de que aquí se trabaje a una hora por paciente es que las agendas no están llenas hasta arriba. Eso condiciona el sueldo, y por eso va escrito.",
+ emComoEti:"Cómo es el proceso", emNota:"Maqueta de demostración: las ofertas son de ejemplo y no hay proceso de selección abierto.",
+ puestos:[
+  {i:"Consulta", t:"Fisioterapeuta", b:"30.000–34.000 € brutos · jornada completa",
+   d:"Ocho pacientes al día, hora por paciente, con quince minutos entre uno y otro para escribir la evolución. No se cobra por objetivos ni hay comisión por vender bonos: eso es lo que empuja a alargar tratamientos que ya deberían haberse dado de alta. Se pide colegiación y dos años de experiencia; no se pide un máster concreto."},
+  {i:"Sala", t:"Readaptador/a o graduado en CAFyD", b:"27.000–31.000 € brutos · jornada completa",
+   d:"Llevar la sala de fuerza y los criterios de alta. Trabajo compartido con el fisioterapeuta que lleva cada caso, no en paralelo. Se necesita saber programar carga de verdad, no una tabla de ejercicios genérica descargada."},
+  {i:"Recepción", t:"Recepción y administración", b:"21.000–24.000 € brutos · 35 h semanales",
+   d:"Agenda, facturación y primer contacto por teléfono. Es el puesto que más determina la experiencia del paciente y por eso no lo dejamos en manos de una empresa externa. Formación en protección de datos pagada: aquí se manejan datos de salud y eso no se improvisa."},
+  {i:"Prácticas", t:"Prácticas de último curso", b:"600 € al mes · 20 h semanales",
+   d:"Remuneradas. En este sector lo habitual es que no lo sean, y es precisamente por eso que lo son aquí. No se sustituye trabajo de plantilla con prácticas: se acompaña, se observa y se hace bajo supervisión."}
+ ],
+ emComo:[
+  {t:"Leemos todo y contestamos a todo el mundo", d:"Aunque sea que no. No usamos filtros automáticos que descartan currículos por palabras clave."},
+  {t:"Una conversación de una hora", d:"Preguntamos por casos que hayas llevado de verdad, incluidos los que salieron mal. Los que salieron mal enseñan más."},
+  {t:"Media jornada en el centro, pagada", d:"Ves cómo se trabaja aquí y nosotros te vemos con un paciente real, con su permiso. Se paga aunque después no sigas."},
+  {t:"Respuesta en una semana, con el motivo", d:"Si no encaja, decimos por qué en dos líneas."}
+ ],
+
  nLegal:"Legal", tLegal:"Legal — ATLAS", leH1:"Tus datos de salud, y qué hacemos con ellos.",
  leEntrada:"Una historia clínica es de las cosas más sensibles que vas a dejar en manos de nadie. Esto es lo que hacemos con la tuya, en cristiano.",
  leMaqueta:"Aviso: esto es una maqueta de demostración. Los textos siguen la estructura de la documentación de un centro sanitario real, pero el centro es inventado y no constituye asesoramiento jurídico ni consejo médico.",
@@ -987,7 +1072,27 @@ es:{
   {t:"8. Accesibilidad", p:[
    "El sitio se ha construido buscando cumplir las pautas WCAG 2.2 en nivel AA: navegación con teclado, foco visible, contraste suficiente en ambos temas, texto alternativo y respeto de la preferencia de movimiento reducido.",
    "El mapa corporal se puede recorrer con teclado y cada zona tiene nombre, no sólo posición. La escala de dolor no depende del color: cada banda lleva número y descripción escrita. Las horas ocupadas de la agenda están marcadas como deshabilitadas para que un lector de pantalla las anuncie como tales, no sólo tachadas visualmente.",
-   "El centro tiene entrada a nivel de calle, puerta de noventa centímetros, ascensor y aseo adaptado. Si necesitas algo concreto para poder venir, dilo al pedir la cita: se prepara antes, no al llegar."]}
+   "El centro tiene entrada a nivel de calle, puerta de noventa centímetros, ascensor y aseo adaptado. Si necesitas algo concreto para poder venir, dilo al pedir la cita: se prepara antes, no al llegar."]},
+  {t:"9. Términos de uso del sitio", p:[
+   "Puedes leer, imprimir y compartir el contenido libremente, citando la fuente. Lo que <b>no</b> deberías hacer es tomar los ejercicios o el árbol de orientación como diagnóstico: esto es información general, no una valoración de tu caso, y una lesión igual por fuera puede ser dos cosas distintas por dentro.",
+   "Los textos, el código y las ilustraciones son nuestros. Las fotografías proceden de Wikimedia Commons con licencia libre y se atribuyen a su autor en los créditos. Las tipografías vienen de Google Fonts bajo licencia SIL Open Font.",
+   "<b>Las herramientas del sitio</b> —árbol de orientación, escala de dolor, test de simetría— son orientativas y están calibradas con criterios generales. No sustituyen una exploración, y así se dice al pie de cada una. Si una te sale mal y te preocupa, pide cita; no te quedes con la pantalla.",
+   "<b>Disponibilidad.</b> No garantizamos que el sitio esté en pie el cien por cien del tiempo. Si se cae, la agenda del teléfono sigue funcionando."]},
+  {t:"10. Ley aplicable y reclamaciones", p:[
+   "La relación se rige por la <b>legislación española</b>, incluida la Ley 41/2002 de autonomía del paciente, que es la que regula la historia clínica y el consentimiento informado. Si eres consumidor, puedes acudir a los juzgados de tu domicilio y ninguna condición nuestra puede quitarte ese derecho.",
+   "<b>Vías de reclamación, y son independientes.</b> No hace falta pasar por nosotros primero: puedes ir directamente a la consejería de sanidad de tu comunidad, al colegio profesional de fisioterapeutas si la queja es sobre la actuación de un profesional, o a la Agencia Española de Protección de Datos si es sobre tus datos.",
+   "También existe la <b>plataforma europea de resolución de litigios en línea</b> y las juntas arbitrales de consumo, a las que estamos adheridos. Un laudo arbitral nos obliga aunque no nos guste el resultado.",
+   "<b>Seguro de responsabilidad civil sanitaria:</b> póliza en vigor con cobertura de 1.200.000 € por siniestro. El certificado está en recepción y se puede pedir copia. Si alguna vez un centro no te lo enseña cuando lo pides, eso te dice algo."]},
+  {t:"11. Canal ético y seguridad del paciente", p:[
+   "Hay un canal para comunicar cosas que no se pueden decir en voz alta en recepción: <b>etica@atlas.example</b>. Lo lee una sola persona de dirección. Se puede escribir de forma anónima; no registramos direcciones IP.",
+   "<b>Qué comunicar:</b> un trato inadecuado, una técnica aplicada sin explicártela, presión para comprar bonos, o la sospecha de que se te está alargando un tratamiento. También si crees que alguien del equipo está trabajando en malas condiciones.",
+   "<b>Incidentes de seguridad del paciente.</b> Llevamos un registro interno de todo lo que sale mal: una técnica que produce más dolor del previsto, un ejercicio mal pautado, una caída en sala. Se revisa en la sesión clínica del martes y se cambia el protocolo si hace falta. Nadie es sancionado por notificar un incidente propio: se sanciona ocultarlo.",
+   "La Ley 2/2023 del informante obliga a sistema interno a partir de cincuenta trabajadores. Somos cuatro, así que <b>no estamos obligados</b>; lo tenemos porque en un centro pequeño es más fácil que las cosas se queden en un comentario de pasillo."]},
+  {t:"12. Seguridad de la información", p:[
+   "El sitio se sirve por HTTPS. En esta maqueta <b>no hay ningún dato que salga de tu navegador:</b> ni el formulario, ni la agenda, ni lo que respondas en el árbol de orientación o en el test de simetría.",
+   "En el centro real, la historia clínica se guarda en un servidor en la Unión Europea con acceso por usuario y contraseña individual y doble factor. Cada acceso queda registrado con quién y cuándo, y ese registro se conserva un año. Nadie de recepción puede abrir una historia clínica.",
+   "<b>Copias de seguridad</b> cifradas y diarias, con una copia fuera del centro. Se prueba la restauración una vez al trimestre, porque una copia que no se ha restaurado nunca no es una copia, es una suposición.",
+   "<b>Si encuentras una vulnerabilidad</b>, escribe a <b>seguridad@atlas.example</b> con lo que has encontrado y cómo reproducirlo. Contestamos en setenta y dos horas y no denunciamos a quien informa de buena fe. Te pedimos que no accedas a datos de pacientes más allá de lo imprescindible para demostrar el fallo: son datos de salud de personas concretas."]}
  ],
  pieCtaH:"El primer paso es una hora, no un compromiso.",
  pieCtaP:"La valoración incluye tratamiento y sales con un plan escrito. Si no somos lo que necesitas, te lo decimos ahí y te derivamos.",
@@ -1362,7 +1467,34 @@ es:{
 },
 
 en:{
- _dir:"ltr", _lang:"en", _loc:"en-GB",
+ _dir:"ltr", _lang:"en", _loc:"en-GB", nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — ATLAS", tEmpleo:"Jobs — ATLAS",
+ tErr:"Page not found — ATLAS", pieEmpresaEti:"The company",
+ errEti:"Error 404", errH1:"That page does not exist.",
+ errEntrada:"Either the address is mistyped, or we had it and moved it. If the link came from here, it is our fault.",
+ errPedida:"You asked for:", errAvisar:"Report the broken link",
+ mpH1:"Everything there is, on one page.",
+ mpEntrada:"Generated from the site's own index: if a section is added, it appears here by itself. There is no hand-written list to go stale.",
+ mapaSinApartados:"Single page, no sections.",
+ emH1:"Four people, and none of them seeing twenty patients a day.",
+ emEntrada:"The reason we work at one hour per patient is that the diaries are not filled to the brim. That shapes the salary, which is why it is written down.",
+ emComoEti:"How the process works", emNota:"Demonstration mock-up: the vacancies are examples and no recruitment process is open.",
+ puestos:[
+  {i:"Clinic", t:"Physiotherapist", b:"€30,000–34,000 gross · full time",
+   d:"Eight patients a day, an hour each, with fifteen minutes between them to write up progress. There is no bonus on targets and no commission on selling session blocks: that is what pushes people to stretch treatments that should already have been discharged. Registration and two years' experience required; a particular master's degree is not."},
+  {i:"Gym", t:"Strength and conditioning specialist", b:"€27,000–31,000 gross · full time",
+   d:"Running the strength floor and the discharge criteria. Shared work with the physiotherapist on each case, not in parallel. You need to be able to programme load properly, not hand out a generic downloaded exercise sheet."},
+  {i:"Reception", t:"Reception and administration", b:"€21,000–24,000 gross · 35 h a week",
+   d:"Diary, invoicing and first contact by phone. It is the role that shapes the patient experience most, which is why we do not outsource it. Paid data protection training: health data is handled here and that is not improvised."},
+  {i:"Placement", t:"Final-year placement", b:"€600 a month · 20 h a week",
+   d:"Paid. In this sector they usually are not, which is precisely why they are here. Placements do not replace staff work: you accompany, observe and practise under supervision."}
+ ],
+ emComo:[
+  {t:"We read everything and everyone gets an answer", d:"Even if it is a no. We do not use automatic filters that discard CVs on keywords."},
+  {t:"A one-hour conversation", d:"We ask about cases you have actually handled, including the ones that went badly. Those teach more."},
+  {t:"Half a day at the clinic, paid", d:"You see how we work and we see you with a real patient, with their permission. It is paid even if you do not continue."},
+  {t:"An answer within a week, with the reason", d:"If it is not a fit, we say why in two lines."}
+ ],
+
  nLegal:"Legal", tLegal:"Legal — ATLAS", leH1:"Your health data, and what we do with it.",
  leEntrada:"A clinical record is among the most sensitive things you will ever hand over. This is what we do with yours, in plain words.",
  leMaqueta:"Notice: this is a demonstration mock-up. The texts follow the structure of a real clinic's documentation, but the clinic is invented and this is neither legal advice nor medical advice.",
@@ -1409,7 +1541,27 @@ en:{
   {t:"8. Accessibility", p:[
    "The site was built aiming to meet WCAG 2.2 at level AA: keyboard navigation, visible focus, sufficient contrast in both themes, alternative text and respect for the reduced-motion preference.",
    "The body map can be traversed with a keyboard and every area has a name, not just a position. The pain scale does not depend on colour: each band carries a number and a written description. Taken slots in the diary are marked as disabled so a screen reader announces them as such, not merely struck through visually.",
-   "The clinic has a street-level entrance, a ninety-centimetre door, a lift and an accessible toilet. If you need something specific in order to come, say so when booking: it is prepared beforehand, not on arrival."]}
+   "The clinic has a street-level entrance, a ninety-centimetre door, a lift and an accessible toilet. If you need something specific in order to come, say so when booking: it is prepared beforehand, not on arrival."]},
+  {t:"9. Website terms of use", p:[
+   "You may read, print and share the content freely, with attribution. What you should <b>not</b> do is take the exercises or the triage tree as a diagnosis: this is general information, not an assessment of your case, and an injury that looks the same from outside can be two different things inside.",
+   "The texts, code and illustrations are ours. The photographs come from Wikimedia Commons under free licences and are attributed to their author in the credits. Typefaces come from Google Fonts under the SIL Open Font Licence.",
+   "<b>The site's tools</b> — triage tree, pain scale, symmetry test — are indicative and calibrated on general criteria. They do not replace an examination, and each one says so underneath. If one comes out badly and it worries you, book an appointment; do not settle for the screen.",
+   "<b>Availability.</b> We do not guarantee the site is up one hundred per cent of the time. If it goes down, the phone diary still works."]},
+  {t:"10. Governing law and complaints", p:[
+   "The relationship is governed by <b>Spanish law</b>, including Law 41/2002 on patient autonomy, which regulates clinical records and informed consent. If you are a consumer, you may go to the courts where you live and no condition of ours can take that right away.",
+   "<b>Routes for complaints, and they are independent.</b> You do not have to come to us first: you can go straight to your region's health department, to the physiotherapists' professional body if the complaint concerns a professional's conduct, or to the Spanish Data Protection Agency if it concerns your data.",
+   "There is also the <b>European online dispute resolution platform</b> and the consumer arbitration boards, to which we are signed up. An arbitration award binds us whether or not we like the outcome.",
+   "<b>Medical liability insurance:</b> a policy in force with €1,200,000 cover per claim. The certificate is at reception and a copy can be requested. If a clinic ever declines to show you theirs when asked, that tells you something."]},
+  {t:"11. Ethics channel and patient safety", p:[
+   "There is a channel for things that cannot be said out loud at reception: <b>etica@atlas.example</b>. One director reads it. You can write anonymously; we do not log IP addresses.",
+   "<b>What to report:</b> inappropriate treatment, a technique applied without being explained to you, pressure to buy session blocks, or a suspicion that your treatment is being stretched. Also if you think someone on the team is working in poor conditions.",
+   "<b>Patient safety incidents.</b> We keep an internal log of everything that goes wrong: a technique that hurts more than expected, a badly prescribed exercise, a fall in the gym. It is reviewed in the Tuesday clinical session and the protocol changes if needed. Nobody is penalised for reporting their own incident: concealing it is what gets penalised.",
+   "Spain's whistleblower act (Law 2/2023) requires an internal system from fifty employees upwards. We are four, so we are <b>not obliged</b>; we have it because in a small clinic it is easier for things to end up as a corridor remark."]},
+  {t:"12. Information security", p:[
+   "The site is served over HTTPS. In this mock-up <b>no data leaves your browser:</b> not the form, not the diary, not what you answer in the triage tree or the symmetry test.",
+   "In the real clinic, clinical records are held on a server in the European Union with individual username, password and two-factor access. Every access is logged with who and when, and that log is kept for a year. Nobody at reception can open a clinical record.",
+   "<b>Backups</b> encrypted and daily, with one copy off site. Restoration is tested once a quarter, because a backup that has never been restored is not a backup, it is an assumption.",
+   "<b>If you find a vulnerability</b>, write to <b>seguridad@atlas.example</b> with what you found and how to reproduce it. We answer within seventy-two hours and we do not report anyone acting in good faith. We ask that you do not access patient data beyond what is strictly needed to demonstrate the flaw: it is health data about real people."]}
  ],
  pieCtaH:"The first step is an hour, not a commitment.",
  pieCtaP:"The assessment includes treatment and you leave with a written plan. If we are not what you need, we say so there and refer you on.",
@@ -1784,7 +1936,34 @@ en:{
 },
 
 ar:{
- _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab",
+ _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — أطلس", tEmpleo:"وظائف — أطلس",
+ tErr:"الصفحة غير موجودة — أطلس", pieEmpresaEti:"الدار",
+ errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
+ errEntrada:"إما أن العنوان مكتوب خطأً، وإما أنها كانت لدينا فنقلناها. وإن كان الرابط من هنا فهو ذنبنا.",
+ errPedida:"طلبت:", errAvisar:"أبلغنا بالرابط المكسور",
+ mpH1:"كل ما في الموقع، في صفحة واحدة.",
+ mpEntrada:"مولَّدة من فهرس الموقع نفسه: فإن أُضيف قسم ظهر هنا وحده. ولا توجد قائمة مكتوبة يدويًّا تتقادم.",
+ mapaSinApartados:"صفحة واحدة، بلا أقسام.",
+ emH1:"أربعة أشخاص، ولا أحد منهم يرى عشرين مريضًا في اليوم.",
+ emEntrada:"سبب العمل هنا بساعة لكل مريض أن الجداول ليست مملوءة إلى آخرها. وذلك يحدّد الراتب، ولهذا هو مكتوب.",
+ emComoEti:"كيف تجري العملية", emNota:"نسخة عرض توضيحية: الوظائف أمثلة ولا توجد عملية توظيف مفتوحة.",
+ puestos:[
+  {i:"العيادة", t:"معالج/ة طبيعي", b:"٣٠٬٠٠٠–٣٤٬٠٠٠ € إجمالًا · دوام كامل",
+   d:"ثمانية مرضى يوميًّا، ساعة لكل واحد، مع خمس عشرة دقيقة بينهما لتدوين التطوّر. ولا مكافأة على أهداف ولا عمولة على بيع الباقات: فذلك ما يدفع إلى إطالة علاجات كان ينبغي أن تنتهي. ويُشترط التسجيل المهني وسنتا خبرة؛ ولا تُشترط شهادة ماجستير بعينها."},
+  {i:"القاعة", t:"أخصائي/ة تأهيل وقوة", b:"٢٧٬٠٠٠–٣١٬٠٠٠ € إجمالًا · دوام كامل",
+   d:"إدارة قاعة القوة ومعايير الخروج. عمل مشترك مع المعالج المسؤول عن كل حالة، لا بالتوازي معه. ويلزم إتقان برمجة الحِمل فعلًا، لا توزيع جدول تمارين عام منزَّل من الإنترنت."},
+  {i:"الاستقبال", t:"استقبال وإدارة", b:"٢١٬٠٠٠–٢٤٬٠٠٠ € إجمالًا · ٣٥ ساعة أسبوعيًا",
+   d:"المواعيد والفوترة والتواصل الأول هاتفيًّا. وهو الدور الأكثر تأثيرًا في تجربة المريض، ولهذا لا نُسنِده إلى شركة خارجية. وتدريب مدفوع على حماية البيانات: فهنا تُعالَج بيانات صحية وذلك لا يُرتجَل."},
+  {i:"تدريب", t:"تدريب السنة الأخيرة", b:"٦٠٠ € شهريًا · ٢٠ ساعة أسبوعيًا",
+   d:"مدفوع. والمعتاد في هذا القطاع ألّا يكون كذلك، ولهذا بالضبط هو مدفوع هنا. والتدريب لا يحلّ محلّ عمل الموظفين: بل مرافقة وملاحظة وممارسة تحت إشراف."}
+ ],
+ emComo:[
+  {t:"نقرأ كل شيء ونردّ على الجميع", d:"ولو كان الردّ لا. ولا نستخدم مرشّحات آلية تستبعد السير الذاتية بكلمات مفتاحية."},
+  {t:"محادثة ساعة واحدة", d:"نسأل عن حالات تولّيتها فعلًا، بما فيها ما ساء منها. فتلك تعلّم أكثر."},
+  {t:"نصف يوم في المركز، مدفوع", d:"ترى كيف يُعمَل هنا ونراك مع مريض حقيقي، بإذنه. ويُدفَع ولو لم تُكمل بعدها."},
+  {t:"ردّ خلال أسبوع، مع السبب", d:"فإن لم تناسب قلنا لماذا في سطرين."}
+ ],
+
  nLegal:"قانوني", tLegal:"قانوني — أطلس", leH1:"بياناتك الصحية، وماذا نفعل بها.",
  leEntrada:"الملف الطبي من أشدّ ما ستضعه يومًا في يد أحد حساسيةً. وهذا ما نفعله بملفك، بكلام واضح.",
  leMaqueta:"تنبيه: هذه نسخة عرض توضيحية. تتبع النصوص بنية وثائق مركز صحي حقيقي، لكن المركز متخيَّل وهذا ليس استشارة قانونية ولا نصيحة طبية.",
@@ -1831,7 +2010,27 @@ ar:{
   {t:"٨. سهولة الوصول", p:[
    "بُني الموقع سعيًا إلى استيفاء إرشادات WCAG 2.2 عند المستوى AA: تصفّح بلوحة المفاتيح، وتركيز مرئي، وتباين كافٍ في السمتين، ونص بديل، واحترام تفضيل تقليل الحركة.",
    "ويمكن تصفّح خريطة الجسم بلوحة المفاتيح، ولكل منطقة اسم لا موضع فقط. ومقياس الألم لا يعتمد على اللون: فلكل نطاق رقم ووصف مكتوب. والساعات المحجوزة في المواعيد مُعلَّمة معطَّلةً كي يعلنها قارئ الشاشة كذلك، لا مشطوبةً بصريًّا فحسب.",
-   "وللمركز مدخل بمستوى الشارع، وباب بعرض تسعين سنتيمترًا، ومصعد، ودورة مياه مهيّأة. وإن احتجت شيئًا بعينه لتتمكّن من المجيء فقُله عند حجز الموعد: يُهيَّأ قبلها لا عند وصولك."]}
+   "وللمركز مدخل بمستوى الشارع، وباب بعرض تسعين سنتيمترًا، ومصعد، ودورة مياه مهيّأة. وإن احتجت شيئًا بعينه لتتمكّن من المجيء فقُله عند حجز الموعد: يُهيَّأ قبلها لا عند وصولك."]},
+  {t:"٩. شروط استخدام الموقع", p:[
+   "يمكنك قراءة المحتوى وطباعته ومشاركته بحرّية مع ذكر المصدر. أما ما <b>لا</b> ينبغي فهو اتخاذ التمارين أو شجرة التوجيه تشخيصًا: فهذه معلومات عامة لا تقييمًا لحالتك، وإصابة تبدو واحدة من الخارج قد تكون شيئين مختلفين من الداخل.",
+   "النصوص والشيفرة والرسوم ملكنا. والصور من ويكيميديا كومنز بتراخيص حرّة، منسوبةً إلى مؤلفيها في الاعتمادات. والخطوط من غوغل فونتس بترخيص SIL المفتوح.",
+   "<b>أدوات الموقع</b> — شجرة التوجيه ومقياس الألم واختبار التماثل — استرشادية ومعايَرة بمعايير عامة. ولا تُغني عن الفحص، وهو مكتوب أسفل كلٍّ منها. فإن خرجت نتيجة سيئة وأقلقتك فاحجز موعدًا؛ ولا تكتفِ بالشاشة.",
+   "<b>التوافر.</b> لا نضمن بقاء الموقع عاملًا مئة بالمئة من الوقت. فإن تعطّل، بقيت المواعيد الهاتفية تعمل."]},
+  {t:"١٠. القانون الواجب التطبيق والشكاوى", p:[
+   "تخضع العلاقة <b>للقانون الإسباني</b>، بما فيه القانون ٤١/٢٠٠٢ لاستقلالية المريض، وهو الذي ينظّم الملف الطبي والموافقة المستنيرة. وإن كنت مستهلكًا فلك اللجوء إلى محاكم محل إقامتك ولا يمكن لأي شرط لدينا أن يسلبك هذا الحق.",
+   "<b>مسارات الشكوى، وهي مستقلة.</b> لا يلزم المرور بنا أولًا: فيمكنك التوجه مباشرةً إلى وزارة الصحة في إقليمك، أو إلى الهيئة المهنية للمعالجين الطبيعيين إن كانت الشكوى عن تصرّف مهني، أو إلى الوكالة الإسبانية لحماية البيانات إن كانت عن بياناتك.",
+   "وثمة أيضًا <b>المنصة الأوروبية لتسوية المنازعات عبر الإنترنت</b> وهيئات التحكيم الاستهلاكي التي نحن منضمّون إليها. وقرار التحكيم يُلزمنا سواء أعجبتنا النتيجة أم لا.",
+   "<b>تأمين المسؤولية المدنية الصحية:</b> وثيقة سارية بتغطية ١٬٢٠٠٬٠٠٠ € لكل حادثة. والشهادة في الاستقبال ويمكن طلب نسخة منها. وإن رفض مركزٌ يومًا أن يريك شهادته حين تطلبها، فذلك يقول لك شيئًا."]},
+  {t:"١١. القناة الأخلاقية وسلامة المريض", p:[
+   "توجد قناة لما لا يمكن قوله بصوت مرتفع في الاستقبال: <b>etica@atlas.example</b>. يقرأها شخص واحد من الإدارة. ويمكن الكتابة بلا هوية؛ ولا نسجّل عناوين الإنترنت.",
+   "<b>ما يُبلَّغ عنه:</b> معاملة غير لائقة، أو تقنية طُبِّقت دون شرحها لك، أو ضغط لشراء باقات، أو الشكّ في إطالة علاجك. وكذلك إن رأيت أن أحد أفراد الفريق يعمل في ظروف سيئة.",
+   "<b>حوادث سلامة المريض.</b> نحتفظ بسجل داخلي لكل ما يسوء: تقنية تُحدث ألمًا أكثر من المتوقَّع، أو تمرين موصوف خطأً، أو سقوط في القاعة. ويُراجَع في جلسة الثلاثاء السريرية ويُغيَّر البروتوكول عند اللزوم. ولا يُعاقَب أحد على الإبلاغ عن حادثته: بل يُعاقَب إخفاؤها.",
+   "ويُلزِم قانون المُبلِّغين الإسباني (٢/٢٠٢٣) بنظام داخلي من خمسين عاملًا فأكثر. ونحن أربعة، فلسنا <b>ملزَمين</b>؛ ولدينا القناة لأن الأمور في مركز صغير يسهل أن تبقى تعليقًا في الممرّ."]},
+  {t:"١٢. أمن المعلومات", p:[
+   "يُقدَّم الموقع عبر HTTPS. وفي هذه النسخة <b>لا تغادر أي بيانات متصفحك:</b> لا النموذج، ولا المواعيد، ولا ما تجيب به في شجرة التوجيه أو اختبار التماثل.",
+   "أما في المركز الحقيقي فيُحفَظ الملف الطبي على خادم في الاتحاد الأوروبي بدخول باسم مستخدِم وكلمة سرّ فرديين وتحقّق ثنائي. ويُسجَّل كل دخول بمن ومتى، ويُحفَظ ذلك السجل سنةً. ولا يستطيع أحد في الاستقبال فتح ملف طبي.",
+   "<b>نسخ احتياطية</b> مشفَّرة ويومية، وواحدة خارج المركز. وتُختبَر الاستعادة مرة كل ربع سنة، لأن نسخةً لم تُستعَد قط ليست نسخةً بل افتراضًا.",
+   "<b>وإن وجدت ثغرة</b>، فاكتب إلى <b>seguridad@atlas.example</b> بما وجدت وكيفية تكراره. نردّ خلال اثنتين وسبعين ساعة ولا نُبلّغ عن مَن يتصرّف بحسن نية. ونطلب ألّا تصل إلى بيانات المرضى أكثر مما يلزم لإثبات الخلل: فهي بيانات صحية لأشخاص بأعيانهم."]}
  ],
  pieCtaH:"الخطوة الأولى ساعة، لا التزام.",
  pieCtaP:"التقييم يشمل العلاج وتخرج بخطة مكتوبة. وإن لم نكن ما تحتاجه قلنا لك ذلك هناك وأحلناك.",
@@ -2505,9 +2704,10 @@ var INDICE = {
   precios:[["ap-precios","nPrecios"],["ap-preguntas","nPreguntas"]]
 };
 
-var RUTAS = ["inicio","tratamientos","recuperacion","clinica","precios","contacto","legal"];
+var RUTAS = ["inicio","tratamientos","recuperacion","clinica","precios","contacto","legal","mapa","empleo","err"];
 var TITULOS = {inicio:"tInicio",tratamientos:"tTratamientos",recuperacion:"tRecuperacion",
-  clinica:"tClinica",precios:"tPrecios",contacto:"tContacto",legal:"tLegal"};
+  clinica:"tClinica",precios:"tPrecios",contacto:"tContacto",legal:"tLegal",
+  mapa:"tMapa",empleo:"tEmpleo",err:"tErr"};
 var idioma = "es", reSel = 0, moSel = 0;
 
 function loc(){ return T[idioma]._loc; }
@@ -2657,7 +2857,7 @@ function pintarListas(){
     return '<p style="margin-bottom:1rem;color:var(--t2)">'+esc(x)+'</p>'; }); }
   function puntos(id, arr){ pon(id, arr, function(x){ return '<li>'+esc(x)+'</li>'; }); }
 
-  pintarAgenda(); pintarBaldosas(); pintarPieClinica(); pintarCookies(); pintarLegal();
+  pintarAgenda(); pintarBaldosas(); pintarPieClinica(); pintarCookies(); pintarLegal(); pintarPaginasBase();
   pon("iPorQue", t.iPorQue, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
@@ -2715,7 +2915,15 @@ function pintarListas(){
   pon("pgLista", t.preguntas, function(p){ return '<details class="faq"><summary>'+esc(p.q)+'</summary><p>'+esc(p.a)+'</p></details>'; });
 }
 
-function ruta(){ var r=(location.hash||"").replace(/^#\/?/,""); return RUTAS.indexOf(r)>=0?r:"inicio"; }
+var rutaPedida = "";
+function ruta(){
+  var r = (location.hash||"").replace(/^#\/?/,"");
+  if (!r) return "inicio";
+  if (RUTAS.indexOf(r) >= 0) return r;
+  /* Antes caía a inicio en silencio y parecía que el enlace funcionaba */
+  rutaPedida = r;
+  return "err";
+}
 
 /* ── Agenda ────────────────────────────────────────────────────────
    Los huecos ocupados no son aleatorios en cada carga: se derivan del día
@@ -2797,6 +3005,34 @@ function pintarCookies(){
     return '<label class="ck-fila"><input type="checkbox" value="'+c+'"'
       + (marcada ? " checked" : "") + (fijo ? " disabled" : "") + '>'
       + '<span><b>'+esc(t.ckCats[i].n)+'</b><span>'+esc(t.ckCats[i].d)+'</span></span></label>';
+  }).join("");
+}
+
+function pintarPaginasBase(){
+  var t = T[idioma];
+  var er = document.getElementById("errRuta");
+  if (er) er.textContent = "#/" + (rutaPedida || "");
+
+  var ms = document.getElementById("mapaSitio");
+  if (ms) ms.innerHTML = RUTAS.filter(function(r){ return r !== "err"; }).map(function(r){
+    var hijos = INDICE[r];
+    return '<div class="mapa-col"><h2><a href="#/'+r+'">'+esc(t[TITULOS[r]].split("—")[0].trim())+'</a></h2>'
+      + (hijos
+         ? '<nav>' + hijos.map(function(x){
+             return '<a href="#/'+r+'" data-ir="'+x[0]+'">'+esc(x[2] || t[x[1]])+'</a>'; }).join("") + '</nav>'
+         : '<p class="sola">'+esc(t.mapaSinApartados)+'</p>')
+      + '</div>';
+  }).join("");
+
+  var ep = document.getElementById("emPuestos");
+  if (ep) ep.innerHTML = t.puestos.map(function(x){
+    return '<div class="fila"><div><div class="i">'+esc(x.i)+'</div><h3>'+esc(x.t)+'</h3>'
+      + '<span class="puesto-b">'+esc(x.b)+'</span></div>'
+      + '<div class="d"><p>'+esc(x.d)+'</p></div></div>';
+  }).join("");
+  var ec = document.getElementById("emComo");
+  if (ec) ec.innerHTML = t.emComo.map(function(x){
+    return '<li><div><b>'+esc(x.t)+'</b><span>'+esc(x.d)+'</span></div></li>';
   }).join("");
 }
 

@@ -1,6 +1,6 @@
 # ATLAS — Fisioterapia y readaptación deportiva
 
-Sitio de **dieciséis páginas** en español, inglés y árabe con RTL real, para una
+Sitio de **nueve páginas largas** en español, inglés y árabe con RTL real, para una
 clínica de fisioterapia y readaptación deportiva.
 
 **Ver online:** https://2troll.github.io/atlas-fisio/
@@ -8,12 +8,19 @@ clínica de fisioterapia y readaptación deportiva.
 El atlas es la primera vértebra cervical, la que sostiene el cráneo. De ahí el
 nombre y de ahí el logotipo.
 
-## Las dieciséis páginas
+## Las nueve páginas
 
-`Inicio` · **`¿Qué me pasa?`** · `Tratamientos` · `Lesiones` ·
-**`Mapa del cuerpo`** · **`Escala de dolor`** · `Recuperación` ·
-**`Vuelta al deporte`** · `Movilidad` · **`Test de fuerza`** ·
-**`Ejercicios`** · `Equipo` · `Centro` · `Precios` · `Preguntas` · `Cita`
+`Inicio` · `Tratamientos` · `Recuperación` · `Clínica` · `Precios` · `Contacto` · `Legal` · `Mapa del sitio` · `Empleo`
+
+Nueve rutas que agrupan **dieciséis apartados** de contenido, más el 404, el
+mapa del sitio, empleo y los textos legales. Cada página larga lleva su
+índice arriba y salta al apartado. Es deliberado: un menú de dieciséis
+entradas donde cada una lleva a cuatro párrafos se lee como una revista,
+no como una empresa.
+
+## Los dieciséis apartados
+
+`Inicio` · `Tratamientos` · **`¿Qué me pasa?`** · **`Mapa del cuerpo`** · **`Escala de dolor`** · `Lesiones` · `Recuperación` · **`Vuelta al deporte`** · **`Test de fuerza`** · `Movilidad` · **`Ejercicios`** · `Equipo` · `Centro` · `Precios` · `Preguntas` · `Cita`
 
 Las seis en negrita son nuevas, y ninguna repite el formato de otra ni el de
 los otros dos sitios:
@@ -61,16 +68,17 @@ publica aunque sea legal.
 ## Comprobado
 
 ```
-184 claves × 3 idiomas    paridad ✔ · 0 sin traducir
+277 claves × 3 idiomas    paridad ✔ · 0 sin traducir
 23 estructuras paralelas  todas cuadran
-16 rutas × 3 idiomas      0 fugas de idioma
-16 enlaces del menú       los 16 navegan
-desborde horizontal       0 px en las 16 rutas
+9 rutas × 3 idiomas       0 fugas de idioma
+5 enlaces del menú        los 5 navegan
+desborde horizontal       0 px en las 9 rutas
 árbol de decisión         6 caminos, 6 salidas distintas
 3 curvas de recuperación · 3 articulaciones · 8 zonas del cuerpo
 formulario en árabe       3 estados
 paleta de series          los 6 controles en claro y en oscuro
 goniometría               contenido dentro del viewBox también a 180°
+peso transferido          90 kB comprimido, el sitio entero
 ```
 
 Dos fallos encontrados al verificar y corregidos: el arco de goniometría se

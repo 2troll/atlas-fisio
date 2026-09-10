@@ -531,7 +531,7 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
    no es un dato de catálogo: es un plazo que le importa a alguien.
    ══════════════════════════════════════════════════════════════════ */
 #iCifras{
-  width:100vw;margin-inline-start:50%;transform:translateX(-50%);
+  width:100%;  /* antes 100vw: ver kit-tablero */
   /* --sup es blanco en esta paleta; el gris de fondo es --f2. Sobre blanco
      las tarjetas blancas desaparecían. */
   background:var(--f2,#eceeed);
@@ -540,7 +540,6 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
   grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));
   margin-block:2.4rem 1.4rem;
 }
-html[dir="rtl"] #iCifras{transform:translateX(50%);}
 #iCifras .cel,#iCifras > div{
   background:var(--sup,#fff);border-radius:18px;padding:clamp(1.4rem,2.6vw,2rem);
   border:0;box-shadow:0 1px 0 rgba(0,0,0,.05);
@@ -556,6 +555,192 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
   font-size:.94rem;line-height:1.55;margin-top:.8rem;max-width:24ch;
   color:var(--tinta-2,#4a5350);
 }
+/* ══ kit-tablero: principio ══ */
+/* ══════════════════════════════════════════════════════════════════
+   KIT TABLERO — armazón de aplicación, rejilla de doce y paneles
+   ------------------------------------------------------------------
+   Se copia entero dentro de la hoja de estilos del sitio, entre las dos
+   marcas `kit-tablero`. No trae colores propios: usa las variables que
+   ya define cada sitio, con alternativa por si alguna falta.
+
+     --fondo   fondo de la página        --texto    texto principal
+     --fondo-2 fondo de panel            --texto-2  texto secundario
+     --sup     superficie elevada        --texto-3  texto tenue
+     --linea   línea de separación       --acento   color de marca
+     --hondo / --hondo-texto / --hondo-linea   franja oscura
+
+   Todo el reflejo en árabe sale de propiedades lógicas. Las excepciones
+   van marcadas una a una.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Puente de variables ───────────────────────────────────────────
+   El kit no impone paleta: toma la del sitio, sea cual sea el nombre que
+   use, y sólo pone un último recurso para que nada quede sin color. */
+:root{
+  /* Tres vocabularios conviven en la carpeta: `--fondo/--texto` (MARSA),
+     `--fondo/--tinta` (NAHAR) y `--f/--t` (BUNN, ATLAS). Se prueban en ese
+     orden y sólo al final entra un color fijo, para que ningún sitio herede
+     una paleta que no es la suya. Si un sitio quiere mandar, redefine
+     cualquiera de estas variables después del kit. */
+  --kit-fondo:var(--fondo,var(--f,#eef0ef));
+  --kit-panel:var(--fondo-2,var(--f2,#e4e8e7));
+  --kit-sup:var(--sup,var(--kit-panel));
+  --kit-linea:var(--linea,var(--l,rgba(20,24,27,.14)));
+  --kit-texto:var(--texto,var(--tinta,var(--t,#14181b)));
+  --kit-texto-2:var(--texto-2,var(--tinta-2,var(--t2,#525a5e)));
+  --kit-texto-3:var(--texto-3,var(--tinta-3,var(--t3,#858c8f)));
+  --kit-acento:var(--acento,var(--ocre,var(--verde,#0f5f7a)));
+  --kit-hondo:var(--hondo,#101619);
+  --kit-hondo-texto:var(--hondo-texto,#e7ecec);
+  --kit-hondo-linea:var(--hondo-linea,rgba(231,236,236,.18));
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   ARMAZÓN DE APLICACIÓN
+   El menú deja de ser una fila de once enlaces apretados y pasa a un
+   raíl lateral fijo, agrupado por bloques. El contenido va AL LADO, no
+   debajo, y en rejilla de doce columnas: los paneles ocupan distinto
+   ancho y se ponen unos junto a otros. Todo en propiedades lógicas, así
+   que en árabe el raíl se va solo a la derecha.
+   ══════════════════════════════════════════════════════════════════ */
+/* Colocación EXPLÍCITA. Confiar en el orden de los hijos no funciona: el
+   velo y el botón salen del flujo y «main» acababa en una columna de ancho
+   cero, con la página entera invisible. Cada pieza dice dónde va. */
+body{display:grid;grid-template-columns:15.5rem minmax(0,1fr);
+  grid-template-rows:1fr auto;min-height:100vh;}
+.app-lateral{grid-column:1;grid-row:1 / -1;}
+.app-panel{grid-column:2;grid-row:1;}
+body > footer{grid-column:2;grid-row:2;}
+
+.app-lateral{
+  position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+  width:15.5rem;padding:1.6rem 1.2rem 1.4rem;
+  background:var(--kit-panel);border-inline-end:1px solid var(--kit-linea);
+  display:flex;flex-direction:column;gap:.2rem;z-index:60;
+}
+.app-lateral .marca{display:block;margin-bottom:1.4rem;font-size:1.15rem;}
+.app-eti{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--kit-texto-3);margin:1.3rem 0 .45rem;}
+html[dir="rtl"] .app-eti{letter-spacing:0;text-transform:none;font-size:.78rem;}
+.app-nav{display:flex;flex-direction:column;gap:.1rem;}
+.app-nav a{display:block;padding:.42rem .6rem;text-align:start;margin:0;border-radius:4px;font-size:.87rem;
+  color:var(--kit-texto-2);text-decoration:none;border:0;
+  border-inline-start:2px solid transparent;}
+.app-nav a:hover{background:var(--kit-fondo);color:var(--kit-texto);}
+.app-nav a[aria-current="page"]{background:var(--kit-fondo);color:var(--kit-texto);
+  border-inline-start-color:var(--kit-acento);font-weight:500;}
+.app-lateral .idiomas{margin-top:auto;padding-top:1.4rem;display:flex;gap:.2rem;}
+
+.app-panel{min-width:0;}
+.app-abrir{display:none;position:fixed;top:.8rem;inset-inline-start:.8rem;z-index:80;
+  background:var(--kit-panel);color:var(--kit-texto);border:1px solid var(--kit-linea);
+  border-radius:5px;padding:.5rem .6rem;cursor:pointer;}
+.app-velo{display:none;}
+
+@media(max-width:900px){
+  body{grid-template-columns:minmax(0,1fr);}
+  .app-abrir{display:block;}
+  .app-lateral{position:fixed;inset-block:0;inset-inline-start:0;
+    width:min(80vw,15.5rem);transform:translateX(-100%);transition:transform .22s ease;}
+  .app-panel,body > footer{grid-column:1;}
+  html[dir="rtl"] .app-lateral{transform:translateX(100%);}
+  .app-lateral.abierto{transform:none;}
+  .app-velo{display:block;position:fixed;inset:0;background:rgba(0,0,0,.45);
+    opacity:0;pointer-events:none;transition:opacity .22s;z-index:55;}
+  .app-velo.abierto{opacity:1;pointer-events:auto;}
+  main.app-panel{padding-top:3.4rem;}
+}
+
+/* Rejilla de doce columnas: es lo que rompe la columna única. */
+.rej12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.9rem,1.6vw,1.4rem);}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}
+.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}
+.c9{grid-column:span 9}.c12{grid-column:span 12}
+@media(max-width:1100px){.c3,.c4,.c5{grid-column:span 6}.c7,.c8,.c9{grid-column:span 12}}
+@media(max-width:640px){.rej12 > *{grid-column:span 12 !important}}
+
+/* Panel: la unidad de la interfaz. Caja de información, no adorno. */
+.panel{background:var(--kit-panel);border:1px solid var(--kit-linea);border-radius:6px;
+  overflow:hidden;display:flex;flex-direction:column;min-width:0;}
+.panel-cab{display:flex;align-items:center;gap:.6rem;justify-content:space-between;
+  padding:.7rem .9rem;border-block-end:1px solid var(--kit-linea);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--kit-texto-3);}
+html[dir="rtl"] .panel-cab{letter-spacing:0;text-transform:none;font-size:.84rem;}
+.panel-cuerpo{padding:.9rem;flex:1;min-width:0;}
+/* La proporción va en la imagen y no en el marco: si la proporción se pone en
+   el marco, Chrome deja de estirarlo dentro de la fila de la rejilla y la
+   fotografía queda flotando arriba con un hueco gris debajo. */
+/* La proporción se fija con un relleno porcentual y no con `aspect-ratio`.
+   Motivo medido, no de estilo: en una celda de rejilla estirada la altura pasa
+   a ser definida, y entonces `aspect-ratio` calcula el ANCHO a partir de ella
+   y la fotografía se sale de su columna — 362 px en la portada a 1440. El
+   relleno porcentual siempre deriva del ancho, nunca al revés. */
+.panel-foto{padding:0;position:relative;overflow:hidden;}
+.panel-foto::before{content:"";display:block;padding-block-start:75%;}
+.panel-foto.alta::before{padding-block-start:133.33%;}
+.panel-foto.ancha::before{padding-block-start:56.25%;}
+.panel-foto img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;}
+.panel-foto figcaption{position:absolute;inset-inline:0;bottom:0;padding:.7rem .9rem;
+  background:linear-gradient(to top,rgba(6,12,16,.9),rgba(6,12,16,.55) 60%,transparent);
+  color:#f2efe9;font-size:.8rem;line-height:1.4;}
+.etq{font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.15rem .45rem;border-radius:3px;background:var(--kit-acento);
+  color:var(--kit-fondo);white-space:nowrap;}
+html[dir="rtl"] .etq{letter-spacing:0;text-transform:none;font-size:.76rem;}
+.panel .dato-g{font-family:var(--display,var(--disp,inherit));font-size:clamp(1.8rem,3.4vw,2.6rem);
+  line-height:1;font-variant-numeric:tabular-nums;}
+.panel .dato-p{font-size:.82rem;color:var(--kit-texto-2);margin-top:.4rem;line-height:1.45;}
+.panel-cuerpo h3{font-size:1.1rem;margin:0 0 .5rem;line-height:1.2;}
+.panel-cuerpo h3 + p{color:var(--kit-texto-2);font-size:.9rem;margin:0;}
+
+/* Panel de portada: el titular manda, pero sigue siendo un panel del tablero
+   y no una franja aparte a todo lo ancho. */
+.panel.horizonte{padding-block:0;}
+.panel-portada{background:var(--kit-hondo);color:var(--kit-hondo-texto);
+  border-color:var(--kit-hondo-linea);justify-content:center;}
+.panel-portada .rot{color:var(--kit-acento);}
+.panel-portada .entrada{color:var(--kit-hondo-texto);opacity:.85;}
+.panel-portada .panel-cuerpo{padding:clamp(1.2rem,2.6vw,2.2rem);}
+.panel-portada h1{font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.12;margin:.5rem 0 .8rem;}
+.panel-portada .entrada{color:var(--kit-texto-2);max-width:46ch;}
+.panel-portada .acciones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem;}
+/* Los botones dentro del panel oscuro. No se puede dar por buena la clase de
+   ningún sitio —uno los llama `.solido` y otro `.sol`—, así que el kit los
+   repinta por su cuenta: sobre la franja oscura, cualquier botón se ve. */
+.panel-portada .btn,.panel-portada .acc a{
+  background:transparent;color:var(--kit-hondo-texto);
+  border:1px solid var(--kit-hondo-texto);}
+.panel-portada .btn.sol,.panel-portada .btn.solido,.panel-portada .acc a.sol{
+  background:var(--kit-hondo-texto);color:var(--kit-hondo);}
+.panel-portada .btn:hover,.panel-portada .acc a:hover{
+  background:var(--kit-hondo-texto);color:var(--kit-hondo);}
+.panel-portada .btn.sol:hover,.panel-portada .btn.solido:hover,.panel-portada .acc a.sol:hover{
+  background:transparent;color:var(--kit-hondo-texto);}
+/* Y el texto suelto: párrafos, listas y rótulos secundarios. */
+.panel-portada p,.panel-portada li,.panel-portada dd{color:var(--kit-hondo-texto);}
+.panel-portada .metodo,.panel-portada .dato-p{
+  color:color-mix(in srgb,var(--kit-hondo-texto) 66%,transparent);}
+/* Rótulo suelto entre bloques del tablero: sin caja, sólo el letrero. */
+.panel.sin-fondo{background:none;border:0;border-radius:0;}
+.panel.sin-fondo .rot{margin:.6rem 0 0;}
+.tablero{padding-block:clamp(1.2rem,2.4vw,2rem);}
+.tablero .cifras-fuente{font-size:.74rem;color:var(--kit-texto-3);line-height:1.5;margin:0;}
+/* Una tabla ancha no debe empujar la página: se desliza dentro de su panel. */
+.desliza{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.desliza table{min-width:34rem;}
+/* Formulario a dos columnas dentro de su panel: los campos cortos comparten
+   fila y sólo las fechas y el mensaje ocupan el ancho entero. */
+.rej-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1rem;}
+.rej-form .ancho2{grid-column:1 / -1;}
+@media(max-width:640px){.rej-form{grid-template-columns:1fr}}
+/* ══ kit-tablero: final ══ */
+/* La franja oscura de ATLAS tira al verde de la clínica. */
+:root{--kit-hondo:#0f1c1a;--kit-hondo-texto:#e8ecec;
+      --kit-hondo-linea:rgba(232,236,236,.16);}
+
 </style>
 </head>
 <body>
@@ -568,89 +753,119 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
   </div>
 </div>
 
-<header class="a">
-  <div class="marco barra">
-    <a class="logo" href="#/inicio">
-      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <path d="M12 3.5v17"/><path d="M7.5 7h9"/><path d="M6.5 12h11"/><path d="M8 17h8"/>
-      </svg>
-      <span data-t="marca">ATLAS</span>
-    </a>
-    <button type="button" class="menu-b" id="menuB" aria-expanded="false" aria-controls="menuP"
-            data-t-attr="aria-label:menuAria">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="a" data-t-attr="aria-label:ariaMenu" aria-label="Secciones">
-      <a href="#/inicio"       data-t="nInicio">Inicio</a>
-      <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
-      <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
-      <a href="#/clinica"      data-t="nClinica">La clínica</a>
-      <a href="#/precios"      data-t="nPrecios">Precios</a>
-    </nav>
+<!-- ══ kit-tablero: armazón ══ -->
+<button class="app-abrir" id="appAbrir" aria-expanded="false" aria-controls="appLateral" data-t-attr="aria-label:menuAria" aria-label="Menú"><span></span><span></span><span></span></button>
+<aside class="app-lateral" id="appLateral">
+  <a class="marca" href="#/inicio" data-t="marca">ATLAS</a>
+  <p class="app-eti" data-t="nlSitio">La clínica</p>
+  <nav class="app-nav">
+    <a href="#/inicio"       data-t="nInicio">Inicio</a>
+    <a href="#/tratamientos" data-t="nTratamientos">Qué tratamos</a>
+    <a href="#/clinica"      data-t="nClinica">La clínica</a>
+  </nav>
+  <p class="app-eti" data-t="nlHerramientas">Su caso</p>
+  <nav class="app-nav">
+    <a href="#/recuperacion" data-t="nRecuperacion">La recuperación</a>
+    <a href="#/precios"      data-t="nPrecios">Precios</a>
+  </nav>
+  <p class="app-eti" data-t="nlContacto">Contacto</p>
+  <nav class="app-nav">
+    <a href="#/contacto" data-t="nContacto">Contacto</a>
+    <a href="#/legal" data-t="nLegal"></a>
+    <a href="#/mapa" data-t="nMapa"></a>
+    <a href="#/empleo" data-t="nEmpleo"></a>
+  </nav>
+  <div class="app-aparatos">
     <a class="cita-btn" href="#/contacto" data-ir="ap-agenda2" data-t="bPedirCita">Pedir cita</a>
-    <div class="idi" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
+  </div>
+  <div class="idi idiomas" role="group" data-t-attr="aria-label:ariaIdioma" aria-label="Idioma">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
     </div>
-  </div>
-</header>
-
-<main>
+</aside>
+<div class="app-velo" id="appVelo"></div>
+<!-- ══ kit-tablero: fin del armazón ══ -->
+<main class="app-panel">
 
 <section data-ruta="inicio" id="ap-inicio">
-  <div class="port">
-    <div class="marco port-m">
-      <div class="port-txt">
-        <h1 data-t="iH1">Volver a entrenar por criterio, no por calendario.</h1>
-        <p class="entrada" data-t="iEntrada">El alta no llega cuando se cumplen las semanas, sino cuando la rodilla aguanta lo que le vas a pedir. Aquí eso se mide antes de decírtelo.</p>
-        <div class="acc">
-          <a class="btn sol" href="#/contacto" data-ir="ap-agenda2" data-t="bCita">Pedir cita</a>
-          <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
+  <div class="marco tablero">
+    <div class="rej12">
+      <div class="panel c7 panel-portada horizonte">
+        <div class="panel-cuerpo">
+          <p class="eti" data-t="iEti">Fisioterapia y readaptación</p>
+          <h1 data-t="iH1">Volver a entrenar por criterio, no por calendario.</h1>
+          <p class="entrada" data-t="iEntrada"></p>
+          <div class="acc acciones">
+            <a class="btn sol" href="#/contacto" data-ir="ap-agenda2" data-t="bCita">Pedir cita</a>
+            <a class="btn" href="#/recuperacion" data-t="bPlazos">Ver plazos reales</a>
+          </div>
         </div>
       </div>
-      <img class="port-foto" src="img/ejercicio.jpg" width="1400" height="933"
-           data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
-    </div>
-  </div>
+      <figure class="panel c5 panel-foto ancha">
+        <img src="img/ejercicio.jpg" loading="eager" decoding="async"
+             data-t-attr="alt:altPortada" alt="Barras y discos en la sala de fuerza de un centro de rehabilitación">
+        <figcaption data-t="fpEjercicio"></figcaption>
+      </figure>
 
-  <div class="marco baldosas-bl">
-    <h2 class="baldosas-h" data-t="baldosasH">¿Por dónde te empiezo a mirar?</h2>
-    <p class="baldosas-p" data-t="baldosasP">Elige la zona y te llevamos directo a lo que hacemos con ella, con plazos y criterios de alta.</p>
-    <div class="baldosas" id="iBaldosas"></div>
-  </div>
-
-  <div class="confianza">
-    <div class="marco conf-m" id="iConfianza"></div>
-  </div>
-  <div class="marco agenda-hueco" id="ap-agenda"></div>
-  <div class="marco bl raya">
-    <p class="eti" data-t="iCifrasEti">Cómo trabajamos</p>
-    <div class="rej r4" id="iCifras"></div>
-    <p class="metodo" data-t="iCifrasNota">Los criterios de alta que usamos son los que se emplean en readaptación deportiva: fuerza comparada con el lado sano, salto y control del gesto. Nada de «cuando ya no duela».</p>
-  </div>
-  <div class="marco bl raya">
-    <p class="eti" data-t="nTratamientos">Tratamientos</p>
-    <div class="rej r3" id="iTrat"></div>
-    <div class="acc"><a class="btn" href="#/tratamientos" data-t="bVerTodos">Ver todos</a></div>
-  </div>
-  <div class="marco bl">
-    <p class="eti" data-t="iPorQueEti">Tres cosas que hacemos distinto</p>
-    <div class="filas" id="iPorQue"></div>
-  </div>
-  <div class="marco bl" style="padding-top:0">
-    <p class="eti" data-t="iNoEti">Lo que no vas a encontrar aquí</p>
-    <ul class="lista no" id="iNo"></ul>
-    <p class="metodo" data-t="iNoNota">No decimos que todo esto esté mal en cualquier contexto. Decimos que como tratamiento principal no funciona, y que quien te lo vende como tal te está cobrando por que te sientas atendido.</p>
-  </div>
-  <div class="marco" style="padding-bottom:clamp(2.75rem,6vw,5rem)">
-    <div class="cinta">
-      <div>
-        <h3 data-t="ctaIniH">Si llevas semanas parado sin saber por qué, empieza por la valoración.</h3>
-        <p data-t="ctaIniP">Una hora, con tratamiento incluido, y sales con un plan escrito y un número de sesiones estimado.</p>
+      <div class="panel c12">
+        <div class="panel-cab"><span data-t="pnZona">¿Por dónde te empiezo a mirar?</span></div>
+        <div class="panel-cuerpo">
+          <p data-t="baldosasP"></p>
+          <div class="baldosas" id="iBaldosas"></div>
+        </div>
       </div>
-      <a class="btn" href="#/contacto" data-t="bPedirCita">Pedir cita</a>
+
+      <div class="panel c8">
+        <div class="panel-cab"><span data-t="iCifrasEti">Cómo trabajamos</span><span class="etq" data-t="etqCriterios">Criterios</span></div>
+        <div class="panel-cuerpo">
+          <div class="rej r4" id="iCifras"></div>
+          <p class="metodo" data-t="iCifrasNota"></p>
+        </div>
+      </div>
+      <div class="panel c4">
+        <div class="panel-cab"><span data-t="pnAlta">Criterios de alta</span></div>
+        <div class="panel-cuerpo"><ul class="lista" id="iAlta"></ul></div>
+      </div>
+
+      <div class="panel c12">
+        <div class="panel-cab"><span data-t="pnConfianza">Quién lo firma</span></div>
+        <div class="panel-cuerpo"><div class="conf-m" id="iConfianza"></div></div>
+      </div>
+
+      <div class="panel c8">
+        <div class="panel-cab"><span data-t="nTratamientos">Tratamientos</span></div>
+        <div class="panel-cuerpo">
+          <div class="rej r3" id="iTrat"></div>
+          <div class="acciones"><a class="btn" href="#/tratamientos" data-t="bVerTodos">Ver todos</a></div>
+        </div>
+      </div>
+      <div class="panel c4">
+        <div class="panel-cab"><span data-t="pnPrimera">La primera visita</span></div>
+        <div class="panel-cuerpo"><ol class="lista" id="iPrimera"></ol></div>
+      </div>
+
+      <div class="panel c7">
+        <div class="panel-cab"><span data-t="iPorQueEti">Tres cosas que hacemos distinto</span></div>
+        <div class="panel-cuerpo"><div class="filas" id="iPorQue"></div></div>
+      </div>
+      <div class="panel c5">
+        <div class="panel-cab"><span data-t="iNoEti">Lo que no vas a encontrar aquí</span></div>
+        <div class="panel-cuerpo">
+          <ul class="lista no" id="iNo"></ul>
+          <p class="metodo" data-t="iNoNota"></p>
+        </div>
+      </div>
+
+      <div class="c12" id="ap-agenda"><div class="agenda-hueco"></div></div>
+
+      <div class="panel c12 panel-portada horizonte">
+        <div class="panel-cuerpo">
+          <h3 data-t="ctaIniH">Si llevas semanas parado sin saber por qué, empieza por la valoración.</h3>
+          <p data-t="ctaIniP"></p>
+          <div class="acciones"><a class="btn" href="#/contacto" data-t="bPedirCita">Pedir cita</a></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -686,9 +901,9 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
 
 <section data-ruta="tratamientos" id="ap-mapa">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
-    <p class="eti" data-t="nMapa">Mapa del cuerpo</p>
-    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="mpH1">Señale dónde le duele.</h2>
-    <p class="entrada" data-t="mpEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
+    <p class="eti" data-t="nMapaCuerpo">Mapa del cuerpo</p>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="mcH1">Señale dónde le duele.</h2>
+    <p class="entrada" data-t="mcEntrada">Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.</p>
   </div>
   <div class="marco mapa">
     <svg id="mpSvg" viewBox="0 0 300 430" role="group" data-t-attr="aria-label:mpAria" aria-label="Mapa del cuerpo"></svg>
@@ -718,8 +933,8 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
 <section data-ruta="tratamientos" id="ap-lesiones">
   <div class="marco bl" style="padding-top:clamp(2rem,4vw,3.5rem)">
     <p class="eti" data-t="nLesiones">Lesiones</p>
-    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="leH1">Las que más vemos, y lo que suele fallar.</h2>
-    <p class="entrada" data-t="leEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch" data-t="lsH1">Las que más vemos, y lo que suele fallar.</h2>
+    <p class="entrada" data-t="lsEntrada">La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.</p>
   </div>
   <div class="marco">
     <svg class="cuerpo" id="cuerpo" viewBox="0 0 300 420" role="img" style="max-width:15rem;margin:0 auto 2rem"
@@ -735,7 +950,7 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
   </div>
   <div class="marco"><nav class="indice-pag" id="ix-recuperacion" data-t-attr="aria-label:ariaEnPagina" aria-label="En esta página"></nav></div>
   <div class="marco">
-    <img class="banda-foto" src="img/sala-fuerza.jpg" width="1400" height="533"
+    <img class="banda-foto" src="img/ejercicio.jpg" width="1400" height="533"
          data-t-attr="alt:altRecuperacion" alt="Persona entrenando con barra durante la readaptación">
     <div class="mandos" id="reMandos" role="group" data-t-attr="aria-label:reAria" aria-label="Lesión"></div>
     <div class="leyenda" id="reLeyenda"></div>
@@ -832,8 +1047,6 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
     <p class="entrada" data-t="inEntrada">Ciento sesenta metros repartidos a propósito: la mayor parte es espacio para moverse, porque ahí es donde se recupera.</p>
   </div>
   <div class="marco">
-    <img class="banda-foto" src="img/sala-tratamiento.jpg" width="1400" height="533"
-         data-t-attr="alt:altCentro" alt="Sala con camillas de tratamiento en un centro de fisioterapia">
     <div class="rej r3" id="inEspacios"></div>
     <div style="margin-top:1.5rem" class="rej r4" id="inDatos"></div>
     <div style="margin-top:2.5rem">
@@ -1074,11 +1287,32 @@ html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);
 </footer>
 
 <script>
+/* Fotografías del sitio y su crédito. Título, autor y licencia no se traducen:
+   traducir una atribución la invalida. */
+var FOTOS = [
+  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic",
+   l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"}
+];
+
 var T = {
 es:{
+ pnAlta:"Criterios de alta", pnPrimera:"La primera visita",
+ criteriosAlta:[
+  "Fuerza del lado lesionado por encima del 90 % del lado sano, medida, no estimada",
+  "Salto y aterrizaje con control, sin que la rodilla se meta hacia dentro",
+  "El gesto de tu deporte a velocidad real, sin compensar con otra articulación",
+  "Dos semanas seguidas de carga completa sin que reaparezca el dolor"
+ ],
+ pasosPrimera:[
+  "Cuentas qué pasó, qué has probado y qué quieres volver a hacer",
+  "Medimos rango, fuerza y el gesto que te falla, con números",
+  "Tratamos ese mismo día: la valoración incluye una hora completa",
+  "Sales con un plan escrito y un número estimado de sesiones"
+ ],
  _dir:"ltr", _lang:"es", _loc:"es-ES", menuAria:"Abrir el menú",
  metaBase:"Fisioterapia y readaptación deportiva. Una hora por paciente y alta por criterios medibles.",
  nMapa:"Mapa del sitio", nEmpleo:"Empleo", tMapa:"Mapa del sitio — ATLAS", tEmpleo:"Empleo — ATLAS",
+ nlSitio:"La clínica", nlHerramientas:"Su caso", nlContacto:"Contacto",
  tErr:"Página no encontrada — ATLAS", pieEmpresaEti:"La casa",
  errEti:"Error 404", errH1:"Esa página no existe.",
  errEntrada:"O la dirección está mal escrita, o la teníamos y la hemos movido. Si el enlace venía de aquí, es culpa nuestra.",
@@ -1284,9 +1518,9 @@ es:{
  nClinica:"La clínica", ariaEnPagina:"En esta página", tClinica:"La clínica — ATLAS",
 
  orNivUrgente:"Vaya al médico hoy", orNivPronto:"Cite esta semana", orNivNormal:"Puede esperar",
- nOrientacion:"¿Qué me pasa?", nMapa:"Mapa del cuerpo", nDolor:"Escala de dolor",
+ nOrientacion:"¿Qué me pasa?", nMapaCuerpo:"Mapa del cuerpo", nDolor:"Escala de dolor",
  nCalendario:"Vuelta al deporte", nEjercicios:"Ejercicios", nTest:"Test de fuerza",
- tOrientacion:"¿Qué me pasa? — ATLAS", tMapa:"Mapa del cuerpo — ATLAS", tDolor:"Escala de dolor — ATLAS",
+ tOrientacion:"¿Qué me pasa? — ATLAS", tMapaCuerpo:"Mapa del cuerpo — ATLAS", tDolor:"Escala de dolor — ATLAS",
  tCalendario:"Vuelta al deporte — ATLAS", tEjercicios:"Ejercicios — ATLAS", tTest:"Test de fuerza — ATLAS",
 
  orH1:"Cuatro preguntas para saber si corre prisa.",
@@ -1310,8 +1544,8 @@ es:{
   {t:"Patrón típico de tendón", d:"Que duela al empezar y mejore al calentar es la firma de una tendinopatía. Buena noticia: responde muy bien a la carga progresiva, y muy mal al reposo.", a:"Pida cita esta semana. No deje de entrenar del todo: ajustaremos qué y cuánto."}
  ],
 
- mpH1:"Señale dónde le duele.",
- mpEntrada:"Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.",
+ mcH1:"Señale dónde le duele.",
+ mcEntrada:"Pulse una zona y verá qué entra más por la puerta en esa parte, cuánto suele tardar y con qué se trata.",
  mpAria:"Mapa del cuerpo, zonas que tratamos",
  mpVacio:"Pulse una de las zonas marcadas del dibujo.",
  mpLesiones:"Lo que más vemos aquí", mpTrata:"Con qué se trata",
@@ -1386,15 +1620,17 @@ es:{
  ],
 
  altPortada:"Persona entrenando con barra durante la readaptación",
+ pnZona:"¿Por dónde te empiezo a mirar?", pnConfianza:"Quién lo firma",
+ etqCriterios:"Criterios",
+ altSalaTrat:"Camilla y sala de tratamiento individual",
+ altSalaFuerza:"Sala de fuerza con barras, discos y jaula",
+ fpEjercicio:"La sala de fuerza. El alta se decide aquí, no en la camilla.",
+ fpSalaTrat:"Sala individual. La sesión es de una hora y con la misma persona.",
+ fpSalaFuerza:"Carga progresiva, medida contra el lado sano y no contra el calendario.",
  altRecuperacion:"Barras y discos en la sala de fuerza de un centro de rehabilitación",
  altCentro:"Sala con camillas de tratamiento en un centro de fisioterapia",
  credEti:"Créditos de las imágenes",
  credNota:"Fotografías de Wikimedia Commons con licencia libre, atribuidas a su autor.",
- creditos:[
-  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
-  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
- ],
  marca:"ATLAS", ariaMenu:"Secciones", ariaIdioma:"Idioma",
  nInicio:"Inicio", nTratamientos:"Tratamientos", nLesiones:"Lesiones", nRecuperacion:"Recuperación",
  nMovilidad:"Movilidad", nEquipo:"Equipo", nInstalaciones:"Centro", nPrecios:"Precios",
@@ -1430,8 +1666,8 @@ es:{
  ],
 
  tLesiones:"Lesiones — ATLAS",
- leH1:"Las que más vemos, y lo que suele fallar.",
- leEntrada:"La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.",
+ lsH1:"Las que más vemos, y lo que suele fallar.",
+ lsEntrada:"La lesión rara vez está donde duele. Estas son las cinco que más entran por la puerta y qué hay detrás de cada una.",
  lesiones:[
   {n:"Tendinopatía rotuliana", z:"Rodilla", d:"Duele bajo la rótula al saltar o bajar escaleras. Casi nunca es un problema del tendón solo: suele haber poca fuerza de cuádriceps y demasiado volumen de salto en poco tiempo."},
   {n:"Esguince de tobillo", z:"Tobillo", d:"El más frecuente y el peor tratado. El problema no es el esguince: es que el 40 % repite porque nadie reeducó el equilibrio después."},
@@ -1547,9 +1783,23 @@ es:{
 },
 
 en:{
+ pnAlta:"Discharge criteria", pnPrimera:"The first visit",
+ criteriosAlta:[
+  "Strength on the injured side above 90 % of the healthy side, measured, not guessed",
+  "Jump and landing under control, with no knee collapsing inwards",
+  "Your sport's movement at real speed, without compensating with another joint",
+  "Two consecutive weeks of full load with no pain coming back"
+ ],
+ pasosPrimera:[
+  "You tell us what happened, what you have tried and what you want to do again",
+  "We measure range, strength and the movement that fails you, with numbers",
+  "We treat you the same day: the assessment includes a full hour",
+  "You leave with a written plan and an estimated number of sessions"
+ ],
  _dir:"ltr", _lang:"en", _loc:"en-GB", menuAria:"Open the menu",
  metaBase:"Physiotherapy and sports rehabilitation. One hour per patient and discharge on measurable criteria.",
  nMapa:"Sitemap", nEmpleo:"Jobs", tMapa:"Sitemap — ATLAS", tEmpleo:"Jobs — ATLAS",
+ nlSitio:"The clinic", nlHerramientas:"Your case", nlContacto:"Contact",
  tErr:"Page not found — ATLAS", pieEmpresaEti:"The company",
  errEti:"Error 404", errH1:"That page does not exist.",
  errEntrada:"Either the address is mistyped, or we had it and moved it. If the link came from here, it is our fault.",
@@ -1755,9 +2005,9 @@ en:{
  nClinica:"The clinic", ariaEnPagina:"On this page", tClinica:"The clinic — ATLAS",
 
  orNivUrgente:"See a doctor today", orNivPronto:"Book this week", orNivNormal:"It can wait",
- nOrientacion:"What is wrong?", nMapa:"Body map", nDolor:"Pain scale",
+ nOrientacion:"What is wrong?", nMapaCuerpo:"Body map", nDolor:"Pain scale",
  nCalendario:"Return to sport", nEjercicios:"Exercises", nTest:"Strength test",
- tOrientacion:"What is wrong? — ATLAS", tMapa:"Body map — ATLAS", tDolor:"Pain scale — ATLAS",
+ tOrientacion:"What is wrong? — ATLAS", tMapaCuerpo:"Body map — ATLAS", tDolor:"Pain scale — ATLAS",
  tCalendario:"Return to sport — ATLAS", tEjercicios:"Exercises — ATLAS", tTest:"Strength test — ATLAS",
 
  orH1:"Four questions to know whether it is urgent.",
@@ -1781,8 +2031,8 @@ en:{
   {t:"Classic tendon pattern", d:"Hurting at the start and easing as you warm up is the signature of a tendinopathy. Good news: it responds very well to progressive load, and very badly to rest.", a:"Book this week. Do not stop training altogether: we will adjust what and how much."}
  ],
 
- mpH1:"Point to where it hurts.",
- mpEntrada:"Tap an area and you will see what comes through the door most in that part, how long it usually takes, and what it is treated with.",
+ mcH1:"Point to where it hurts.",
+ mcEntrada:"Tap an area and you will see what comes through the door most in that part, how long it usually takes, and what it is treated with.",
  mpAria:"Body map, the areas we treat",
  mpVacio:"Tap one of the marked areas on the diagram.",
  mpLesiones:"What we see most here", mpTrata:"How it is treated",
@@ -1857,15 +2107,17 @@ en:{
  ],
 
  altPortada:"A person training with a barbell during rehabilitation",
+ pnZona:"Where should we start looking?", pnConfianza:"Who signs it",
+ etqCriterios:"Criteria",
+ altSalaTrat:"Treatment couch in a private room",
+ altSalaFuerza:"Strength room with barbells, plates and a rack",
+ fpEjercicio:"The strength room. Discharge is decided here, not on the couch.",
+ fpSalaTrat:"Private room. The session lasts an hour, with the same person.",
+ fpSalaFuerza:"Progressive loading, measured against the healthy side, not the calendar.",
  altRecuperacion:"Barbells and plates in the strength room of a rehabilitation clinic",
  altCentro:"A room with treatment tables in a physiotherapy clinic",
  credEti:"Image credits",
  credNota:"Photographs from Wikimedia Commons under free licences, credited to their authors.",
- creditos:[
-  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
-  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
- ],
  marca:"ATLAS", ariaMenu:"Sections", ariaIdioma:"Language",
  nInicio:"Home", nTratamientos:"Treatments", nLesiones:"Injuries", nRecuperacion:"Recovery",
  nMovilidad:"Mobility", nEquipo:"Team", nInstalaciones:"Clinic", nPrecios:"Prices",
@@ -1901,8 +2153,8 @@ en:{
  ],
 
  tLesiones:"Injuries — ATLAS",
- leH1:"The ones we see most, and what usually goes wrong.",
- leEntrada:"An injury is rarely where it hurts. These are the five that come through the door most often, and what sits behind each.",
+ lsH1:"The ones we see most, and what usually goes wrong.",
+ lsEntrada:"An injury is rarely where it hurts. These are the five that come through the door most often, and what sits behind each.",
  lesiones:[
   {n:"Patellar tendinopathy", z:"Knee", d:"Pain under the kneecap when jumping or going downstairs. Rarely a tendon problem alone: usually there is weak quadriceps and too much jumping volume in too little time."},
   {n:"Ankle sprain", z:"Ankle", d:"The most common and the worst treated. The problem is not the sprain: it is that 40 % happen again because nobody retrained balance afterwards."},
@@ -2018,9 +2270,23 @@ en:{
 },
 
 ar:{
+ pnAlta:"معايير إنهاء العلاج", pnPrimera:"الزيارة الأولى",
+ criteriosAlta:[
+  "قوة الطرف المصاب فوق ٩٠٪ من الطرف السليم، مقيسةً لا مقدّرة",
+  "قفزٌ وهبوطٌ متحكَّمٌ فيه، دون أن تنحرف الركبة إلى الداخل",
+  "أداء حركة رياضتك بسرعتها الحقيقية دون تعويض بمفصل آخر",
+  "أسبوعان متتاليان بحملٍ كامل دون عودة الألم"
+ ],
+ pasosPrimera:[
+  "تحكي ما جرى، وما جرّبته، وما تريد العودة إليه",
+  "نقيس المدى والقوة والحركة التي تعجز عنها، بالأرقام",
+  "نعالجك في اليوم نفسه: التقييم يشمل ساعة كاملة",
+  "تخرج بخطة مكتوبة وعدد جلسات مُقدَّر"
+ ],
  _dir:"rtl", _lang:"ar", _loc:"ar-u-nu-arab", menuAria:"افتح القائمة",
  metaBase:"علاج طبيعي وإعادة تأهيل رياضي. ساعة لكل مريض وخروج بمعايير قابلة للقياس.",
  nMapa:"خريطة الموقع", nEmpleo:"وظائف", tMapa:"خريطة الموقع — أطلس", tEmpleo:"وظائف — أطلس",
+ nlSitio:"العيادة", nlHerramientas:"حالتك", nlContacto:"التواصل",
  tErr:"الصفحة غير موجودة — أطلس", pieEmpresaEti:"الدار",
  errEti:"خطأ ٤٠٤", errH1:"هذه الصفحة غير موجودة.",
  errEntrada:"إما أن العنوان مكتوب خطأً، وإما أنها كانت لدينا فنقلناها. وإن كان الرابط من هنا فهو ذنبنا.",
@@ -2226,9 +2492,9 @@ ar:{
  nClinica:"العيادة", ariaEnPagina:"في هذه الصفحة", tClinica:"العيادة — أطلس",
 
  orNivUrgente:"راجع الطبيب اليوم", orNivPronto:"احجز هذا الأسبوع", orNivNormal:"يحتمل الانتظار",
- nOrientacion:"ما الذي أصابني؟", nMapa:"خريطة الجسم", nDolor:"مقياس الألم",
+ nOrientacion:"ما الذي أصابني؟", nMapaCuerpo:"خريطة الجسم", nDolor:"مقياس الألم",
  nCalendario:"العودة إلى الرياضة", nEjercicios:"تمارين", nTest:"اختبار القوة",
- tOrientacion:"ما الذي أصابني؟ — أطلس", tMapa:"خريطة الجسم — أطلس", tDolor:"مقياس الألم — أطلس",
+ tOrientacion:"ما الذي أصابني؟ — أطلس", tMapaCuerpo:"خريطة الجسم — أطلس", tDolor:"مقياس الألم — أطلس",
  tCalendario:"العودة إلى الرياضة — أطلس", tEjercicios:"تمارين — أطلس", tTest:"اختبار القوة — أطلس",
 
  orH1:"أربعة أسئلة لتعرف: أهو مستعجل؟",
@@ -2252,8 +2518,8 @@ ar:{
   {t:"نمط الوتر المعروف", d:"أن يؤلم عند البدء ويخفّ بعد الإحماء هو بصمة اعتلال الوتر. والخبر الجيد أنه يستجيب جيدًا جدًا للحِمل المتدرّج، وسيئًا جدًا للراحة.", a:"احجز هذا الأسبوع. ولا توقف التدريب كليًا: سنعدّل ماذا وكم."}
  ],
 
- mpH1:"أشِر إلى موضع الألم.",
- mpEntrada:"اضغط على منطقة فترى ما يأتينا منها أكثر، وكم يستغرق عادةً، وبماذا يُعالج.",
+ mcH1:"أشِر إلى موضع الألم.",
+ mcEntrada:"اضغط على منطقة فترى ما يأتينا منها أكثر، وكم يستغرق عادةً، وبماذا يُعالج.",
  mpAria:"خريطة الجسم، المناطق التي نعالجها",
  mpVacio:"اضغط على إحدى المناطق المعلَّمة في الرسم.",
  mpLesiones:"أكثر ما نراه هنا", mpTrata:"بماذا يُعالج",
@@ -2328,15 +2594,17 @@ ar:{
  ],
 
  altPortada:"شخص يتدرّب بالبار أثناء إعادة التأهيل",
+ pnZona:"من أين نبدأ الفحص؟", pnConfianza:"من يوقّع على ذلك",
+ etqCriterios:"المعايير",
+ altSalaTrat:"سرير علاج في غرفة فردية",
+ altSalaFuerza:"قاعة قوة فيها بارّات وأثقال وقفص تمرين",
+ fpEjercicio:"قاعة القوة. قرار الخروج يُتَّخذ هنا لا على سرير العلاج.",
+ fpSalaTrat:"غرفة فردية. الجلسة ساعة كاملة ومع الشخص نفسه.",
+ fpSalaFuerza:"تحميل تدريجي، يُقاس مقابل الطرف السليم لا مقابل التقويم.",
  altRecuperacion:"بارات وأثقال في صالة القوة بمركز تأهيل",
  altCentro:"قاعة فيها أَسِرّة علاج في مركز علاج طبيعي",
  credEti:"حقوق الصور",
  credNota:"صور من ويكيميديا كومنز برخص حرة، منسوبة إلى أصحابها.",
- creditos:[
-  {t:"Barbell pad back squat", a:"RickyBennison", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"},
-  {t:"Young man athlete doing exercise", a:"Nenad Stojkovic", l:"CC BY 2.0", u:"https://creativecommons.org/licenses/by/2.0/"},
-  {t:"Physical Therapy Teaching Lab at CU Anschutz", a:"Mikepascoe", l:"CC0", u:"https://creativecommons.org/publicdomain/zero/1.0/"}
- ],
  marca:"أطلس", ariaMenu:"الأقسام", ariaIdioma:"اللغة",
  nInicio:"الرئيسية", nTratamientos:"العلاجات", nLesiones:"الإصابات", nRecuperacion:"التعافي",
  nMovilidad:"مدى الحركة", nEquipo:"الفريق", nInstalaciones:"المركز", nPrecios:"الأسعار",
@@ -2372,8 +2640,8 @@ ar:{
  ],
 
  tLesiones:"الإصابات — أطلس",
- leH1:"أكثر ما نراه، وما يُخطئ فيه الناس عادةً.",
- leEntrada:"نادرًا ما تكون الإصابة حيث يوجد الألم. وهذه أكثر خمس إصابات دخولًا من الباب، وما وراء كل واحدة منها.",
+ lsH1:"أكثر ما نراه، وما يُخطئ فيه الناس عادةً.",
+ lsEntrada:"نادرًا ما تكون الإصابة حيث يوجد الألم. وهذه أكثر خمس إصابات دخولًا من الباب، وما وراء كل واحدة منها.",
  lesiones:[
   {n:"اعتلال وتر الرضفة", z:"الركبة", d:"ألم أسفل الصابونة عند القفز أو نزول الدرج. ونادرًا ما يكون مشكلة في الوتر وحده: غالبًا ضعف في عضلة الفخذ الرباعية وحجم قفز كبير في وقت قصير."},
   {n:"التواء الكاحل", z:"الكاحل", d:"الأكثر شيوعًا والأسوأ علاجًا. والمشكلة ليست الالتواء: بل أن ٤٠٪ منها تتكرر لأن أحدًا لم يُعِد تدريب التوازن بعده."},
@@ -2525,6 +2793,7 @@ var caLes = 0, caFecha = "", ejZ = -1, ejM = -1, ejF = -1;
 var teVals = [[null,null],[null,null],[null,null]];
 
 /* ── 1. Árbol de decisión ────────────────────────────────────────── */
+
 function pintarOrientacion(){
   var cont = document.getElementById("orArbol");
   if (!cont) return;
@@ -2946,6 +3215,8 @@ function pintarListas(){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d"><p>'+esc(f.d)+'</p></div></div>'; });
   puntos("iNo", t.iNo);
+  puntos("iAlta", t.criteriosAlta);
+  puntos("iPrimera", t.pasosPrimera);
   pon("trDetalle", t.trDetalle, function(f){
     return '<div class="fila"><div><div class="i">'+esc(f.i)+'</div><h3>'+esc(f.t)+'</h3></div>'
       + '<div class="d">'+f.d.map(function(x){ return '<p>'+esc(x)+'</p>'; }).join("")+'</div></div>'; });
@@ -2993,7 +3264,7 @@ function pintarListas(){
   var pi = document.getElementById("prIncluye");
   if (pi) pi.innerHTML = t.prIncluye.map(function(x){ return "<li>"+esc(x)+"</li>"; }).join("");
   var cr = document.getElementById("credLista");
-  if (cr) cr.innerHTML = t.creditos.map(function(c){
+  if (cr) cr.innerHTML = FOTOS.map(function(c){
     return '<li>' + esc(c.t) + ' — ' + esc(c.a) + ', <a href="' + c.u
       + '" target="_blank" rel="noopener">' + esc(c.l) + '</a></li>'; }).join("");
   pon("pgLista", t.preguntas, function(p){ return '<details class="faq"><summary>'+esc(p.q)+'</summary><p>'+esc(p.a)+'</p></details>'; });
@@ -3383,12 +3654,6 @@ document.getElementById("ckGuardar").addEventListener("click", function(){
   });
   ckGuarda(marcadas);
 });
-document.getElementById("menuB").addEventListener("click", function(){
-  menuAbrir(this.getAttribute("aria-expanded") !== "true");
-});
-document.querySelector("nav.a").addEventListener("click", function(e){
-  if (e.target.tagName === "A") menuAbrir(false);
-});
 document.addEventListener("keydown", function(e){ if (e.key === "Escape") menuAbrir(false); });
 CORTE_MENU.addEventListener("change", menuAjustar);
 menuAjustar();
@@ -3417,6 +3682,31 @@ document.getElementById("f").addEventListener("submit", function(e){
   var g=null; try{ g=localStorage.getItem("atlas_lang"); }catch(e){}
   if (!g||!T[g]){ var l=(navigator.language||"es").slice(0,2).toLowerCase(); g=T[l]?l:"es"; }
   aplicar(g); enrutar();
+})();
+
+/* ══ kit-tablero: el raíl en pantallas estrechas ══ */
+(function(){
+  var bot = document.getElementById("appAbrir"),
+      lat = document.getElementById("appLateral"),
+      velo = document.getElementById("appVelo");
+  if (!bot || !lat || !velo) return;
+  function poner(si){
+    lat.classList.toggle("abierto", si);
+    velo.classList.toggle("abierto", si);
+    bot.setAttribute("aria-expanded", si ? "true" : "false");
+  }
+  bot.addEventListener("click", function(){
+    poner(bot.getAttribute("aria-expanded") !== "true");
+  });
+  velo.addEventListener("click", function(){ poner(false); });
+  /* Al navegar se cierra solo: si no, en el móvil el raíl tapa lo que
+     acabas de pedir. */
+  lat.addEventListener("click", function(e){
+    if (e.target.closest("a[href^='#']")) poner(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") poner(false);
+  });
 })();
 </script>
 </body>

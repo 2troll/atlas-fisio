@@ -22,7 +22,7 @@
 <script type="application/ld+json" id="datos"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Outfit:wght@300;400;500&family=Rubik:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rubik:wght@300;400;500;600;700&display=swap">
 <style>
 /* ══════════════════════════════════════════════════════════════════
    ATLAS — el atlas es la primera vértebra cervical, la que sostiene el
@@ -39,8 +39,10 @@
   --verde:#1f7a6b; --senal:#c4512e;
   --l:rgba(16,23,26,.13); --l2:rgba(16,23,26,.06);
   --s1:#1a6fb0; --s2:#c8641a; --s3:#0f8f7a;
-  --disp:"Bricolage Grotesque",system-ui,sans-serif;
-  --c:"Outfit",system-ui,sans-serif;
+  /* Una sola familia, y el contraste lo pone el peso. Es lo que hace que se
+     entienda de un vistazo sin depender de tamaños enormes. */
+  --disp:"Plus Jakarta Sans",system-ui,sans-serif;
+  --c:"Plus Jakarta Sans",system-ui,sans-serif;
   --marco:min(1260px,100% - 2.75rem);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -737,6 +739,42 @@ html[dir="rtl"] .etq{letter-spacing:0;text-transform:none;font-size:.76rem;}
 .rej-form .ancho2{grid-column:1 / -1;}
 @media(max-width:640px){.rej-form{grid-template-columns:1fr}}
 /* ══ kit-tablero: final ══ */
+
+/* ══════════════════════════════════════════════════════════════════
+   LA VOZ DE ATLAS — ficha de consulta
+   Sin filetes, sin versalitas y sin esquinas vivas: bloques blandos con
+   una pestaña de color a un lado, rótulos en caja baja y peso alto. Lo
+   contrario del plano técnico de NAHAR y de la carta de BUNN, a propósito.
+   ══════════════════════════════════════════════════════════════════ */
+.panel{border:0;border-radius:18px;background:var(--sup);overflow:hidden;
+  box-shadow:0 1px 2px rgba(16,23,26,.05),0 10px 30px -22px rgba(16,23,26,.6);}
+:root:not([data-theme="light"]) .panel{background:var(--f2);box-shadow:none;}
+.panel.panel-portada{background:var(--kit-hondo);color:var(--kit-hondo-texto);}
+:root:not([data-theme="light"]) .panel.panel-portada{background:var(--kit-hondo);}
+/* La pestaña de color es lo que dice de un vistazo dónde empieza cada bloque,
+   ahora que no hay filete que lo diga. */
+.panel > .panel-cab{border-block-end:0;position:relative;
+  padding:1rem 1.1rem .35rem 1.1rem;
+  font-family:var(--c);font-weight:700;font-size:1rem;
+  letter-spacing:-.01em;text-transform:none;color:var(--t);}
+.panel > .panel-cab::before{content:"";position:absolute;
+  inset-block:1.05rem auto;inset-inline-start:0;width:4px;height:1.1em;
+  border-radius:0 3px 3px 0;background:var(--verde);}
+html[dir="rtl"] .panel > .panel-cab::before{border-radius:3px 0 0 3px;}
+html[dir="rtl"] .panel > .panel-cab{letter-spacing:0;font-size:1.06rem;}
+.panel-cuerpo{padding:.4rem 1.1rem 1.1rem;}
+.etq{border-radius:999px;font-family:var(--c);font-weight:600;
+  font-size:.72rem;letter-spacing:0;text-transform:none;padding:.22rem .7rem;}
+.panel-foto{border-radius:18px;}
+.panel-cuerpo h3{font-weight:700;letter-spacing:-.015em;}
+h1,h2{font-weight:800;letter-spacing:-.025em;}
+html[dir="rtl"] h1,html[dir="rtl"] h2{letter-spacing:0;font-weight:700;}
+/* El raíl: enlaces gordos y píldora en el activo */
+.app-lateral .marca{font-weight:800;letter-spacing:-.02em;}
+.app-nav a{font-weight:500;font-size:.95rem;border-radius:999px;padding-inline:.9rem;}
+.app-nav a[aria-current="page"]{font-weight:700;box-shadow:none;}
+.app-eti{text-transform:none;letter-spacing:0;font-weight:600;font-size:.8rem;}
+
 /* La franja oscura de ATLAS tira al verde de la clínica. */
 :root{--kit-hondo:#0f1c1a;--kit-hondo-texto:#e8ecec;
       --kit-hondo-linea:rgba(232,236,236,.16);}

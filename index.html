@@ -521,6 +521,41 @@ footer.a{border-top:1px solid var(--l);padding-block:2rem 2.6rem;font-size:.8rem
 .pie nav{display:flex;gap:1.2rem;flex-wrap:wrap;} .pie a{text-decoration:none;}
 .pie a:hover{color:var(--verde);} .pie .fin{margin-inline-start:auto;}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block;}
+
+/* ══════════════════════════════════════════════════════════════════
+   LOS CRITERIOS DE ALTA
+   Tercer idioma para el mismo problema de ritmo. Una clínica no habla
+   con retícula de ingeniería ni con color de saco de café: habla con
+   calma. Fondo claro, esquinas generosas, la cifra grande acompañada de
+   su frase, y separación por aire en vez de por filete. Aquí el número
+   no es un dato de catálogo: es un plazo que le importa a alguien.
+   ══════════════════════════════════════════════════════════════════ */
+#iCifras{
+  width:100vw;margin-inline-start:50%;transform:translateX(-50%);
+  /* --sup es blanco en esta paleta; el gris de fondo es --f2. Sobre blanco
+     las tarjetas blancas desaparecían. */
+  background:var(--f2,#eceeed);
+  padding:clamp(2.6rem,6vw,4.4rem) clamp(1.4rem,6vw,4rem);
+  display:grid;gap:clamp(1.6rem,3.4vw,2.8rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));
+  margin-block:2.4rem 1.4rem;
+}
+html[dir="rtl"] #iCifras{transform:translateX(50%);}
+#iCifras .cel,#iCifras > div{
+  background:var(--sup,#fff);border-radius:18px;padding:clamp(1.4rem,2.6vw,2rem);
+  border:0;box-shadow:0 1px 0 rgba(0,0,0,.05);
+}
+#iCifras .v{
+  font-family:var(--disp);font-weight:600;
+  font-size:clamp(2.4rem,5.4vw,3.9rem);line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;color:var(--senal,#1f8a70);
+}
+html[lang="ar"] #iCifras .v{letter-spacing:0;font-size:clamp(2rem,4.6vw,3.3rem);}
+#iCifras .u{
+  text-transform:none;letter-spacing:0;font-family:var(--cuerpo);
+  font-size:.94rem;line-height:1.55;margin-top:.8rem;max-width:24ch;
+  color:var(--tinta-2,#4a5350);
+}
 </style>
 </head>
 <body>
